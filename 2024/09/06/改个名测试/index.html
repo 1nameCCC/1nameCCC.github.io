@@ -17,6 +17,7 @@
 <meta property="og:site_name" content="这是一个主标题">
 <meta property="og:description" content="Linux操作系统Linux 简介 UNIX 是一个交互式系统，用于同时处理多进程和多用户同时在线。为什么要说 UNIX，那是因为 Linux 是由 UNIX 发展而来的，UNIX 是由程序员设计，它的主要服务对象也是程序员。Linux 继承了 UNIX 的设计目标。从智能手机到汽车，超级计算机和家用电器，从家用台式机到企业服务器，Linux 操作系统无处不在。">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://1nameccc.github.io/2024/09/06/%E6%94%B9%E4%B8%AA%E5%90%8D%E6%B5%8B%E8%AF%95/">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/img_convert/96aca4a85ced2e23c519faa3b30a4937.png">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/img_convert/71ae901ed2d7fbfba6fbc4514d940769.png">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/img_convert/41747d306fef8c7b0113c58514fd1e60.png">
@@ -47,12 +48,12 @@
 <meta property="og:image" content="https://img-blog.csdnimg.cn/img_convert/e0719224dd9ea68c4dd48b7e7e2b14c2.png">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/img_convert/2eb17a875ef81c2484b7fc7f9e3dd9d5.png">
 <meta property="article:published_time" content="2024-09-06T13:52:11.000Z">
-<meta property="article:modified_time" content="2024-09-09T10:16:12.922Z">
+<meta property="article:modified_time" content="2024-09-09T10:34:29.405Z">
 <meta property="article:author" content="CCC">
 <meta property="article:tag" content="操作系统">
 <meta property="article:tag" content="Linux">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://img-blog.csdnimg.cn/img_convert/96aca4a85ced2e23c519faa3b30a4937.png">
+<meta name="twitter:image" content="http://1nameccc.github.io/2024/09/06/%E6%94%B9%E4%B8%AA%E5%90%8D%E6%B5%8B%E8%AF%95/">
   
     <link rel="alternative" href="/atom.xml" title="这是一个主标题" type="application/atom+xml">
   
@@ -306,7 +307,7 @@
 <span id="more"></span>
 
 
-<h3 id="Linux-接口"><a href="#Linux-接口" class="headerlink" title="Linux 接口"></a>Linux 接口</h3><p>Linux 系统是一种金字塔模型的系统，如下所示</p>
+<h3 id="Linux-接口"><a href="#Linux-接口" class="headerlink" title="Linux 接口"></a>Linux 接口</h3><p>Linux 系统是一种金字塔模型的系统，如下所示<br><img src="/2024/09/06/改个名测试/"  alt="图片描述" style="max-width:100%;"></p>
 <p><img src="https://img-blog.csdnimg.cn/img_convert/96aca4a85ced2e23c519faa3b30a4937.png"></p>
 <p>应用程序发起系统调用把参数放在寄存器中(有时候放在栈中)，并发出 trap 系统陷入指令切换用户态至内核态。因为不能直接在 C 中编写 trap 指令，因此 C 提供了一个库，库中的函数对应着系统调用。有些函数是使用汇编编写的，但是能够从 C 中调用。每个函数首先把参数放在合适的位置然后执行系统调用指令。因此如果你想要执行 read 系统调用的话，C 程序会调用 read 函数库来执行。这里顺便提一下，是由 POSIX 指定的库接口而不是系统调用接口。也就是说，POSIX 会告诉一个标准系统应该提供哪些库过程，它们的参数是什么，它们必须做什么以及它们必须返回什么结果。</p>
 <p>除了操作系统和系统调用库外，Linux 操作系统还要提供一些标准程序，比如文本编辑器、编译器、文件操作工具等。直接和用户打交道的是上面这些应用程序。因此我们可以说 Linux 具有三种不同的接口：系统调用接口、库函数接口和应用程序接口</p>
