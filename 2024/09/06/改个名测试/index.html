@@ -47,7 +47,7 @@
 <meta property="og:image" content="https://img-blog.csdnimg.cn/img_convert/e0719224dd9ea68c4dd48b7e7e2b14c2.png">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/img_convert/2eb17a875ef81c2484b7fc7f9e3dd9d5.png">
 <meta property="article:published_time" content="2024-09-06T13:52:11.000Z">
-<meta property="article:modified_time" content="2024-09-09T11:47:44.112Z">
+<meta property="article:modified_time" content="2024-09-09T11:57:20.361Z">
 <meta property="article:author" content="CCC">
 <meta property="article:tag" content="操作系统">
 <meta property="article:tag" content="Linux">
@@ -307,7 +307,7 @@
 
 
 <h3 id="Linux-接口"><a href="#Linux-接口" class="headerlink" title="Linux 接口"></a>Linux 接口</h3><p>Linux 系统是一种金字塔模型的系统，如下所示</p>
-<img src="/2024/09/06/改个名测试/"  alt="图片描述" style="max-width:100%;">
+<img src="/2024/09/06/改个名测试/"  alt="图片描述" style="width:50%; height:auto; max-width:100%;">
 
 
 <p>应用程序发起系统调用把参数放在寄存器中(有时候放在栈中)，并发出 trap 系统陷入指令切换用户态至内核态。因为不能直接在 C 中编写 trap 指令，因此 C 提供了一个库，库中的函数对应着系统调用。有些函数是使用汇编编写的，但是能够从 C 中调用。每个函数首先把参数放在合适的位置然后执行系统调用指令。因此如果你想要执行 read 系统调用的话，C 程序会调用 read 函数库来执行。这里顺便提一下，是由 POSIX 指定的库接口而不是系统调用接口。也就是说，POSIX 会告诉一个标准系统应该提供哪些库过程，它们的参数是什么，它们必须做什么以及它们必须返回什么结果。</p>
