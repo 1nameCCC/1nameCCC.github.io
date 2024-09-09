@@ -47,7 +47,7 @@
 <meta property="og:image" content="https://img-blog.csdnimg.cn/img_convert/e0719224dd9ea68c4dd48b7e7e2b14c2.png">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/img_convert/2eb17a875ef81c2484b7fc7f9e3dd9d5.png">
 <meta property="article:published_time" content="2024-09-06T13:52:11.000Z">
-<meta property="article:modified_time" content="2024-09-09T09:34:04.813Z">
+<meta property="article:modified_time" content="2024-09-09T10:16:12.922Z">
 <meta property="article:author" content="CCC">
 <meta property="article:tag" content="操作系统">
 <meta property="article:tag" content="Linux">
@@ -322,7 +322,7 @@
 </ol>
 </blockquote>
 <h3 id="Linux-内核结构"><a href="#Linux-内核结构" class="headerlink" title="Linux 内核结构"></a>Linux 内核结构</h3><p>在上面我们看到了 Linux 的整体结构，下面我们从整体的角度来看一下 Linux 的内核结构</p>
-<p><img src="https://img-blog.csdnimg.cn/img_convert/71ae901ed2d7fbfba6fbc4514d940769.png"></p>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/71ae901ed2d7fbfba6fbc4514d940769.png" alt="图片描述"></p>
 <blockquote>
 <p><strong>内核</strong>直接坐落在硬件上，内核的主要作用就是 I&#x2F;O 交互、内存管理和控制 CPU 访问。上图中还包括了 中断 和 调度器，中断是与设备交互的主要方式。中断出现时调度器就会发挥作用。这里的低级代码停止正在运行的进程，将其状态保存在内核进程结构中，并启动驱动程序。进程调度也会发生在内核完成一些操作并且启动用户进程的时候。</p>
 <p><strong>I&#x2F;O 部分负责</strong>与设备进行交互以及执行网络和存储 I&#x2F;O 操作的所有内核部分。<br>从图中可以看出 I&#x2F;O 层次的关系，最高层是一个虚拟文件系统(VFS)，也就是说不管文件是来自内存还是磁盘中，都是经过虚拟文件系统中的。从底层看，所有的驱动都是字符驱动或者块设备驱动。二者的主要区别就是是否允许随机访问。网络驱动设备并不是一种独立的驱动设备，它实际上是一种字符设备，不过网络设备的处理方式和字符设备不同。</p>
