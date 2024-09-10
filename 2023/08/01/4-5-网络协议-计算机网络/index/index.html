@@ -49,6 +49,22 @@
   
   
 
+<script>
+  (function () {
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+      bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    } else {
+      bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+  })();
+
+</script>
+
+
 
   
 
@@ -588,26 +604,6 @@
 
     
 
-    
-    <div class="declare"> 
-      <ul class="post-copyright">
-        <li>
-          <strong>本文作者：</strong>
-          CCC
-        </li>
-        <li>
-          <strong>本文链接：</strong>
-          <a href="http://1nameccc.github.io/2023/08/01/4-5-网络协议-计算机网络/index/" title="网络协议——计算机网络" target="_blank">http://1nameccc.github.io/2023/08/01/4-5-网络协议-计算机网络/index/</a>
-        </li>
-        
-        <li>
-          <strong>版权声明： </strong>
-          
-          本博客所有文章除特别声明外，均采用 <a href="https://github.com/JoeyBling/hexo-theme-yilia-plus/blob/master/LICENSE" rel="external nofollow" target="_blank">MIT</a> 许可协议。转载请注明出处！
-        </li>
-        
-      </ul>
-    </div>
     
 
   </div>
@@ -1216,6 +1212,35 @@
   </div>
 
   
+<script type="text/javascript" src="../../../../../plugins/TweenMax/TweenMax.min.js"></script>
+<script type="text/javascript" src="../../../../../plugins/TweenMax/HoverImg.js"></script>
+
+<script>
+
+
+  var hoverEffect = {
+    "subNav": ".left-col .social a"
+  }
+
+
+  for (var x in hoverEffect) {
+    // 初始化data-img属性值
+    let $em = document.querySelectorAll(hoverEffect[x]);
+    $em.forEach(($a) => {
+      //console.log($a.href);
+      if (isImageType($a.href)) {
+        $a.setAttribute("data-img", $a.href)
+      }
+    })
+    // 实现悬停元素预览图片效果
+    let $a = document.querySelectorAll(hoverEffect[x] + "[data-img]");
+    $a.forEach(($em) => {
+      new HoverImgFx1($em)
+    })
+  }
+
+</script>
+
   
 <script type="text/javascript" src="../../../../../plugins/activate-power-mode/activate-power-mode.js"></script>
 <script>
