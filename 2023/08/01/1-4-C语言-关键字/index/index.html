@@ -530,6 +530,155 @@
 
 
 
+
+<article class="article">
+  <header class="article-header">
+    <h1 class="article-title">C语言——关键字</h1>
+  </header>
+
+  <div class="article-meta">
+    <time class="article-date">2023-08-01</time>
+    
+      <div class="article-tags">
+        
+          <a href="../../../../../tags/C%E8%AF%AD%E8%A8%80/">C语言</a>
+        
+          <a href="../../../../../tags/%E5%85%B3%E9%94%AE%E5%AD%97%E7%AF%87/">关键字篇</a>
+        
+      </div>
+    
+  </div>
+
+  <div class="article-content">
+    <!-- ![](1.jpg) -->
+<h2 id="C语言——关键字"><a href="#C语言——关键字" class="headerlink" title="C语言——关键字"></a>C语言——关键字</h2><span id="more"></span>
+<h3 id="goto"><a href="#goto" class="headerlink" title="goto"></a>goto</h3><blockquote>
+<p>无条件跳转</p>
+</blockquote>
+<h3 id="volatile"><a href="#volatile" class="headerlink" title="volatile"></a>volatile</h3><blockquote>
+<ol>
+<li><strong>禁止编译器优化</strong>：编译器在编译过程中会对变量进行各种优化，包括缓存寄存器中的变量值，以提高程序执行速度。但是，在某些情况下，这种优化可能导致问题，特别是当变量的值由外部因素（例如硬件或其他线程）更改时。使用<code>volatile</code> 关键字可以告诉编译器不要进行这些优化，以确保变量的值在任何时刻都是最新的。</li>
+<li><strong>适用于多线程编程</strong>：在多线程环境中，多个线程可能同时访问和修改同一个变量。在这种情况下，使用<code>volatile</code> 可以确保线程在读取和写入<code>volatile</code> 变量时不会进行缓存，从而避免数据不一致的问题。</li>
+<li><strong>适用于嵌入式系统和硬件寄存器</strong>：在嵌入式系统编程中，经常需要访问硬件寄存器，这些寄存器的值可能会在任何时刻由硬件更改。使用<code>volatile</code> 可以确保编译器不会对这些寄存器的访问进行优化。</li>
+<li><strong>防止编译器删除无用的代码</strong>：在某些情况下，变量的值可能不会被用于计算结果，但它们的值仍然对程序的行为产生影响。使用<code>volatile</code> 可以防止编译器删除这些看似无用的代码。</li>
+</ol>
+</blockquote>
+<h3 id="union"><a href="#union" class="headerlink" title="union"></a>union</h3><blockquote>
+<p>对于联合体所有的成员都共享一块内存，而结构体是所有变量内存的叠加，需要考虑字节对齐问题，对于联合体来说，只要你修改里面的成员的数据就会修改其他成员的数据，而结构体的成员数据是不影响的</p>
+<p><strong>判断大小端问题</strong></p>
+<ul>
+<li>大端字节序：高字节存放在低位地址，低字节存放在高地址</li>
+<li>小端字节序：低字节存放在低位，高字节存放在高位</li>
+</ul>
+<p><strong>计算占用空间大小问题</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line">&gt;对于不同位的操作系统，个别数据类型数据大小不一样，</span><br><span class="line">&gt;Long 和<span class="type">unsigned</span> <span class="type">long</span>在<span class="number">32</span>位中是<span class="number">4</span>个字节</span><br><span class="line">&gt;在<span class="number">64</span>位中是<span class="number">8</span>个字节</span><br><span class="line">计算的时候需要考虑字节对齐问题：</span><br><span class="line">&gt;<span class="number">1.</span>	所占空间必须是成员变量中字节最大的整数倍</span><br><span class="line">&gt;<span class="number">2.</span>	每个变量类型的偏移量必须是该变量类型的整数倍</span><br><span class="line">&gt;<span class="number">3.</span>	对于联合体，由于所有变量都是共用一块内存，还需注意数组占用最大内存</span><br><span class="line">&gt;例如：</span><br><span class="line">&gt;Typedef <span class="class"><span class="keyword">union</span> &#123;</span><span class="type">double</span> I;<span class="type">int</span> k[<span class="number">5</span>];<span class="type">char</span> c;&#125; DATE;</span><br><span class="line">&gt;在联合体中成员变量最大为<span class="type">double</span>为<span class="number">8</span>个字节，所以最终大小必须是<span class="number">8</span>的整数倍；又因为联合体是共占内存空间，即<span class="type">int</span>*<span class="number">5</span>=<span class="number">20</span>字节，所以最终为<span class="number">24</span>个字节</span><br><span class="line"></span><br><span class="line">&gt;Typedef <span class="keyword">struct</span> data &#123;<span class="type">int</span> cat;DATE cow; <span class="type">double</span> dog;&#125;too;</span><br><span class="line">&gt;求<span class="keyword">sizeof</span>(too);</span><br><span class="line">&gt;解：在结构体里面联合体为<span class="number">24</span>，联合体的最大类型为<span class="number">8</span>字节，所以联合体的起始位置必须满足偏移量为<span class="number">8</span>的倍数，计算如下：</span><br><span class="line">&gt;Cat：<span class="number">1</span><span class="number">-4</span>,</span><br><span class="line">&gt;DATE cow <span class="number">8</span>+<span class="number">24</span></span><br><span class="line">&gt;Double dog <span class="number">32</span>+<span class="number">8</span>=<span class="number">40</span></span><br><span class="line">&gt;<span class="comment">//联合体的计算公式：</span></span><br><span class="line">&gt;<span class="comment">//最终的大小得是结构体中的类型的最大长度的整数倍，并且能容下所有类型</span></span><br><span class="line">&gt;<span class="keyword">union</span> date</span><br><span class="line">&gt;&#123;</span><br><span class="line">    <span class="type">char</span> a;</span><br><span class="line">    <span class="type">double</span> b[<span class="number">3</span>];</span><br><span class="line">    <span class="type">char</span> c;</span><br><span class="line">&gt;&#125;;</span><br><span class="line">&gt;<span class="keyword">typedef</span> <span class="class"><span class="keyword">union</span> <span class="title">date</span> <span class="title">DATE</span>;</span></span><br><span class="line"></span><br><span class="line">&gt;<span class="comment">/*</span></span><br><span class="line"><span class="comment">&gt;结构体的计算：</span></span><br><span class="line"><span class="comment">&gt;1.最终的大小得是结构体中的类型的最大长度的整数倍</span></span><br><span class="line"><span class="comment">&gt;2.除了结构体中的联合体外，其他类型的偏移量必须是该类型的整数倍</span></span><br><span class="line"><span class="comment">&gt;3.如果里面有联合体，该联合体的起始位置要满足该联合体的里面的最大长度类型的偏移量</span></span><br><span class="line"><span class="comment">&gt;*/</span></span><br><span class="line">&gt;<span class="class"><span class="keyword">struct</span> <span class="title">test</span></span></span><br><span class="line"><span class="class">&gt;</span>&#123;</span><br><span class="line">   <span class="type">char</span> a;<span class="comment">//1</span></span><br><span class="line">   DATE d;<span class="comment">//8+24</span></span><br><span class="line">   <span class="type">char</span> b;<span class="comment">//33</span></span><br><span class="line">   <span class="type">char</span> c; <span class="comment">//34</span></span><br><span class="line">&gt;&#125;;<span class="comment">//最终40</span></span><br><span class="line">&gt;<span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">test</span> <span class="title">TEST</span>;</span></span><br><span class="line">&gt;<span class="type">int</span> <span class="title function_">main</span><span class="params">()</span></span><br><span class="line">&gt;&#123;</span><br><span class="line">   <span class="built_in">printf</span>(<span class="string">&quot;%ld\n&quot;</span>,<span class="keyword">sizeof</span>(DATE));<span class="comment">//24</span></span><br><span class="line">   <span class="built_in">printf</span>(<span class="string">&quot;%ld\n&quot;</span>,<span class="keyword">sizeof</span>(TEST));<span class="comment">//40</span></span><br><span class="line">   <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&gt;&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+</blockquote>
+<h3 id="define-typedef"><a href="#define-typedef" class="headerlink" title="define &amp; typedef"></a>define &amp; typedef</h3><blockquote>
+<p>#define是C语言中定义的语法，是预处理指令，在预处理时进行简单而机械的字符串替换，不作正确性检查，只有在编译已被展开的源程序时才会发现可能的错误并报错。</p>
+<p>typedef是关键字，在编译时处理，有类型检查功能。它在自己的作用域内给一个已经存在的类型一个别名，但不能在一个函数定义里面使用typedef。用typedef定义数组、指针、结构等类型会带来很大的方便，不仅使程序书写简单，也使意义明确，增强可读性。</p>
+</blockquote>
+<h3 id="extern"><a href="#extern" class="headerlink" title="extern"></a><strong>extern</strong></h3><blockquote>
+<ol>
+<li><strong>变量声明</strong>：通过使用 <code>extern</code>，你可以在一个源文件中声明一个在另一个源文件中定义的全局变量，以便在当前源文件中使用它，而不需要重新定义。这对于在多个文件中共享全局变量非常有用。</li>
+</ol>
+  <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// File1.c</span></span><br><span class="line"><span class="type">int</span> globalVar; <span class="comment">// 定义全局变量</span></span><br><span class="line"><span class="comment">// File2.c</span></span><br><span class="line"><span class="keyword">extern</span> <span class="type">int</span> globalVar; <span class="comment">// 声明在其他文件中定义的全局变量</span></span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li><strong>函数声明</strong>：类似于变量，你也可以使用 <code>extern</code> 来声明在其他源文件中定义的函数。这允许你在当前文件中使用这些函数而无需重新定义它们。</li>
+</ol>
+  <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// File1.c</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">someFunction</span><span class="params">()</span>; <span class="comment">// 定义函数</span></span><br><span class="line"><span class="comment">// File2.c</span></span><br><span class="line"><span class="keyword">extern</span> <span class="type">void</span> <span class="title function_">someFunction</span><span class="params">()</span>; <span class="comment">// 声明在其他文件中定义的函数</span></span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li><p><strong>解决多文件编程</strong>：<code>extern</code> 用于多文件编程中，特别是当你将程序拆分成多个源文件时，有助于确保这些文件之间的全局变量和函数能够正确共享。它允许你在一个文件中定义，而在其他文件中声明和使用这些全局实体。</p>
+</li>
+<li><p><strong>避免重复定义</strong>：<code>extern</code> 声明允许你在一个文件中定义全局变量或函数，而在其他文件中声明，从而避免多次定义相同的变量或函数，这将导致链接错误。</p>
+</li>
+</ol>
+</blockquote>
+<h3 id="register"><a href="#register" class="headerlink" title="register"></a>register</h3><blockquote>
+<ol>
+<li><strong>建议寄存器存储</strong>：通过使用 <code>register</code> 关键字，程序员可以向编译器建议将某个变量存储在寄存器中。寄存器是位于中央处理单元（CPU）内部的存储区域，它的访问速度比内存要快得多。因此，将变量存储在寄存器中可以提高程序的执行速度。</li>
+</ol>
+  <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">register</span> <span class="type">int</span> counter; <span class="comment">// 建议编译器将 counter 存储在寄存器中</span></span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li><p><strong>编译器决定</strong>：需要强调的是，<code>register</code> 只是一个建议，而非强制要求。编译器可以选择是否将变量存储在寄存器中。通常，编译器会根据代码的复杂性和寄存器的可用性来决定是否采纳这些建议。</p>
+</li>
+<li><p><strong>限制使用</strong>：<code>register</code> 变量通常有一些限制，例如不能取地址或使用指针对其进行操作，因为寄存器变量不在内存中有地址。这也意味着 <code>register</code> 变量通常不能用于需要取地址的操作，如指针和数组的地址计算。</p>
+</li>
+<li><p><strong>性能提升</strong>：使用 <code>register</code> 可以提高程序的性能，特别是在循环中对频繁访问的变量使用 <code>register</code> 可能会产生显著的性能提升。</p>
+</li>
+</ol>
+</blockquote>
+<h3 id="const"><a href="#const" class="headerlink" title="const"></a><strong>const</strong></h3><blockquote>
+<ol>
+<li><strong>创建常量变量</strong>：通过将 <code>const</code> 关键字应用于变量，你可以创建一个不可更改的常量。这意味着一旦给定值赋予这个变量，它的值将不再改变。</li>
+</ol>
+  <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">const</span> <span class="type">int</span> max_value = <span class="number">100</span>;</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li><strong>防止无意的修改</strong>：使用 <code>const</code> 可以避免在代码中无意地修改常量的值。如果你尝试修改一个被声明为 <code>const</code> 的变量，编译器将生成错误或警告。</li>
+</ol>
+  <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">const</span> <span class="type">double</span> pi = <span class="number">3.14159</span>;</span><br><span class="line"><span class="comment">// 试图修改 pi 的值将导致编译错误</span></span><br></pre></td></tr></table></figure>
+</blockquote>
+<h3 id="static"><a href="#static" class="headerlink" title="static"></a>static</h3><blockquote>
+<ol>
+<li><strong>文件作用域变量</strong>：使用 <code>static</code> 可将全局变量的作用域限制在当前源文件中，防止其他文件访问或修改。</li>
+</ol>
+  <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">static</span> <span class="type">int</span> globalVar = <span class="number">5</span>; <span class="comment">// 限制作用域在当前文件中</span></span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li><strong>静态局部变量</strong>：在函数内部使用 <code>static</code> 可使局部变量在函数调用之间保持其值。</li>
+</ol>
+  <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">myFunction</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="type">static</span> <span class="type">int</span> counter = <span class="number">0</span>; <span class="comment">// 保持在函数调用之间的值</span></span><br><span class="line">    counter++;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li><strong>静态函数</strong>：使用 <code>static</code> 可将函数的作用域限制在当前源文件中，避免与其他文件的函数冲突。</li>
+</ol>
+  <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">static</span> <span class="type">void</span> <span class="title function_">internalFunction</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="comment">// 内部链接函数，只在当前文件中可见</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li><strong>模块局变量</strong>：通过将变量声明为 <code>static</code>，可以在不同的文件中创建具有持久性的变量，以避免冲突。</li>
+</ol>
+  <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// File1.c</span></span><br><span class="line"><span class="type">static</span> <span class="type">int</span> globalVar = <span class="number">42</span>; <span class="comment">// 只能在当前文件中访问</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// File2.c</span></span><br><span class="line"><span class="type">int</span> anotherVar = <span class="number">123</span>; <span class="comment">// 可以被其他文件访问的全局变量</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>核心</strong></p>
+<ul>
+<li>限制作用域</li>
+<li>限制存储域</li>
+</ul>
+</blockquote>
+<h3 id="sizeof-strlen"><a href="#sizeof-strlen" class="headerlink" title="sizeof &amp; strlen()"></a>sizeof &amp; strlen()</h3><blockquote>
+<p><strong>区别</strong></p>
+<p>首先<strong>sizeof是关键字，strlen是函数</strong>，sizeof用来计算占用<strong>内存大小</strong>，strlen是用来计算<strong>字符串的长度</strong>，特别是对于需不需要包含\0问题：Sizeof是需要给\0计算空间的，strlen是不需要，sizeof是在编译的时候计算的，而strlen是在运行的时候计算</p>
+<p><strong>求指针大小</strong></p>
+<p>在32位机器下，对于sizeof(指针变量)都是4个字节，比如 Int *a;    Sizeof(a);</p>
+<p><strong>求引用大小</strong></p>
+<p>Sizeof(char &amp;)   &#x2F;&#x2F; 1 引用大小和数据类型有关</p>
+<p><strong>计算数组大小</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&gt;<span class="type">int</span> num[<span class="number">5</span>]=&#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>&#125;;</span><br><span class="line">&gt;<span class="built_in">printf</span>(<span class="string">&quot;%ld\n&quot;</span>,<span class="keyword">sizeof</span>(num));<span class="comment">//20</span></span><br><span class="line"></span><br><span class="line">&gt;<span class="type">char</span> str[<span class="number">10</span>]=&#123;<span class="string">&quot;hello&quot;</span>&#125;;</span><br><span class="line">&gt;<span class="built_in">printf</span>(<span class="string">&quot;%ld\n&quot;</span>,<span class="built_in">strlen</span>(str));<span class="comment">//5</span></span><br><span class="line">&gt;<span class="built_in">printf</span>(<span class="string">&quot;%ld\n&quot;</span>,<span class="keyword">sizeof</span>(str));<span class="comment">//10</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><strong>不使用sizeof求数据类型字节的大小</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">define</span> mysieof(value)  (char*)(&amp;value+1)-(char*)(&amp;value)</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>strlen(“\0”) &#x3D; ? sizeof(“\0”)</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt;<span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>,<span class="keyword">sizeof</span>(<span class="string">&quot;\0&quot;</span>));<span class="comment">//2 因为这里有\0\0</span></span><br><span class="line">&gt;<span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>,<span class="built_in">strlen</span>(<span class="string">&quot;\0&quot;</span>));<span class="comment">//0</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>sizeof(a++)</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt;<span class="type">int</span> a = <span class="number">2</span>;</span><br><span class="line">&gt;<span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>,<span class="keyword">sizeof</span>(a++)); <span class="comment">//4</span></span><br><span class="line">&gt;<span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>,a);	<span class="comment">// a = 2</span></span><br><span class="line">&gt;<span class="comment">// 注意：对于sizeof只会求所占内存大小，不会进行表达式运算</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>计算字符数组大小</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&gt;<span class="type">char</span> ch[]  = <span class="string">&quot;hello&quot;</span>;</span><br><span class="line">&gt;<span class="type">char</span> str[<span class="number">10</span>] = &#123;<span class="string">&#x27;h&#x27;</span>,<span class="string">&#x27;e&#x27;</span>,<span class="string">&#x27;l&#x27;</span>,<span class="string">&#x27;l&#x27;</span>,<span class="string">&#x27;o&#x27;</span>&#125;;</span><br><span class="line">&gt;<span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>,<span class="keyword">sizeof</span>(ch));<span class="comment">//6</span></span><br><span class="line">&gt;<span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>,<span class="built_in">strlen</span>(ch));<span class="comment">//5</span></span><br><span class="line">&gt;<span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>,<span class="keyword">sizeof</span>(str));<span class="comment">//10</span></span><br><span class="line">&gt;<span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>,<span class="built_in">strlen</span>(str));<span class="comment">//5</span></span><br></pre></td></tr></table></figure>
+
+<p>*<em>char <em>str1 &#x3D; “hello”和char str2[] &#x3D; “hello”</em></em></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&gt;<span class="type">char</span> str[] = <span class="string">&quot;hello&quot;</span>;</span><br><span class="line">&gt;<span class="type">char</span> *str1 =<span class="string">&quot;hello&quot;</span>;</span><br><span class="line">&gt;<span class="comment">//区别一 数组名不可以自加,因为数组名是地址常量</span></span><br><span class="line">&gt;<span class="comment">//str++;</span></span><br><span class="line">&gt;<span class="comment">//str1++;</span></span><br><span class="line">&gt;<span class="comment">//区别二 ,数组里面的元素可以修改，str1指向的地址的内容不可以修改 </span></span><br><span class="line">&gt;str[<span class="number">0</span>] = <span class="string">&#x27;W&#x27;</span>;</span><br><span class="line">&gt;*str1 = <span class="string">&#x27;w&#x27;</span>;<span class="comment">//段错误</span></span><br><span class="line">&gt;<span class="comment">//总结： 数组名就相当于是指针常量，只可以修改里面的内容，不可以修改指向的地址，字符指针相当于是常量指针，不可以修改指向的地址的内容，可以修改地址</span></span><br></pre></td></tr></table></figure>
+
+</blockquote>
+
+  </div>
+</article>
+
+
           </div>
         </div>
       </div>
