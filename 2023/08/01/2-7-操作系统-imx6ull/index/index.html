@@ -17,14 +17,12 @@
 <meta property="og:site_name" content="这是一个主标题">
 <meta property="og:description" content="操作系统专题之imx6ull">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://1nameccc.github.io/2023/08/01/2-7-%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-imx6ull/index/1.jpg">
 <meta property="article:published_time" content="2023-08-01T00:00:00.000Z">
-<meta property="article:modified_time" content="2024-09-10T01:02:49.118Z">
+<meta property="article:modified_time" content="2024-09-10T04:57:27.751Z">
 <meta property="article:author" content="CCC">
 <meta property="article:tag" content="操作系统">
 <meta property="article:tag" content="imx6ull">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://1nameccc.github.io/2023/08/01/2-7-%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-imx6ull/index/1.jpg">
   
     <link rel="alternative" href="../../../../../atom.xml" title="这是一个主标题" type="application/atom+xml">
   
@@ -272,7 +270,9 @@
   
   <div class="article-entry" itemprop="articleBody">
     
-    <p><img src="/2023/08/01/2-7-%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-imx6ull/index/1.jpg"></p>
+    <!-- ![](1.jpg) -->
+
+
 <h2 id="Linux学习（基于正点原子I-MX6U）"><a href="#Linux学习（基于正点原子I-MX6U）" class="headerlink" title="Linux学习（基于正点原子I.MX6U）"></a>Linux学习（基于正点原子I.MX6U）</h2><span id="more"></span>
 <h3 id="常用linux命令"><a href="#常用linux命令" class="headerlink" title="常用linux命令"></a>常用linux命令</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">lsmod</span><br><span class="line">rmmod</span><br><span class="line">depmod	# 一次加载驱动的时候需要运行此命令</span><br><span class="line">modprobe led.ko  # 加载驱动</span><br><span class="line">mknod /dev/led c 200 0  #创建节点、</span><br><span class="line">rmmod led.ko  # 卸载驱动</span><br><span class="line">ls /dev/newchrled -l  # 查看设备</span><br><span class="line"></span><br><span class="line">cd proc/device-tree  #查看设备树节点信息</span><br><span class="line">cd /sys/bus/platform/drivers/  # 查看platform节点</span><br></pre></td></tr></table></figure>
 

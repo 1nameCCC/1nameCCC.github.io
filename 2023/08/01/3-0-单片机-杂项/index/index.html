@@ -17,7 +17,6 @@
 <meta property="og:site_name" content="这是一个主标题">
 <meta property="og:description" content="单片机专题之杂项">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://1nameccc.github.io/2023/08/01/3-0-%E5%8D%95%E7%89%87%E6%9C%BA-%E6%9D%82%E9%A1%B9/index/1.jpg">
 <meta property="og:image" content="https://s2.51cto.com/images/blog/202112/25035502_61c62596e68ec69920.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_30,g_se,x_10,y_10,shadow_20,type_ZmFuZ3poZW5naGVpdGk=">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/img_convert/7f4024ca7a6f5fe932504395dfadc761.jpeg">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/img_convert/9d84bb9cbce5d5b3e55545ba1454cb49.jpeg">
@@ -43,12 +42,12 @@
 <meta property="og:image" content="http://bbs.feibit.com/data/attachment/forum/201203/01/192143x368zxs8x4zmm67z.png">
 <meta property="og:image" content="http://bbs.feibit.com/data/attachment/forum/201203/01/19423187n895apfk866f8a.png">
 <meta property="article:published_time" content="2023-08-01T00:00:00.000Z">
-<meta property="article:modified_time" content="2024-09-10T01:03:42.642Z">
+<meta property="article:modified_time" content="2024-09-10T04:57:35.407Z">
 <meta property="article:author" content="CCC">
 <meta property="article:tag" content="杂项">
 <meta property="article:tag" content="单片机">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://1nameccc.github.io/2023/08/01/3-0-%E5%8D%95%E7%89%87%E6%9C%BA-%E6%9D%82%E9%A1%B9/index/1.jpg">
+<meta name="twitter:image" content="https://s2.51cto.com/images/blog/202112/25035502_61c62596e68ec69920.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_30,g_se,x_10,y_10,shadow_20,type_ZmFuZ3poZW5naGVpdGk=">
   
     <link rel="alternative" href="../../../../../atom.xml" title="这是一个主标题" type="application/atom+xml">
   
@@ -296,7 +295,7 @@
   
   <div class="article-entry" itemprop="articleBody">
     
-    <p><img src="/2023/08/01/3-0-%E5%8D%95%E7%89%87%E6%9C%BA-%E6%9D%82%E9%A1%B9/index/1.jpg"></p>
+    <!-- ![](1.jpg) -->
 <h2 id="单片机"><a href="#单片机" class="headerlink" title="单片机"></a>单片机</h2><span id="more"></span>
 <h2 id="51单片机的延时计算"><a href="#51单片机的延时计算" class="headerlink" title="51单片机的延时计算"></a>51单片机的延时计算</h2><p>前言<br>正文<br>首先是时钟周期的算法：时钟周期（T）&#x3D;1（秒）&#x2F;晶振频率。<br>其次是机器周期：机器周期是由时钟周期组成的，机器周期是单片机完成一个基本操作所需要的时间。<br>1 传统的8051单片机：<br>2 STC单片机：<br>最后是指令周期：这个是单片机执行一条指令所需要的时间，它是由机器周期组成的。<br>总结<br>前言<br>我使用51,STC这一类的单片机做控制好几年，一直是使用现成的程序，在其上修修改改，以达到需求动作目的即可。从来都是不求甚解。想法既是如此，会用即可，了解那么多做什么。<br>此次又在做一项目，里面用到I2C通讯。本来是直接复制粘贴了事，却没想对里面的一个小小的延时函数起了兴趣，由于本人是基础功底只有5战斗力的渣渣，写写画画了一天才搞了个大体明白。<br>以前总是在看其他博主的文章，默默潜水。然而此次，突然就忍不住想写篇文章发表一下费尽心思的微不足道的心得体会。</p>
 <p>正文<br>void Delay10us()		&#x2F;&#x2F;@12.000MHz<br>{<br>    unsigned char i;</p>

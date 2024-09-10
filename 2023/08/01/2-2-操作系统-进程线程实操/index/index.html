@@ -17,15 +17,14 @@
 <meta property="og:site_name" content="这是一个主标题">
 <meta property="og:description" content="操作系统专题之进程&amp;线程实操篇">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://1nameccc.github.io/2023/08/01/2-2-%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-%E8%BF%9B%E7%A8%8B%E7%BA%BF%E7%A8%8B%E5%AE%9E%E6%93%8D/index/1.jpg">
 <meta property="og:image" content="http://1nameccc.github.io/2023/08/01/2-2-%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-%E8%BF%9B%E7%A8%8B%E7%BA%BF%E7%A8%8B%E5%AE%9E%E6%93%8D/index/share.jpg">
 <meta property="article:published_time" content="2023-08-01T00:00:00.000Z">
-<meta property="article:modified_time" content="2024-09-10T01:01:22.275Z">
+<meta property="article:modified_time" content="2024-09-10T04:56:58.033Z">
 <meta property="article:author" content="CCC">
 <meta property="article:tag" content="操作系统">
 <meta property="article:tag" content="进程&amp;线程实操">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://1nameccc.github.io/2023/08/01/2-2-%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-%E8%BF%9B%E7%A8%8B%E7%BA%BF%E7%A8%8B%E5%AE%9E%E6%93%8D/index/1.jpg">
+<meta name="twitter:image" content="http://1nameccc.github.io/2023/08/01/2-2-%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-%E8%BF%9B%E7%A8%8B%E7%BA%BF%E7%A8%8B%E5%AE%9E%E6%93%8D/index/share.jpg">
   
     <link rel="alternative" href="../../../../../atom.xml" title="这是一个主标题" type="application/atom+xml">
   
@@ -273,7 +272,8 @@
   
   <div class="article-entry" itemprop="articleBody">
     
-    <p><img src="/2023/08/01/2-2-%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-%E8%BF%9B%E7%A8%8B%E7%BA%BF%E7%A8%8B%E5%AE%9E%E6%93%8D/index/1.jpg"></p>
+    <!-- ![](1.jpg) -->
+
 <h2 id="Linux-多进程和多线程编程"><a href="#Linux-多进程和多线程编程" class="headerlink" title="Linux 多进程和多线程编程"></a>Linux 多进程和多线程编程</h2><span id="more"></span>
 <h3 id="多进程"><a href="#多进程" class="headerlink" title="多进程"></a>多进程</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">n=fork() </span><br><span class="line"><span class="comment">// 创建一个子进程，该命令执行后将产生一个子进程，子进程的PCB以及进程空间都是由父进程拷贝而来的，因而两者相同，差别是返回值。</span></span><br><span class="line">对子进程，n＝<span class="number">0</span>；</span><br><span class="line">对父进程，n等于子进程的进程号（即n&gt;<span class="number">0</span>）；</span><br><span class="line">n=<span class="number">-1</span>，创建失败。</span><br><span class="line">    </span><br><span class="line"><span class="comment">// 通过判断返回值便可安排父进程和子进程的后继活动，使两者完成不同的任务，通常用法：</span></span><br><span class="line">n=fork();</span><br><span class="line"><span class="keyword">if</span> (n==<span class="number">0</span>)</span><br><span class="line">	&#123;<span class="comment">/*子进程所要执行的代码*/</span> &#125;</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">	&#123;<span class="comment">/*父进程所要执行的代码*/</span>&#125;</span><br></pre></td></tr></table></figure>
 

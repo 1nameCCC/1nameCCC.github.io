@@ -17,14 +17,12 @@
 <meta property="og:site_name" content="这是一个主标题">
 <meta property="og:description" content="开发工具专题之Makefile&amp;CMake">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://1nameccc.github.io/2023/08/01/8-3-%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7-Makefile&CMake/index/1.jpg">
 <meta property="article:published_time" content="2023-08-01T00:00:00.000Z">
-<meta property="article:modified_time" content="2024-09-10T01:15:43.007Z">
+<meta property="article:modified_time" content="2024-09-10T05:12:55.032Z">
 <meta property="article:author" content="CCC">
 <meta property="article:tag" content="开发工具">
 <meta property="article:tag" content="Makefile&amp;CMake">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://1nameccc.github.io/2023/08/01/8-3-%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7-Makefile&CMake/index/1.jpg">
   
     <link rel="alternative" href="../../../../../atom.xml" title="这是一个主标题" type="application/atom+xml">
   
@@ -272,7 +270,8 @@
   
   <div class="article-entry" itemprop="articleBody">
     
-    <p><img src="/2023/08/01/8-3-%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7-Makefile&CMake/index/1.jpg"></p>
+    <!-- ![](1.jpg) -->
+
 <h2 id="Makefile"><a href="#Makefile" class="headerlink" title="Makefile"></a>Makefile</h2><span id="more"></span>
 <h3 id="Makefile-规则格式"><a href="#Makefile-规则格式" class="headerlink" title="Makefile 规则格式"></a>Makefile 规则格式</h3><figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">目标…... : 依赖文件集合……</span><br><span class="line">	命令 1      <span class="comment"># 命令列表中的每条命令必须以 TAB 键开始，不能使用空格！</span></span><br><span class="line">	命令 2</span><br><span class="line">	……</span><br><span class="line">例1：</span><br><span class="line">main : main.o input.o calcu.o</span><br><span class="line">	gcc -o main main.o input.o calcu.o</span><br><span class="line"><span class="comment"># 这条规则的目标是 main，main.o、input.o 和 calcu.o 是生成 main 的依赖文件</span></span><br><span class="line"></span><br><span class="line">例2：</span><br><span class="line"><span class="section">main: main.o input.o calcu.o</span></span><br><span class="line">	gcc -o main main.o input.o calcu.o</span><br><span class="line"><span class="section">main.o: main.c</span></span><br><span class="line">	gcc -c main.c</span><br><span class="line"><span class="section">input.o: input.c</span></span><br><span class="line">	gcc -c input.c</span><br><span class="line"><span class="section">calcu.o: calcu.c</span></span><br><span class="line">	gcc -c calcu.c</span><br><span class="line"></span><br><span class="line"><span class="section">clean:</span></span><br><span class="line"> 	rm *.o</span><br><span class="line"> 	rm main</span><br><span class="line"><span class="comment"># 首先更新第一条规则中的 main，第一条规则的目标成为默认目标，只要默认目标更新了那么就认为 Makefile 的工作。在第一次编译的时候由于 main 还不存在，因此第一条规则会执行，第一条规则依赖于文件 main.o、input.o 和 calcu.o 这个三个.o 文件，这三个.o 文件目前还都没有，因此必须先更新这三个文件。make 会查找以这三个.o 文件为目标的规则并执行。</span></span><br><span class="line"></span><br><span class="line">例3：</span><br><span class="line"><span class="section">main: main.o input.o calcu.o</span></span><br><span class="line">	gcc -o main main.o input.o calcu.o</span><br><span class="line">	</span><br><span class="line">%.o : %.c         <span class="comment"># 通配符</span></span><br><span class="line">	gcc -c <span class="variable">$&lt;</span>     <span class="comment"># 自动化变量，依赖文件集合中的第一个文件，如果依赖文件是以模式(即“%”)定义的，那么“$&lt;”就是符合模式的一系列				   的文件集合。</span></span><br><span class="line"><span class="section">clean:</span></span><br><span class="line"> 	rm *.o</span><br><span class="line"> 	rm main</span><br></pre></td></tr></table></figure>
 
