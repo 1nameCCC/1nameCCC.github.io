@@ -431,56 +431,6 @@
 
 
 
-
-<article class="article">
-  <header class="article-header">
-    <h1 class="article-title">开发工具——Git</h1>
-  </header>
-
-  <div class="article-meta">
-    <time class="article-date">2023-08-01</time>
-    
-      <div class="article-tags">
-        
-          <a href="../../../../../tags/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/">开发工具</a>
-        
-          <a href="../../../../../tags/Git/">Git</a>
-        
-      </div>
-    
-  </div>
-
-  <div class="article-content">
-    <!-- ![](1.jpg) -->
-
-<h2 id="Git学习记录"><a href="#Git学习记录" class="headerlink" title="Git学习记录"></a>Git学习记录</h2><span id="more"></span>
-<h3 id="一、Git基本命令"><a href="#一、Git基本命令" class="headerlink" title="一、Git基本命令"></a>一、Git基本命令</h3><h4 id="1-设置用户名和邮箱"><a href="#1-设置用户名和邮箱" class="headerlink" title="1. 设置用户名和邮箱"></a>1. 设置用户名和邮箱</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.name &quot;coucou&quot;</span><br><span class="line"></span><br><span class="line">git config --global user.email &quot;coucou&quot;</span><br></pre></td></tr></table></figure>
-
-<h4 id="2-初始化和查看日志"><a href="#2-初始化和查看日志" class="headerlink" title="2. 初始化和查看日志"></a>2. 初始化和查看日志</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git init</span><br><span class="line">git log</span><br></pre></td></tr></table></figure>
-
-<h4 id="3-添加文件和提交文件"><a href="#3-添加文件和提交文件" class="headerlink" title="3. 添加文件和提交文件"></a>3. 添加文件和提交文件</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git add test.txt    // 表示文件放到暂存区</span><br><span class="line">git commit -m &quot;注释&quot; test.txt   // -m 表注释</span><br></pre></td></tr></table></figure>
-
-<h4 id="4-查看工作区和暂存区状态"><a href="#4-查看工作区和暂存区状态" class="headerlink" title="4. 查看工作区和暂存区状态"></a>4. 查看工作区和暂存区状态</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git status</span><br></pre></td></tr></table></figure>
-
-<h4 id="5-删除文件"><a href="#5-删除文件" class="headerlink" title="5.删除文件"></a>5.删除文件</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">rm test.txt</span><br><span class="line">git add test.txt</span><br><span class="line">git commit -m &quot;删除test.txt&quot; test.txt</span><br></pre></td></tr></table></figure>
-
-<h3 id="二、Git分支命令"><a href="#二、Git分支命令" class="headerlink" title="二、Git分支命令"></a>二、Git分支命令</h3><h4 id="1-查看、创建、切换分支"><a href="#1-查看、创建、切换分支" class="headerlink" title="1. 查看、创建、切换分支"></a>1. 查看、创建、切换分支</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git branch branch01  // 创建分支</span><br><span class="line">git branch -v  // 查看分支</span><br><span class="line">git branch branch01 //  切换分支</span><br></pre></td></tr></table></figure>
-
-<h3 id="三、GitHub相关"><a href="#三、GitHub相关" class="headerlink" title="三、GitHub相关"></a>三、GitHub相关</h3><h4 id="1-为URL起别名以及查看别名"><a href="#1-为URL起别名以及查看别名" class="headerlink" title="1. 为URL起别名以及查看别名"></a>1. 为URL起别名以及查看别名</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git remote add origin [url]</span><br><span class="line">git remote -v</span><br></pre></td></tr></table></figure>
-
-<h4 id="2-推送操作和克隆操作"><a href="#2-推送操作和克隆操作" class="headerlink" title="2. 推送操作和克隆操作"></a>2. 推送操作和克隆操作</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git push [url] master  // master表示要推送的分支</span><br><span class="line">git clone [url]</span><br></pre></td></tr></table></figure>
-
-<h4 id="3-远程库修改的拉取"><a href="#3-远程库修改的拉取" class="headerlink" title="3. 远程库修改的拉取"></a>3. 远程库修改的拉取</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git pull [url] master</span><br></pre></td></tr></table></figure>
-
-<h3 id="四、IDEA使用Git"><a href="#四、IDEA使用Git" class="headerlink" title="四、IDEA使用Git"></a>四、IDEA使用Git</h3><h3 id="五、实例"><a href="#五、实例" class="headerlink" title="五、实例"></a>五、实例</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">git remote add cs_notes https://github.com/CyC2018/CS-Notes.git  // 起别名</span><br><span class="line">git pull cs_notes master  // 拉项目</span><br><span class="line">git add .  // 添加到暂存区</span><br><span class="line">git commit -m &quot;modify test&quot;  // 提交给git管理</span><br><span class="line">git push cs_notes master  // 提交到GitHub</span><br></pre></td></tr></table></figure>
-
-
-
-
-  </div>
-</article>
-
-
           </div>
         </div>
       </div>

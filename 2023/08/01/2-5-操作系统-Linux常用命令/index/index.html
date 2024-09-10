@@ -439,64 +439,6 @@
 
 
 
-
-<article class="article">
-  <header class="article-header">
-    <h1 class="article-title">操作系统——Linux命令</h1>
-  </header>
-
-  <div class="article-meta">
-    <time class="article-date">2023-08-01</time>
-    
-      <div class="article-tags">
-        
-          <a href="../../../../../tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a>
-        
-          <a href="../../../../../tags/Linux%E5%91%BD%E4%BB%A4/">Linux命令</a>
-        
-      </div>
-    
-  </div>
-
-  <div class="article-content">
-    <!-- ![](1.jpg) -->
-
-<h2 id="Linux命令集"><a href="#Linux命令集" class="headerlink" title="Linux命令集"></a>Linux命令集</h2><span id="more"></span>
-<h3 id="1-linux常用命令"><a href="#1-linux常用命令" class="headerlink" title="1. linux常用命令"></a>1. linux常用命令</h3><h4 id="1-1-目录切换"><a href="#1-1-目录切换" class="headerlink" title="1.1 目录切换"></a>1.1 目录切换</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">cd /   # 绝对路径    </span><br><span class="line">cd ./  # 相对路径</span><br><span class="line">cd ..  # 返回上一级 </span><br><span class="line">cd ~   # 回到根目录</span><br><span class="line">cd -   # 回到桌面</span><br></pre></td></tr></table></figure>
-
-<h4 id="1-2-增删改查"><a href="#1-2-增删改查" class="headerlink" title="1.2 增删改查"></a>1.2 增删改查</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">mkdir [dir]   ||   mkdir /user/[dir] (指定目录)    # 创建目录</span><br><span class="line">touch [file]   # 创建文件</span><br><span class="line">rm [file]  ||  rm -f [file]  ||  rm -rf [file]  ||  rm -rf *  # 删除文件或者文件夹</span><br><span class="line">mv [file1] [file2] # 重命名</span><br><span class="line">mv [file1] /user/dir(新位置)  # 剪切</span><br><span class="line">find /user/dir -name &#x27;a*&#x27;</span><br><span class="line">ls -l  ||  -a    ls /[dir] # 指定目录</span><br></pre></td></tr></table></figure>
-
-<h4 id="1-3-Linux复制粘贴"><a href="#1-3-Linux复制粘贴" class="headerlink" title="1.3 Linux复制粘贴"></a>1.3 Linux复制粘贴</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># 终端下：</span><br><span class="line">复制：ctrl + shift + c</span><br><span class="line">粘贴：ctrl + shift + v</span><br><span class="line"># 控制台下：</span><br><span class="line">复制：ctrl + [insert](url) 或 鼠标选中</span><br><span class="line">粘贴：shift + insert 或 单击鼠标左键</span><br></pre></td></tr></table></figure>
-
-<h4 id="1-4-系统相关"><a href="#1-4-系统相关" class="headerlink" title="1.4 系统相关"></a>1.4 系统相关</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">su  # 所有使用者   </span><br><span class="line">sudo  #  以管理员身份运行</span><br><span class="line">ps -ef   #  查看进程</span><br><span class="line">kill pid  # 结束进程</span><br></pre></td></tr></table></figure>
-
-<h4 id="1-5-其他"><a href="#1-5-其他" class="headerlink" title="1.5 其他"></a>1.5 其他</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">shutdown -h now</span><br><span class="line">power off</span><br><span class="line">ifconfig --help  # 查看网卡信息</span><br><span class="line">man shutdown  # 查看帮助</span><br><span class="line">tar -zxvf test.tar.gz   # 解压缩</span><br></pre></td></tr></table></figure>
-
-<h3 id="2-vim文件操作"><a href="#2-vim文件操作" class="headerlink" title="2. vim文件操作"></a>2. vim文件操作</h3><h4 id="2-1-三种模式"><a href="#2-1-三种模式" class="headerlink" title="2.1 三种模式"></a>2.1 三种模式</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">命令模式 （移动光标，剪切，复制，粘贴）默认进入命令                    </span><br><span class="line">输入模式（编辑） # 命令&#x27;a/i/o&#x27; -&gt; 输入 -&gt; &#x27;esc&#x27; -&gt; 命令           </span><br><span class="line">末行模式（保存，退出，替换） # 输入 -&gt; esc -&gt; 命令&#x27;:&#x27; -&gt; 末行   </span><br><span class="line"></span><br><span class="line"># 进入末行模式: 命令模式输入： w：保存  q：退出  q!：强制退出   wq：保存退出 </span><br></pre></td></tr></table></figure>
-
-<h4 id="2-2-插入文本"><a href="#2-2-插入文本" class="headerlink" title="2.2 插入文本"></a>2.2 插入文本</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">i	   在当前光标所在位置插入随后输入的文本，光标后的文本相应向右移动</span><br><span class="line">I	   在光标所在行的行首插入随后输入的文本，行首是该行的第一个非空白字符，相当于光标移动到行首执行 i 命令</span><br><span class="line">o	   在光标所在行的下面插入新的一行。光标停在空行首，等待输入文本</span><br><span class="line">O      在光标所在行的上面插入新的一行。光标停在空行的行首，等待输入文本</span><br><span class="line">a	   在当前光标所在位置之后插入随后输入的文本</span><br><span class="line">A	   在光标所在行的行尾插入随后输入的文本，相当于光标移动到行尾再执行 a 命令</span><br></pre></td></tr></table></figure>
-
-<h4 id="2-3-查找文本"><a href="#2-3-查找文本" class="headerlink" title="2.3 查找文本"></a>2.3 查找文本</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">/abc	从光标所在位置向前查找字符串 abc</span><br><span class="line">/^abc	查找以 abc 为行首的行</span><br><span class="line">/abc$	查找以 abc 为行尾的行</span><br><span class="line">?abc	从光标所在为主向后查找字符串 abc</span><br><span class="line">n	    向同一方向重复上次的查找指令</span><br><span class="line">N	    向相反方向重复上次的查找指定</span><br></pre></td></tr></table></figure>
-
-<h4 id="2-4-替换文本"><a href="#2-4-替换文本" class="headerlink" title="2.4 替换文本"></a>2.4 替换文本</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">r	        替换光标所在位置的字符</span><br><span class="line">R	        从光标所在位置开始替换字符，其输入内容会覆盖掉后面等长的文本内容，按“Esc”可以结束</span><br><span class="line">:s/a1/a2/g	将当前光标所在行中的所有 a1 用 a2 替换</span><br><span class="line">:n1,n2s/a1/a2/g	将文件中 n1 到 n2 行中所有 a1 都用 a2 替换</span><br><span class="line">:g/a1/a2/g	将文件中所有的 a1 都用 a2 替换</span><br></pre></td></tr></table></figure>
-
-<h4 id="2-5-文本删除"><a href="#2-5-文本删除" class="headerlink" title="2.5 文本删除"></a>2.5 文本删除</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">x	删除光标所在位置的字符</span><br><span class="line">dd	删除光标所在行</span><br><span class="line">ndd	删除当前行（包括此行）后 n 行文本</span><br><span class="line">dG	删除光标所在行一直到文件末尾的所有内容</span><br><span class="line">D	删除光标位置到行尾的内容</span><br><span class="line">:a1,a2d	函数从 a1 行到 a2 行的文本内</span><br></pre></td></tr></table></figure>
-
-<h4 id="2-6-复制粘贴"><a href="#2-6-复制粘贴" class="headerlink" title="2.6 复制粘贴"></a>2.6 复制粘贴</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">p	        将剪贴板中的内容粘贴到光标后</span><br><span class="line">P		    将剪贴板中的内容粘贴到光标前</span><br><span class="line">y	        复制已选中的文本到剪贴板</span><br><span class="line">yy	        将光标所在行复制到剪贴板，此命令前可以加数字 n，可复制多行</span><br><span class="line">yw	        将光标位置的单词复制到剪贴板</span><br></pre></td></tr></table></figure>
-
-<h4 id="2-7-方向快捷键"><a href="#2-7-方向快捷键" class="headerlink" title="2.7 方向快捷键"></a>2.7 方向快捷键</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">h	    光标向左移动一位</span><br><span class="line">j	    光标向下移动一行（以回车为换行符），也就是光标向下移动</span><br><span class="line">k	    光标向上移动一行（也就是向上移动）</span><br><span class="line">l 	    光标向右移动一位</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">w 或 W	        光标移动至下一个单词的单词首</span><br><span class="line">b 或 B	        光标移动至上一个单词的单词首</span><br><span class="line">e 或 E	        光标移动至下一个单词的单词尾</span><br><span class="line">nw 或 nW	n 为数字，表示光标向右移动 n 个单词</span><br><span class="line">nb 或 nB	n 为数字，表示光标向左移动 n 个单词</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">0 或 ^	    光标移动至当前行的行首</span><br><span class="line">$	    光标移动至当前行的行尾</span><br><span class="line">n$	    光标移动至当前行只有 n 行的行尾，n为数字</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">gg	      光标移动到文件开头</span><br><span class="line">G	      光标移动至文件末尾</span><br><span class="line">nG	      光标移动到第 n 行，n 为数字</span><br><span class="line">:n	      编辑模式下使用的快捷键，可以将光标快速定义到指定行的行首</span><br></pre></td></tr></table></figure>
-
-
-
-
-
-
-
-
-  </div>
-</article>
-
-
           </div>
         </div>
       </div>
