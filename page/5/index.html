@@ -220,927 +220,7 @@
             
 
   
-    <article id="post-2-1-操作系统-进程&amp;线程/index" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-  <div class="article-entry" itemprop="articleBody">
-    
-    <p>+++<br>author &#x3D; “coucou”<br>title &#x3D; “操作系统——进程&amp;线程”<br>date &#x3D; “2023-08-01”<br>description &#x3D; “操作系统专题之进程&amp;线程篇”<br>categories &#x3D; [<br>    “操作系统”<br>]<br>tags &#x3D; [<br>    “操作系统”,”进程&amp;线程”<br>]<br>+++<br><img src="1.jpg"></p>
-<h2 id="操作系统——进程-线程"><a href="#操作系统——进程-线程" class="headerlink" title="操作系统——进程&amp;线程"></a>操作系统——进程&amp;线程</h2><h3 id="进程和线程的定义"><a href="#进程和线程的定义" class="headerlink" title="进程和线程的定义"></a>进程和线程的定义</h3><blockquote>
-<p>进程是资源分配的基本单位，他是程序执行是的一个实例，在程序运行时创建</p>
-<p>线程是程序执行的最小单位，是进程的一个执行流，一个进程里包含多个线程</p>
-</blockquote>
-<h3 id="进程和线程的区别"><a href="#进程和线程的区别" class="headerlink" title="进程和线程的区别"></a>进程和线程的区别</h3><blockquote>
-<ol>
-<li><p><strong>定义：</strong><br> 进程：进程是独立的执行单位，每个进程都有自己独立的内存空间和系统资源。进程之间通常是相互隔离的。<br> 线程：线程是进程内的执行单元，多个线程可以共享同一个进程的内存空间和系统资源。</p>
-</li>
-<li><p><strong>资源占用：</strong><br> 进程：每个进程都有独立的内存空间，因此占用较多的系统资源。<br>  线程：线程共享同一个进程的内存空间，因此占用的系统资源较少。</p>
-</li>
-<li><p><strong>通信和同步：</strong><br> 进程：不同进程之间的通信较复杂，需要使用进程间通信（IPC）机制，如管道、消息队列、共享内存等。进程之间的同步也需要额外的手段。<br>  线程：线程之间可以直接共享内存，因此通信较为简单。线程之间的同步可以使用线程同步原语，如互斥锁、信号量等。</p>
-</li>
-<li><p><strong>创建和销毁开销：</strong><br> 进程：创建和销毁进程通常需要较大的开销，包括分配和释放内存、建立和销毁进程控制块等。<br>  线程：创建和销毁线程的开销较小，因为它们共享了大部分进程的资源。</p>
-</li>
-<li><p><strong>独立性：</strong><br> 进程：进程是相对独立的，一个进程的崩溃通常不会影响其他进程。<br>  线程：线程是共享同一个进程的资源，因此一个线程的错误可能会影响整个进程。</p>
-</li>
-<li><p><strong>适用场景：</strong><br> 进程：适用于需要高度隔离和独立性的任务，如独立的应用程序。<br>  线程：适用于需要轻量级并发、共享数据、协同工作的任务，如多线程编程和并行计算。</p>
-</li>
-</ol>
-</blockquote>
-<h3 id="进程和线程的状态"><a href="#进程和线程的状态" class="headerlink" title="进程和线程的状态"></a>进程和线程的状态</h3><blockquote>
-<ol>
-<li><strong>创建状态（New）</strong>：当一个新的进程被创建，但操作系统尚未为其分配足够的资源或初始化必要的数据结构时，进程处于创建状态。在这个阶段，进程正在初始化，并等待操作系统分配资源。</li>
-<li><strong>就绪状态（Ready）</strong>：一旦进程获得了必要的资源，它进入就绪状态。在就绪状态下，进程已准备好运行，只等待CPU的分配。多个就绪状态的进程可以等待CPU时间片，等待操作系统的调度。</li>
-<li><strong>运行状态（Running）</strong>：进程进入运行状态时，它正在执行指令并占用CPU。在任何给定时间，只有一个进程可以处于运行状态。其他进程则处于就绪或阻塞状态。</li>
-<li><strong>阻塞状态（Blocked）</strong>：当进程在执行中遇到需要等待某些事件发生的情况（如等待I&#x2F;O操作完成或等待其他进程的信号）时，它会从运行状态切换到阻塞状态。在阻塞状态下，进程暂停执行，直到所需事件发生。</li>
-<li><strong>终止状态（Terminated）</strong>：当进程完成其任务或被操作系统终止时，它进入终止状态。在终止状态下，操作系统会回收进程的资源，包括内存空间、文件描述符等。</li>
-</ol>
-</blockquote>
-<h3 id="进程间通信方式"><a href="#进程间通信方式" class="headerlink" title="进程间通信方式"></a>进程间通信方式</h3><blockquote>
-<ol>
-<li><strong>管道（Pipes）</strong>：管道是一种单向通信机制，通常用于父子进程之间或具有亲缘关系的进程之间。有命名管道和匿名管道两种。匿名管道在内存中创建，而命名管道则存在于文件系统中，允许无亲缘关系的进程之间通信。</li>
-<li><strong>消息队列（Message Queues）</strong>：消息队列是一种通过消息进行通信的IPC方式。进程可以将消息发送到队列中，而其他进程可以从队列中接收消息。这种方式适用于异步通信，不要求发送者和接收者同时在线。</li>
-<li><strong>共享内存（Shared Memory）</strong>：共享内存允许多个进程共享同一块内存区域，从而可以非常高效地进行数据交换。但需要额外的同步机制来避免数据竞争。</li>
-<li><strong>信号（Signals）</strong>：信号是一种用于通知进程发生特定事件的机制，如中断或错误。进程可以发送信号给其他进程，以请求它们采取某种动作。例如，<code>SIGKILL</code>信号用于终止进程。</li>
-<li><strong>套接字（Sockets）</strong>：套接字通常用于网络编程，但它们也可以在本地进程之间进行通信。本地套接字（Unix域套接字）可以实现进程之间的双向通信。</li>
-<li><strong>信号量（Semaphores）</strong>：信号量是一种用于控制并发访问共享资源的IPC方式。它们可以用于同步多个进程，以确保只有一个进程可以访问临界区。</li>
-</ol>
-</blockquote>
-<h3 id="线程间通信方式"><a href="#线程间通信方式" class="headerlink" title="线程间通信方式"></a>线程间通信方式</h3><blockquote>
-<ol>
-<li><strong>共享内存</strong>：多个线程可以通过访问共享内存区域来进行通信。这是一种高效的通信方式，但需要额外的同步机制来避免数据竞争。</li>
-<li><strong>互斥锁（Mutex）</strong>：互斥锁用于保护共享资源，确保在任何时候只有一个线程可以访问它。当一个线程锁住互斥锁时，其他线程将被阻塞，直到该锁被释放。</li>
-<li><strong>信号量（Semaphores）</strong>：信号量是一种计数器，可以用于控制多个线程对共享资源的访问。它可以用于限制同时访问资源的线程数量。</li>
-<li><strong>消息队列</strong>：与进程间通信类似，线程间也可以使用消息队列进行通信。这是一种异步通信的方式。</li>
-<li><strong>管道</strong>：类似于进程间通信中的管道，线程间也可以使用管道进行通信。然而，它们通常用于父子线程之间或在同一进程中。</li>
-</ol>
-</blockquote>
-<h3 id="进程和线程通信区别"><a href="#进程和线程通信区别" class="headerlink" title="进程和线程通信区别"></a>进程和线程通信区别</h3><blockquote>
-<ol>
-<li><strong>共享资源</strong>：</li>
-</ol>
-<ul>
-<li><strong>线程间通信</strong>：线程共享同一进程的内存空间，它们可以直接访问共享变量和数据结构，因此通信相对容易。但同时需要特别小心数据竞争和同步问题。</li>
-<li><strong>进程间通信</strong>：进程有各自独立的内存空间，彼此之间不能直接访问，因此进程间通信需要特殊的机制来交换数据，如管道、消息队列或共享内存。</li>
-</ul>
-<ol start="2">
-<li><strong>资源开销</strong>：</li>
-</ol>
-<ul>
-<li><strong>线程间通信</strong>：由于线程共享进程的内存空间，通信的开销较小。</li>
-<li><strong>进程间通信</strong>：进程间通信需要操作系统提供额外的资源和机制，通常开销较大，例如在不同地址空间之间传递数据需要复制数据。</li>
-</ul>
-<ol start="3">
-<li><strong>并发性</strong>：</li>
-</ol>
-<ul>
-<li><strong>线程间通信</strong>：由于线程共享相同的内存空间，它们可以更容易地实现并发操作，但也更容易出现竞争条件。</li>
-<li><strong>进程间通信</strong>：进程之间相对更独立，通信和同步需要更多的开销，但可以提供更好的隔离性和稳定性。</li>
-</ul>
-<ol start="4">
-<li><strong>编程难度</strong>：</li>
-</ol>
-<ul>
-<li><strong>线程间通信</strong>：由于线程共享内存，开发者需要小心处理同步和竞争条件，以避免数据不一致或死锁等问题。</li>
-<li><strong>进程间通信</strong>：进程间通信需要使用特定的IPC机制，编写代码可能相对复杂，但它提供了更好的隔离性，降低了程序的耦合度。</li>
-</ul>
-<ol start="5">
-<li><strong>安全性</strong>：</li>
-</ol>
-<ul>
-<li><strong>线程间通信</strong>：由于线程共享内存，必须小心处理同步，以避免数据竞争和不一致性。</li>
-<li><strong>进程间通信</strong>：进程间通信通常更安全，因为进程具有独立的地址空间，相互之间不会直接影响，降低了错误传播的风险。</li>
-</ul>
-</blockquote>
-<h3 id="僵尸-孤儿-守护进程"><a href="#僵尸-孤儿-守护进程" class="headerlink" title="僵尸&#x2F;孤儿&#x2F;守护进程"></a>僵尸&#x2F;孤儿&#x2F;守护进程</h3><blockquote>
-<ol>
-<li><strong>僵尸进程（Zombie Process）</strong>：</li>
-</ol>
-<ul>
-<li>僵尸进程是已经完成执行的子进程，但其父进程尚未调用 <code>wait()</code> 或 <code>waitpid()</code> 系统调用来获取子进程的退出状态。</li>
-<li>僵尸进程的进程控制块仍然存在，但它不再执行任何操作。僵尸进程占用系统资源，但不能执行任何操作。</li>
-<li>通常，父进程会在子进程退出后获取其退出状态，以释放子进程的资源，并告诉操作系统该子进程不再需要保留。如果父进程没有处理僵尸进程，它们可能会累积并浪费系统资源。</li>
-</ul>
-<ol start="2">
-<li><strong>孤儿进程（Orphan Process）</strong>：</li>
-</ol>
-<ul>
-<li>孤儿进程是指其父进程已经终止或意外终止，但孤儿进程仍在运行。在这种情况下，孤儿进程会被操作系统的 <code>init</code> 进程（通常具有进程ID 1）接管。</li>
-<li><code>init</code> 进程成为孤儿进程的新父进程，负责回收孤儿进程的资源并管理它们的终止。</li>
-</ul>
-<ol start="3">
-<li><strong>守护进程（Daemon Process）</strong>：</li>
-</ol>
-<ul>
-<li>守护进程是在后台运行的系统进程，通常在系统启动时启动，以执行某种系统任务或服务，如日志记录、定时任务等。</li>
-<li>守护进程通常以超级用户权限（root）运行，独立于用户会话，没有终端关联。</li>
-<li>守护进程的目的是在后台执行任务，不与用户直接交互。它们通常会在系统启动时启动，并在系统关闭时停止。</li>
-</ul>
-</blockquote>
-<h3 id="内核线程和用户线程区别"><a href="#内核线程和用户线程区别" class="headerlink" title="内核线程和用户线程区别"></a>内核线程和用户线程区别</h3><blockquote>
-<ul>
-<li><strong>特权级别</strong>：</li>
-<li>内核线程在内核级别运行，具有更高的特权级别，可以执行特权指令和访问受限资源。</li>
-<li>用户线程在用户级别运行，其执行受到限制，无法直接访问系统资源。</li>
-<li><strong>调度和管理</strong>：</li>
-<li>内核线程由操作系统内核直接管理，包括调度、撤销等。</li>
-<li>用户线程的创建和调度由用户级线程库完成，操作系统对其无直接感知。</li>
-<li><strong>开销和效率</strong>：</li>
-<li>用户线程的切换和管理开销相对较小，因为它们不涉及内核的直接参与。</li>
-<li>内核线程的管理开销相对较大，���它们可以更灵活地利用操作系统的各种功能。</li>
-</ul>
-</blockquote>
-<h3 id="进程调度算法即策略"><a href="#进程调度算法即策略" class="headerlink" title="进程调度算法即策略"></a>进程调度算法即策略</h3><blockquote>
-<ol>
-<li><strong>先来先服务调度（First-Come, First-Served，FCFS）</strong>：</li>
-</ol>
-<ul>
-<li>进程按照它们到达调度队列的顺序执行，先到达的进程先执行。</li>
-<li>简单且容易实现，但可能导致”等待时间过长”（Convoy Effect）问题。</li>
-</ul>
-<ol start="2">
-<li><strong>短作业优先调度（Shortest Job Next，SJN）</strong>：</li>
-</ol>
-<ul>
-<li>选择估计执行时间最短的进程，以最小化平均等待时间。</li>
-<li>也称为最短作业优先（Shortest Job First，SJF）。</li>
-</ul>
-<ol start="3">
-<li><strong>优先级调度</strong>：</li>
-</ol>
-<ul>
-<li>每个进程被分配一个优先级，优先级高的进程先执行。</li>
-<li>静态优先级：由系统分配。</li>
-<li>动态优先级：根据进程的行为和等待时间进行调整。</li>
-</ul>
-<ol start="4">
-<li><strong>轮转调度（Round Robin，RR）</strong>：</li>
-</ol>
-<ul>
-<li>每个进程在调度队列中轮流执行一个时间片，当时间片用尽时，被移到队列末尾等待。</li>
-<li>确保每个进程都有机会执行，适用于时间共享系统。</li>
-</ul>
-<ol start="5">
-<li><strong>多级反馈队列调度</strong>：</li>
-</ol>
-<ul>
-<li>将就绪队列划分为多个队列，每个队列具有不同的优先级。</li>
-<li>进程首先从最高优先级队列开始执行，如果时间片用尽而未完成，移至较低优先级队列。</li>
-</ul>
-<ol start="6">
-<li><strong>最高响应比优先调度（Highest Response Ratio Next，HRRN）</strong>：</li>
-</ol>
-<ul>
-<li>选择响应比最高的进程执行，响应比定义为（等待时间 + 服务时间）&#x2F; 服务时间。</li>
-<li>优先选择等待时间较长且服务时间较短的进程。</li>
-</ul>
-</blockquote>
-<h3 id="并发和并行"><a href="#并发和并行" class="headerlink" title="并发和并行"></a>并发和并行</h3><blockquote>
-<p><strong>并发</strong>是对于单个cpu来说，在一个是个只能一个进程运行，但是线程的切换时间则是减少到纳秒数量级，多个任务不停的来回切换;</p>
-<p><strong>并行</strong>是对于多个CPU来说，多个进程同时运行;</p>
-<p><strong>区别</strong>;并行的”同时”是同一时刻可以多个任务在运行(处于running)，并发的”同时”是经过不同线程快速切换;</p>
-</blockquote>
-<p><strong>死锁</strong></p>
-<blockquote>
-<p><strong>死锁</strong>是指多个进程在执行过程中，因争夺资源而造成互相等待，此时系统产生了死锁;</p>
-<p><strong>产生条件：</strong></p>
-<ol>
-<li>互斥条件：进程对所分配的资源不允许其他进程访问，若其他进程需要访问，只能等待，知道该进程使用完毕后释放资源</li>
-<li>请求保持条件：进程获得一定资源后，有对其他资源发出请求，但该资源被其他进程占用，此时请求阻塞，而且这个进程不会释放自己已经占有的资源</li>
-<li>不可剥夺条件：进程获得资源，只能自己释放，不可剥夺</li>
-<li>环路等待条件：若干进程之间形成一种头尾相接等待资源关系</li>
-</ol>
-<p><strong>解决：</strong>   </p>
-<ol>
-<li>资源一次性分配，从而解决请求保持的问题 </li>
-<li>可剥夺资源：当进程新的资源未得到满足时，释放已有的资源；</li>
-<li>资源有序分配：资源按序号递增，进程请求按递增请求，释放则相反</li>
-</ol>
-</blockquote>
-<h3 id="多线程程序考虑加锁"><a href="#多线程程序考虑加锁" class="headerlink" title="多线程程序考虑加锁"></a>多线程程序考虑加锁</h3><blockquote>
-<p>因为线程锁只要是用来实现线程的同步和通信，在抢占是操作系统中，通常为每个县城分配一个时间片，当某个线程时间片耗尽时，操作系统会将其挂起，然后运行另一个线程。如果这两个线程共享某些数据，不使用线程锁的前提下，可能会导致共享数据修改引起冲突</p>
-</blockquote>
-<h3 id="线程的中断切换"><a href="#线程的中断切换" class="headerlink" title="线程的中断切换"></a>线程的中断切换</h3><blockquote>
-<ol>
-<li><strong>中断发生</strong>：与进程中断一样，硬件或软件引发中断。</li>
-<li><strong>内核响应</strong>：操作系统内核捕获到中断并选择相应的中断服务例程。</li>
-<li><strong>当前线程上下文保存</strong>：操作系统保存当前运行线程的上下文信息，如寄存器状态、程序计数器、栈指针等。</li>
-<li><strong>中断处理程序执行</strong>：执行与中断相关的处理程序，可能包括设备驱动程序、系统调用等。</li>
-<li><strong>线程调度</strong>：操作系统可能决定切换到另一个线程。这可能会涉及线程调度算法。</li>
-<li><strong>新线程上下文加载</strong>：如果发生线程切换，操作系统加载新线程的上下文信息。</li>
-<li><strong>中断处理完成</strong>：中断处理程序执行完毕，控制返回到新的或原始的线程。</li>
-</ol>
-</blockquote>
-<h3 id="多线程和单线程"><a href="#多线程和单线程" class="headerlink" title="多线程和单线程"></a>多线程和单线程</h3><blockquote>
-<p><strong>多线程 vs. 单线程</strong>：</p>
-<ol>
-<li><strong>并行执行</strong>：</li>
-</ol>
-<ul>
-<li>多线程允许多个线程同时执行，以提高系统性能，尤其在多核处理器上。</li>
-<li>单线程一次只能执行一个任务，无法充分利用多核处理器。</li>
-</ul>
-<ol start="2">
-<li><strong>资源共享</strong>：</li>
-</ol>
-<ul>
-<li>多线程可以共享相同的内存空间，这使得线程之间的通信更容易。</li>
-<li>单线程通常无法轻松地实现资源共享，因为它们运行在相对隔离的环境中。</li>
-</ul>
-<ol start="3">
-<li><strong>复杂性</strong>：</li>
-</ol>
-<ul>
-<li>多线程编程通常更复杂，因为需要处理竞争条件和并发问题。</li>
-<li>单线程编程通常更简单，因为不需要担心并发。</li>
-</ul>
-<p><strong>多线程编程注意事项</strong>：</p>
-<ol>
-<li><strong>线程同步</strong>：确保多个线程之间的安全访问共享资源。使用互斥锁、信号量等机制来控制线程访问。</li>
-<li><strong>避免竞争条件</strong>：竞争条件会导致不可预测的结果。通过合理的同步和锁定来避免竞争条件。</li>
-<li><strong>线程安全数据结构</strong>：使用线程安全的数据结构，如线程安全的队列，以减少自己实现同步逻辑的复杂性。</li>
-<li><strong>避免死锁</strong>：死锁是多线程编程中的常见问题。确保良好的锁定管理和避免相互等待。</li>
-</ol>
-<p><strong>多线程加锁注意事项</strong>：</p>
-<ol>
-<li><strong>锁粒度</strong>：选择适当的锁粒度。锁的范围应该足够小，以减少竞争，但不应过小，以避免锁争用带来的开销。</li>
-<li><strong>锁顺序</strong>：在多个锁的情况下，确保按照相同的顺序获取锁，以减少死锁的风险。</li>
-<li><strong>锁超时</strong>：在尝试获取锁时，考虑设置锁超时机制，以避免长时间等待锁导致的性能问题。</li>
-<li><strong>锁性能</strong>：了解锁的性能特性，以确保不会因锁开销而降低程序性能。</li>
-<li><strong>避免锁滥用</strong>：不是每个代码段都需要锁，避免过度使用锁，以避免不必要的同步开销。</li>
-</ol>
-</blockquote>
-<h3 id="线程池"><a href="#线程池" class="headerlink" title="线程池"></a>线程池</h3><blockquote>
-<p><strong>线程池</strong>是为了有效管理和复用线程资源而创建的一种机制。它的存在有以下主要原因和优势：</p>
-<ol>
-<li><strong>降低线程创建和销毁开销</strong>：线程的创建和销毁代价较高。线程池维护一组可重用的线程，避免频繁地创建和销毁线程，从而降低开销。</li>
-<li><strong>控制并发度</strong>：线程池允许您限制同时执行的线程数量，以控制系统的并发度。这有助于防止系统过载和资源饱和。</li>
-<li><strong>提高响应时间</strong>：线程池使任务能够迅速排队并执行，而不必等待新线程的创建。这有助于提高系统的响应时间。</li>
-<li><strong>资源管理</strong>：线程池可以帮助有效管理系统的资源，防止不受控制的线程数量导致资源耗尽。</li>
-</ol>
-<p>线程池的设计思路通常包括以下要点：</p>
-<ol>
-<li><strong>线程池大小</strong>：决定线程池可以容纳多少线程。线程池大小的选择通常取决于系统资源、性能需求和可用硬件。如果线程池太小，可能无法满足并发需求；如果太大，可能导致资源浪费和竞争条件。</li>
-<li><strong>任务队列</strong>：线程池通常维护一个任务队列，其中等待执行的任务排队。新任务被提交到队列中，并由线程池中的线程异步执行。</li>
-<li><strong>线程复用</strong>：线程池中的线程是可重用的，它们在完成一个任务后会从队列中获取下一个任务而不被销毁。这减少了线程创建和销毁的开销。</li>
-<li><strong>线程调度</strong>：线程池负责调度线程以执行任务，通常使用调度算法（如先进先出、最短作业优先等）来选择下一个任务。</li>
-</ol>
-<p>线程池中线程的数量由以下因素确定：</p>
-<ul>
-<li><strong>系统资源</strong>：线程池的大小应受限于可用的物理内存和处理器核心数量。不宜创建过多线程，以避免资源耗尽和上下文切换开销。</li>
-<li><strong>性能需求</strong>：线程池的大小应该根据应用程序的性能需求来确定。如果需要高并发性能，可以增加线程池的大小。</li>
-<li><strong>任务性质</strong>：不同类型的任务可能需要不同数量的线程来获得最佳性能。某些任务可能需要更多线程来并行执行。</li>
-<li><strong>硬件特性</strong>：线程池的大小还取决于硬件特性，如多核处理器的数量，以充分利用硬件资源。</li>
-</ul>
-</blockquote>
-<h3 id="自旋锁和信号量区别"><a href="#自旋锁和信号量区别" class="headerlink" title="自旋锁和信号量区别"></a>自旋锁和信号量区别</h3><blockquote>
-<p><strong>自旋锁</strong>：</p>
-<ul>
-<li>自旋锁是一种轻量级的锁，通常用于保护临界区，确保同时只有一个线程可以进入临界区执行。</li>
-<li>当一个线程尝试获取自旋锁时，如果锁已被其他线程占用，它会不断自旋（循环检查锁状态），而不是立即被阻塞挂起。</li>
-<li>自旋锁适用于短时间内的临界区保护，因为它减少了线程的上下文切换开销。但如果锁被占用时间较长，自旋可能会浪费CPU资源。</li>
-</ul>
-<p><strong>信号量</strong>：</p>
-<ul>
-<li>信号量是一种更通用的同步机制，可以用于控制并发线程的访问或控制资源的分配。</li>
-<li>信号量有两种类型：二进制信号量（只有0和1）和计数信号量（可以大于1）。</li>
-<li>二进制信号量通常用于互斥，即只有一个线程可以访问临界区。计数信号量用于限制同时访问某些资源的线程数量。</li>
-</ul>
-<p><strong>区别</strong>：</p>
-<ol>
-<li><strong>等待机制</strong>：</li>
-</ol>
-<ul>
-<li>自旋锁通过忙等待来获取锁，不会阻塞线程，<strong>不会进入睡眠</strong></li>
-<li>信号量使用阻塞和唤醒机制，当线程无法获得信号量时，它将被阻塞，直到信号量可用，<strong>会进入睡眠</strong></li>
-</ul>
-<ol start="2">
-<li><strong>用途</strong>：</li>
-</ol>
-<ul>
-<li>自旋锁通常用于短时间内的临界区保护，以减少上下文切换开销。</li>
-<li>信号量更通用，可以用于控制线程数量、资源分配和同步多个线程之间的操作。</li>
-</ul>
-<ol start="3">
-<li><strong>适用性</strong>：</li>
-</ol>
-<ul>
-<li>自旋锁适合用于低竞争和低争用的情况，例如多核CPU上的短期临界区。</li>
-<li>信号量更适合于需要阻塞等待的场景，例如生产者-消费者问题或限制同时访问资源的情况。</li>
-</ul>
-</blockquote>
-<h3 id="线程的同步和互斥的区别"><a href="#线程的同步和互斥的区别" class="headerlink" title="线程的同步和互斥的区别"></a>线程的同步和互斥的区别</h3><blockquote>
-<p><strong>同步</strong>：</p>
-<ul>
-<li><strong>同步</strong>是一种协调多个线程之间的操作顺序或执行时机的机制，以确保它们按照一定的顺序或条件来执行。</li>
-<li>同步通常涉及在多个线程之间建立依赖关系，以便它们协同工作或按照特定的规则执行。</li>
-<li>同步机制可以包括等待其他线程完成、通知其他线程继续执行、等待条件变为真等。</li>
-</ul>
-<p><strong>互斥</strong>：</p>
-<ul>
-<li><strong>互斥</strong>是一种同步机制，用于确保在同一时间只有一个线程可以访问共享资源或进入临界区。</li>
-<li>互斥锁、信号量、互斥量等是用于实现互斥的工具，它们用于防止多个线程同时访问或修改共享资源，从而避免数据竞争和不一致性。</li>
-</ul>
-<p><strong>区别</strong>：</p>
-<ul>
-<li><strong>同步是更广泛的概念</strong>，它可以包括协调线程的任何方式，而不仅限于互斥。同步可以用于等待事件、通信、任务协作等。</li>
-<li><strong>互斥是同步的一种特定形式</strong>，它关注的是线程在访问共享资源或执行临界区时的互斥性。</li>
-</ul>
-<p><strong>联系</strong>：</p>
-<ul>
-<li>互斥通常用于同步的实现中，以确保在某个时间点只有一个线程可以执行共享资源的操作。</li>
-<li>同步机制可以包括互斥，但也可以包括其他形式的同步，如条件变量、信号量、屏障等，用于线程之间的协调和通信。</li>
-</ul>
-</blockquote>
-
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="../../2024/09/09/2-1-%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-%E8%BF%9B%E7%A8%8B&%E7%BA%BF%E7%A8%8B/index/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-2-0-操作系统-杂项/index" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-  <div class="article-entry" itemprop="articleBody">
-    
-    <p>+++<br>author &#x3D; “coucou”<br>title &#x3D; “操作系统——杂项”<br>date &#x3D; “2023-08-01”<br>description &#x3D; “操作系统专题之杂项篇”<br>categories &#x3D; [<br>    “操作系统”<br>]<br>tags &#x3D; [<br>    “操作系统”,”杂项”<br>]<br>+++<br><img src="1.jpg"></p>
-<h2 id="操作系统——杂项MISC"><a href="#操作系统——杂项MISC" class="headerlink" title="操作系统——杂项MISC"></a>操作系统——杂项MISC</h2><h3 id="Linux内核的组成部分"><a href="#Linux内核的组成部分" class="headerlink" title="Linux内核的组成部分"></a>Linux内核的组成部分</h3><blockquote>
-<ol>
-<li><strong>进程管理</strong>：Linux内核负责管理系统中的进程。这包括创建、调度和终止进程，以及分配和回收资源，如CPU时间、内存和文件描述符。</li>
-<li><strong>文件系统</strong>：文件系统部分处理文件和目录的创建、访问、修改和删除操作。它还负责维护文件的权限、属性和结构。</li>
-<li><strong>内存管理</strong>：内存管理组件负责分配和释放内存，以及管理虚拟内存和物理内存之间的映射。它还处理内存分页、页面置换、内存保护和地址空间分配。</li>
-<li><strong>设备驱动程序</strong>：Linux内核包括各种设备驱动程序，以支持硬件设备与操作系统的通信。这涵盖硬盘、网络适配器、图形卡等设备。</li>
-<li><strong>网络协议栈</strong>：Linux内核实现了多种网络协议，如TCP&#x2F;IP、UDP、ICMP等，以支持网络通信。它还管理套接字和网络连接。</li>
-<li><strong>系统调用接口</strong>：系统调用是用户空间应用程序与内核之间的接口。它们允许应用程序请求内核执行特定的操作，如文件操作、进程管理、网络通信等。</li>
-<li><strong>调度器</strong>：调度器负责分派CPU时间片给不同的进程。它确定哪个进程在何时运行，以实现多任务处理和时间共享。</li>
-<li><strong>进程间通信</strong>：Linux提供多种进程间通信（IPC）机制，如管道、消息队列、信号等，以便不同进程之间交换数据和通信。</li>
-<li><strong>定时器和中断处理</strong>：内核需要管理定时器以触发事件，并处理硬件中断以响应外部设备的请求。</li>
-<li><strong>安全和权限</strong>：Linux内核实施安全性和权限控制，确保只有授权的进程可以访问资源。这包括用户和组的权限管理。</li>
-<li><strong>虚拟内存管理</strong>：虚拟内存系统允许操作系统将虚拟地址映射到物理内存，并管理页面置换、内存保护和内存隔离。</li>
-<li><strong>电源管理</strong>：内核包括电源管理功能，用于管理系统的能源消耗和设备的节能，以实现系统的高效性。</li>
-</ol>
-</blockquote>
-<h3 id="多路IO复用"><a href="#多路IO复用" class="headerlink" title="多路IO复用"></a>多路IO复用</h3><blockquote>
-<p>多路 I&#x2F;O 复用技术是一种用于管理多个 I&#x2F;O 通道的方法，以实现高效的 I&#x2F;O 操作。它可以同时监视和处理多个 I&#x2F;O 通道，例如套接字、文件描述符等，而不需要为每个通道创建一个单独的线程或进程。以下是几种常见的多路 I&#x2F;O 复用技术及它们之间的区别：</p>
-<ol>
-<li><strong>select</strong>：</li>
-</ol>
-<ul>
-<li><code>select</code> 是一种最早引入的多路 I&#x2F;O 复用技术，适用于多种操作系统。</li>
-<li>它通过一个用于监视的位掩码和一组文件描述符集合来实现多路复用。</li>
-<li>缺点包括低效，最大文件描述符数量受限，复杂的参数设置，以及在每次调用后需要重新初始化描述符集合。</li>
-</ul>
-<ol start="2">
-<li><strong>poll</strong>：</li>
-</ol>
-<ul>
-<li><code>poll</code> 是与 <code>select</code> 类似的多路 I&#x2F;O 复用技术，但在某些情况下更灵活。</li>
-<li>它使用一个 <code>pollfd</code> 结构的数组来监视文件描述符。</li>
-<li>缺点仍然包括效率问题，特别是在大规模的文件描述符监视时。</li>
-</ul>
-<ol start="3">
-<li><strong>epoll</strong>：</li>
-</ol>
-<ul>
-<li><code>epoll</code> 是 Linux 特有的多路 I&#x2F;O 复用技术，设计用于解决 <code>select</code> 和 <code>poll</code> 的性能问题。</li>
-<li>它使用三种不同的系统调用：<code>epoll_create</code>、<code>epoll_ctl</code> 和 <code>epoll_wait</code>，允许有效监视大量文件描述符。</li>
-<li><code>epoll</code> 是当前在 Linux 上广泛使用的多路 I&#x2F;O 复用技术，具有高效、可扩展性和低延迟的特点。</li>
-</ul>
-<ol start="4">
-<li><strong>kqueue</strong>：</li>
-</ol>
-<ul>
-<li><code>kqueue</code> 是类似于 <code>epoll</code> 的多路 I&#x2F;O 复用技术，用于 BSD 系统（如 FreeBSD）。</li>
-<li>它使用一个事件队列来监视文件描述符。</li>
-<li><code>kqueue</code> 提供了高性能和可扩展性，尤其在高并发应用中表现出色。</li>
-</ul>
-<p><strong>区别</strong>：</p>
-<ul>
-<li>主要区别在于支持的操作系统和性能。</li>
-<li><code>select</code> 和 <code>poll</code> 是跨平台的，但它们在处理大量文件描述符时可能效率低下。</li>
-<li><code>epoll</code> 和 <code>kqueue</code> 针对特定的操作系统（Linux 和 BSD 系统）设计，具有更好的性能和可扩展性，尤其在高并发环境中表现出色。</li>
-</ul>
-<p><strong>例子：</strong> <strong>聊天服务器</strong></p>
-<p>假设您正在构建一个聊天服务器，多个客户端可以通过网络连接到服务器并进行实时聊天。服务器需要同时处理来自多个客户端的消息，以确保消息能够即时传递给正确的收件人，而无需为每个客户端创建一个单独的线程。</p>
-<p>在这种情况下，多路 I&#x2F;O 复用可以用于管理多个客户端的连接。服务器可以使用 <code>select</code>、<code>epoll</code>（对于Linux）或 <code>kqueue</code>（对于BSD系统）等技术来同时监视多个套接字，以检测它们是否准备好进行读取或写入操作。这允许服务器同时处理多个客户端的消息而无需为每个客户端创建一个线程。</p>
-<p>例如，当一个客户端发送消息给服务器时，服务器可以使用多路 I&#x2F;O 复用来检测该套接字准备好接收数据。一旦套接字准备好，服务器可以读取并处理消息，然后使用同样的机制将响应消息发送回给相应的客户端。这个过程可以同时处理多个客户端，使服务器更加高效。</p>
-<p>这个例子突显了多路 I&#x2F;O 复用的强大之处，它允许服务器同时处理多个客户端的连接和消息，而无需为每个客户端创建独立的线程或进程。这有助于提高服务器的性能和扩展性。</p>
-</blockquote>
-<h3 id="软链接和硬链接的区别"><a href="#软链接和硬链接的区别" class="headerlink" title="软链接和硬链接的区别"></a>软链接和硬链接的区别</h3><blockquote>
-<p><strong>硬链接</strong>：</p>
-<ul>
-<li>硬链接是指多个文件名指向同一个物理存储位置的文件，它们共享相同的 inode 和数据块。</li>
-<li>删除原始文件并不影响硬链接文件的存在，只有所有链接文件都被删除后，文件的内容才会被释放。</li>
-<li>硬链接不能跨越文件系统，即不能链接到不同分区或不同文件系统上的文件。</li>
-</ul>
-<p><strong>软链接</strong>：</p>
-<ul>
-<li>软链接（符号链接）是一个特殊类型的文件，它包含指向另一个文件或目录的路径名。</li>
-<li>软链接本身包含指向目标文件的路径名，而不是实际的数据和权限信息。</li>
-<li>删除原始文件不会影响软链接的存在，但如果原始文件被移动或删除，则软链接将指向一个无效的位置。</li>
-</ul>
-<p><strong>区别</strong>：</p>
-<ol>
-<li><strong>文件类型</strong>：硬链接是原始文件的副本，而软链接只是一个指向目标文件的符号。</li>
-<li><strong>跨文件系统</strong>：硬链接不能跨越文件系统，软链接可以跨越文件系统。</li>
-<li><strong>受影响方式</strong>：如果原始文件被删除或移动，硬链接不受影响，但软链接会失效。</li>
-<li><strong>文件大小</strong>：硬链接不会增加文件系统的使用空间，而软链接会占用一定的空间。</li>
-</ol>
-</blockquote>
-<h3 id="静态库和动态库"><a href="#静态库和动态库" class="headerlink" title="静态库和动态库"></a>静态库和动态库</h3><blockquote>
-<p><strong>静态库</strong>：</p>
-<ol>
-<li><strong>制作静态库</strong>：<ul>
-<li>制作静态库的过程涉及将一组源文件编译成目标文件（.o文件），然后使用工具（如<code>ar</code>）将这些目标文件打包成一个单独的静态库文件（通常以<code>.a</code>为扩展名）。</li>
-</ul>
-</li>
-<li><strong>使用静态库</strong>：<ul>
-<li>开发者在编译时将静态库链接到他们的应用程序中，形成一个独立的可执行文件。</li>
-<li>静态库的函数和数据在编译时被复制到可执行文件中，因此可执行文件独立，不需要外部的库文件。</li>
-</ul>
-</li>
-<li><strong>优点</strong>：<ul>
-<li>静态库的使用非常简单，不依赖外部库文件。</li>
-<li>保证了应用程序与特定版本的库的兼容性。</li>
-</ul>
-</li>
-<li><strong>缺点</strong>：<ul>
-<li>每个应用程序都包含一份库的副本，可能导致可执行文件变得庞大。</li>
-<li>需要重新编译整个应用程序，即使只有库中的一个函数发生了变化。</li>
-</ul>
-</li>
-</ol>
-<p><strong>动态库</strong>：</p>
-<ol>
-<li><strong>制作动态库</strong>：<ul>
-<li>制作动态库的过程与制作静态库类似，但生成的文件是一个共享库文件（通常以<code>.so</code>或<code>.dll</code>为扩展名）。</li>
-</ul>
-</li>
-<li><strong>使用动态库</strong>：<ul>
-<li>应用程序在运行时链接到动态库，而不是在编译时。</li>
-<li>动态库的函数和数据被加载到内存中，并可供多个应用程序共享。</li>
-</ul>
-</li>
-<li><strong>优点</strong>：<ul>
-<li>节省磁盘空间，因为共享库只需一份副本。</li>
-<li>允许库的更新，而不需要重新编译应用程序。</li>
-<li>减小内存占用，因为动态库只加载一次，供多个应用程序共享。</li>
-</ul>
-</li>
-<li><strong>缺点</strong>：<ul>
-<li>需要确保应用程序能够找到正确版本的动态库。</li>
-<li>可能导致一些版本兼容性问题，因为应用程序依赖于库的特定版本。</li>
-</ul>
-</li>
-</ol>
-<p><strong>区别</strong>：</p>
-<ul>
-<li>静态库在编译时与应用程序链接，而动态库在运行时加载。</li>
-<li>静态库会使可执行文件变得庞大，而动态库可在多个应用程序之间共享。</li>
-<li>动态库更适合更新和维护，静态库更适合独立分发的应用程序。</li>
-<li>动态库具有更好的资源利用率，但需要额外的管理和处理。</li>
-</ul>
-</blockquote>
-<h3 id="内核态和用户态"><a href="#内核态和用户态" class="headerlink" title="内核态和用户态"></a>内核态和用户态</h3><blockquote>
-<ol>
-<li><strong>用户态</strong>：</li>
-</ol>
-<ul>
-<li>用户态是指在这种模式下运行的用户应用程序或用户进程。</li>
-<li>用户态下的程序无法直接访问或执行内核的关键功能，如硬件控制、I&#x2F;O 操作、系统调用等。</li>
-</ul>
-<ol start="2">
-<li><strong>内核态（系统态）</strong>：</li>
-</ol>
-<ul>
-<li>内核态是操作系统内核运行的特权模式，用于执行操作系统内核代码和处理系统级任务。</li>
-<li>内核态具有更高的权限和访问权，可以执行特权指令，访问硬件设备和执行敏感操作，如内核数据结构的访问。</li>
-</ul>
-<p><strong>何时会进入系统态</strong>：</p>
-<p>进入系统态通常是通过<strong>系统调用</strong>、<strong>中断</strong>或<strong>异常</strong>来触发的。以下是一些触发进入系统态的情况：</p>
-<ol>
-<li><strong>系统调用</strong>：当用户应用程序需要执行需要内核权限的操作时，例如文件读写、网络通信、进程管理等，它会通过系统调用请求内核执行这些操作。内核会在执行系统调用时从用户态切换到内核态，完成请求后再切换回用户态。</li>
-<li><strong>中断</strong>：硬件设备（如定时器、键盘、磁盘等）生成中断信号，通知内核需要处理。内核会在收到中断信号时从用户态切换到内核态，执行中断处理程序，然后返回用户态。</li>
-<li><strong>异常</strong>：异常是不寻常的事件，如除零、访问无效内存等。内核会处理这些异常，通常导致进程终止或操作系统崩溃。</li>
-</ol>
-</blockquote>
-<h3 id="虚拟内存"><a href="#虚拟内存" class="headerlink" title="虚拟内存"></a>虚拟内存</h3><blockquote>
-<ol>
-<li><strong>虚拟地址空间</strong>：每个进程都有自己的虚拟地址空间，通常是从零开始的连续地址范围。这使得每个进程感觉自己独占整个内存，而不需要关心其他进程的内存使用情况。</li>
-<li><strong>物理内存和磁盘空间结合</strong>：只有一小部分虚拟地址空间是映射到实际的物理内存。其余部分可能存储在磁盘上的交换文件中。当一个进程访问虚拟内存的某个部分时，如果该部分不在物理内存中，操作系统会将相应的数据页面从磁盘加载到物理内存中。</li>
-<li><strong>分页机制</strong>：虚拟内存通常通过分页机制来实现。内存被划分为固定大小的页面，同样大小的页面也被用来划分虚拟地址空间。页面是内存和磁盘之间数据传输的基本单位。</li>
-<li><strong>页面置换</strong>：当物理内存不足以容纳所有活跃的进程时，操作系统会使用页面置换算法，将一些不常用的页面从物理内存移到磁盘上，为更需要的页面腾出空间。</li>
-<li><strong>内存保护</strong>：虚拟内存系统通过硬件和操作系统的协同工作，提供了对内存的保护机制。每个页面都有相应的权限位，用于限制对页面的访问，防止非法访问。</li>
-<li><strong>进程间隔离</strong>：每个进程都有自己的虚拟地址空间，使得不同进程的内存空间相互隔离，不会相互干扰。</li>
-</ol>
-</blockquote>
-<h3 id="页表"><a href="#页表" class="headerlink" title="页表"></a>页表</h3><blockquote>
-<p><strong>页表</strong>是操作系统中用于虚拟内存管理的重要数据结构。它用于将虚拟内存地址映射到物理内存地址，以实现虚拟内存的抽象和隔离。页表的主要目的是提供内存保护、内存共享和虚拟内存的功能。</p>
-<ol>
-<li><strong>虚拟内存</strong>：虚拟内存是一种计算机内存管理技术，它允许程序访问比物理内存更大的地址空间。每个进程都有自己的虚拟地址空间，这使得每个进程感觉自己在拥有整个计算机内存。虚拟内存使得多个进程能够并行运行，而不会相互干扰。</li>
-<li><strong>内存隔离</strong>：虚拟内存通过将虚拟地址映射到物理内存，从而使每个进程都在自己的隔离地址空间中运行，互相不干扰。这可以提高系统的稳定性，因为一个进程的错误不会破坏其他进程。</li>
-<li><strong>内存保护</strong>：页表允许操作系统实施内存保护机制，防止一个进程访问其他进程的内存空间，以及防止进程访问操作系统内核空间。如果一个程序试图访问未经授权的内存，会触发异常，从而保护了系统的安全性。</li>
-<li><strong>内存共享</strong>：虚拟内存也使内存共享变得更容易。多个进程可以共享相同的物理内存页面，这在共享库、进程间通信和内存映射文件等方面非常有用。</li>
-<li><strong>实现页面置换</strong>：如果物理内存不足以容纳所有进程的数据，操作系统可以使用页面置换策略将不常用的页面交换到磁盘上，从而实现虚拟内存。页表记录了页面的位置，使操作系统能够追踪和管理这些页面。</li>
-</ol>
-</blockquote>
-
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="../../2024/09/09/2-0-%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-%E6%9D%82%E9%A1%B9/index/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-1-4-C语言-关键字/index" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-  <div class="article-entry" itemprop="articleBody">
-    
-    <p>+++<br>author &#x3D; “coucou”<br>title &#x3D; “C语言——关键字”<br>date &#x3D; “2023-08-01”<br>description &#x3D; “C语言专题之关键字篇”<br>categories &#x3D; [<br>    “C语言”<br>]<br>tags &#x3D; [<br>    “C语言”,”关键字篇”<br>]<br>+++<br><img src="1.jpg"></p>
-<h2 id="C语言——关键字"><a href="#C语言——关键字" class="headerlink" title="C语言——关键字"></a>C语言——关键字</h2><h3 id="goto"><a href="#goto" class="headerlink" title="goto"></a>goto</h3><blockquote>
-<p>无条件跳转</p>
-</blockquote>
-<h3 id="volatile"><a href="#volatile" class="headerlink" title="volatile"></a>volatile</h3><blockquote>
-<ol>
-<li><strong>禁止编译器优化</strong>：编译器在编译过程中会对变量进行各种优化，包括缓存寄存器中的变量值，以提高程序执行速度。但是，在某些情况下，这种优化可能导致问题，特别是当变量的值由外部因素（例如硬件或其他线程）更改时。使用<code>volatile</code> 关键字可以告诉编译器不要进行这些优化，以确保变量的值在任何时刻都是最新的。</li>
-<li><strong>适用于多线程编程</strong>：在多线程环境中，多个线程可能同时访问和修改同一个变量。在这种情况下，使用<code>volatile</code> 可以确保线程在读取和写入<code>volatile</code> 变量时不会进行缓存，从而避免数据不一致的问题。</li>
-<li><strong>适用于嵌入式系统和硬件寄存器</strong>：在嵌入式系统编程中，经常需要访问硬件寄存器，这些寄存器的值可能会在任何时刻由硬件更改。使用<code>volatile</code> 可以确保编译器不会对这些寄存器的访问进行优化。</li>
-<li><strong>防止编译器删除无用的代码</strong>：在某些情况下，变量的值可能不会被用于计算结果，但它们的值仍然对程序的行为产生影响。使用<code>volatile</code> 可以防止编译器删除这些看似无用的代码。</li>
-</ol>
-</blockquote>
-<h3 id="union"><a href="#union" class="headerlink" title="union"></a>union</h3><blockquote>
-<p>对于联合体所有的成员都共享一块内存，而结构体是所有变量内存的叠加，需要考虑字节对齐问题，对于联合体来说，只要你修改里面的成员的数据就会修改其他成员的数据，而结构体的成员数据是不影响的</p>
-<p><strong>判断大小端问题</strong></p>
-<ul>
-<li>大端字节序：高字节存放在低位地址，低字节存放在高地址</li>
-<li>小端字节序：低字节存放在低位，高字节存放在高位</li>
-</ul>
-<p><strong>计算占用空间大小问题</strong></p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line">&gt;对于不同位的操作系统，个别数据类型数据大小不一样，</span><br><span class="line">&gt;Long 和<span class="type">unsigned</span> <span class="type">long</span>在<span class="number">32</span>位中是<span class="number">4</span>个字节</span><br><span class="line">&gt;在<span class="number">64</span>位中是<span class="number">8</span>个字节</span><br><span class="line">计算的时候需要考虑字节对齐问题：</span><br><span class="line">&gt;<span class="number">1.</span>	所占空间必须是成员变量中字节最大的整数倍</span><br><span class="line">&gt;<span class="number">2.</span>	每个变量类型的偏移量必须是该变量类型的整数倍</span><br><span class="line">&gt;<span class="number">3.</span>	对于联合体，由于所有变量都是共用一块内存，还需注意数组占用最大内存</span><br><span class="line">&gt;例如：</span><br><span class="line">&gt;Typedef <span class="class"><span class="keyword">union</span> &#123;</span><span class="type">double</span> I;<span class="type">int</span> k[<span class="number">5</span>];<span class="type">char</span> c;&#125; DATE;</span><br><span class="line">&gt;在联合体中成员变量最大为<span class="type">double</span>为<span class="number">8</span>个字节，所以最终大小必须是<span class="number">8</span>的整数倍；又因为联合体是共占内存空间，即<span class="type">int</span>*<span class="number">5</span>=<span class="number">20</span>字节，所以最终为<span class="number">24</span>个字节</span><br><span class="line"></span><br><span class="line">&gt;Typedef <span class="keyword">struct</span> data &#123;<span class="type">int</span> cat;DATE cow; <span class="type">double</span> dog;&#125;too;</span><br><span class="line">&gt;求<span class="keyword">sizeof</span>(too);</span><br><span class="line">&gt;解：在结构体里面联合体为<span class="number">24</span>，联合体的最大类型为<span class="number">8</span>字节，所以联合体的起始位置必须满足偏移量为<span class="number">8</span>的倍数，计算如下：</span><br><span class="line">&gt;Cat：<span class="number">1</span><span class="number">-4</span>,</span><br><span class="line">&gt;DATE cow <span class="number">8</span>+<span class="number">24</span></span><br><span class="line">&gt;Double dog <span class="number">32</span>+<span class="number">8</span>=<span class="number">40</span></span><br><span class="line">&gt;<span class="comment">//联合体的计算公式：</span></span><br><span class="line">&gt;<span class="comment">//最终的大小得是结构体中的类型的最大长度的整数倍，并且能容下所有类型</span></span><br><span class="line">&gt;<span class="keyword">union</span> date</span><br><span class="line">&gt;&#123;</span><br><span class="line">    <span class="type">char</span> a;</span><br><span class="line">    <span class="type">double</span> b[<span class="number">3</span>];</span><br><span class="line">    <span class="type">char</span> c;</span><br><span class="line">&gt;&#125;;</span><br><span class="line">&gt;<span class="keyword">typedef</span> <span class="class"><span class="keyword">union</span> <span class="title">date</span> <span class="title">DATE</span>;</span></span><br><span class="line"></span><br><span class="line">&gt;<span class="comment">/*</span></span><br><span class="line"><span class="comment">&gt;结构体的计算：</span></span><br><span class="line"><span class="comment">&gt;1.最终的大小得是结构体中的类型的最大长度的整数倍</span></span><br><span class="line"><span class="comment">&gt;2.除了结构体中的联合体外，其他类型的偏移量必须是该类型的整数倍</span></span><br><span class="line"><span class="comment">&gt;3.如果里面有联合体，该联合体的起始位置要满足该联合体的里面的最大长度类型的偏移量</span></span><br><span class="line"><span class="comment">&gt;*/</span></span><br><span class="line">&gt;<span class="class"><span class="keyword">struct</span> <span class="title">test</span></span></span><br><span class="line"><span class="class">&gt;</span>&#123;</span><br><span class="line">   <span class="type">char</span> a;<span class="comment">//1</span></span><br><span class="line">   DATE d;<span class="comment">//8+24</span></span><br><span class="line">   <span class="type">char</span> b;<span class="comment">//33</span></span><br><span class="line">   <span class="type">char</span> c; <span class="comment">//34</span></span><br><span class="line">&gt;&#125;;<span class="comment">//最终40</span></span><br><span class="line">&gt;<span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">test</span> <span class="title">TEST</span>;</span></span><br><span class="line">&gt;<span class="type">int</span> <span class="title function_">main</span><span class="params">()</span></span><br><span class="line">&gt;&#123;</span><br><span class="line">   <span class="built_in">printf</span>(<span class="string">&quot;%ld\n&quot;</span>,<span class="keyword">sizeof</span>(DATE));<span class="comment">//24</span></span><br><span class="line">   <span class="built_in">printf</span>(<span class="string">&quot;%ld\n&quot;</span>,<span class="keyword">sizeof</span>(TEST));<span class="comment">//40</span></span><br><span class="line">   <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&gt;&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-</blockquote>
-<h3 id="define-typedef"><a href="#define-typedef" class="headerlink" title="define &amp; typedef"></a>define &amp; typedef</h3><blockquote>
-<p>#define是C语言中定义的语法，是预处理指令，在预处理时进行简单而机械的字符串替换，不作正确性检查，只有在编译已被展开的源程序时才会发现可能的错误并报错。</p>
-<p>typedef是关键字，在编译时处理，有类型检查功能。它在自己的作用域内给一个已经存在的类型一个别名，但不能在一个函数定义里面使用typedef。用typedef定义数组、指针、结构等类型会带来很大的方便，不仅使程序书写简单，也使意义明确，增强可读性。</p>
-</blockquote>
-<h3 id="extern"><a href="#extern" class="headerlink" title="extern"></a><strong>extern</strong></h3><blockquote>
-<ol>
-<li><strong>变量声明</strong>：通过使用 <code>extern</code>，你可以在一个源文件中声明一个在另一个源文件中定义的全局变量，以便在当前源文件中使用它，而不需要重新定义。这对于在多个文件中共享全局变量非常有用。</li>
-</ol>
-  <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// File1.c</span></span><br><span class="line"><span class="type">int</span> globalVar; <span class="comment">// 定义全局变量</span></span><br><span class="line"><span class="comment">// File2.c</span></span><br><span class="line"><span class="keyword">extern</span> <span class="type">int</span> globalVar; <span class="comment">// 声明在其他文件中定义的全局变量</span></span><br></pre></td></tr></table></figure>
-
-<ol start="2">
-<li><strong>函数声明</strong>：类似于变量，你也可以使用 <code>extern</code> 来声明在其他源文件中定义的函数。这允许你在当前文件中使用这些函数而无需重新定义它们。</li>
-</ol>
-  <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// File1.c</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">someFunction</span><span class="params">()</span>; <span class="comment">// 定义函数</span></span><br><span class="line"><span class="comment">// File2.c</span></span><br><span class="line"><span class="keyword">extern</span> <span class="type">void</span> <span class="title function_">someFunction</span><span class="params">()</span>; <span class="comment">// 声明在其他文件中定义的函数</span></span><br></pre></td></tr></table></figure>
-
-<ol start="3">
-<li><p><strong>解决多文件编程</strong>：<code>extern</code> 用于多文件编程中，特别是当你将程序拆分成多个源文件时，有助于确保这些文件之间的全局变量和函数能够正确共享。它允许你在一个文件中定义，而在其他文件中声明和使用这些全局实体。</p>
-</li>
-<li><p><strong>避免重复定义</strong>：<code>extern</code> 声明允许你在一个文件中定义全局变量或函数，而在其他文件中声明，从而避免多次定义相同的变量或函数，这将导致链接错误。</p>
-</li>
-</ol>
-</blockquote>
-<h3 id="register"><a href="#register" class="headerlink" title="register"></a>register</h3><blockquote>
-<ol>
-<li><strong>建议寄存器存储</strong>：通过使用 <code>register</code> 关键字，程序员可以向编译器建议将某个变量存储在寄存器中。寄存器是位于中央处理单元（CPU）内部的存储区域，它的访问速度比内存要快得多。因此，将变量存储在寄存器中可以提高程序的执行速度。</li>
-</ol>
-  <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">register</span> <span class="type">int</span> counter; <span class="comment">// 建议编译器将 counter 存储在寄存器中</span></span><br></pre></td></tr></table></figure>
-
-<ol start="2">
-<li><p><strong>编译器决定</strong>：需要强调的是，<code>register</code> 只是一个建议，而非强制要求。编译器可以选择是否将变量存储在寄存器中。通常，编译器会根据代码的复杂性和寄存器的可用性来决定是否采纳这些建议。</p>
-</li>
-<li><p><strong>限制使用</strong>：<code>register</code> 变量通常有一些限制，例如不能取地址或使用指针对其进行操作，因为寄存器变量不在内存中有地址。这也意味着 <code>register</code> 变量通常不能用于需要取地址的操作，如指针和数组的地址计算。</p>
-</li>
-<li><p><strong>性能提升</strong>：使用 <code>register</code> 可以提高程序的性能，特别是在循环中对频繁访问的变量使用 <code>register</code> 可能会产生显著的性能提升。</p>
-</li>
-</ol>
-</blockquote>
-<h3 id="const"><a href="#const" class="headerlink" title="const"></a><strong>const</strong></h3><blockquote>
-<ol>
-<li><strong>创建常量变量</strong>：通过将 <code>const</code> 关键字应用于变量，你可以创建一个不可更改的常量。这意味着一旦给定值赋予这个变量，它的值将不再改变。</li>
-</ol>
-  <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">const</span> <span class="type">int</span> max_value = <span class="number">100</span>;</span><br></pre></td></tr></table></figure>
-
-<ol start="2">
-<li><strong>防止无意的修改</strong>：使用 <code>const</code> 可以避免在代码中无意地修改常量的值。如果你尝试修改一个被声明为 <code>const</code> 的变量，编译器将生成错误或警告。</li>
-</ol>
-  <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">const</span> <span class="type">double</span> pi = <span class="number">3.14159</span>;</span><br><span class="line"><span class="comment">// 试图修改 pi 的值将导致编译错误</span></span><br></pre></td></tr></table></figure>
-</blockquote>
-<h3 id="static"><a href="#static" class="headerlink" title="static"></a>static</h3><blockquote>
-<ol>
-<li><strong>文件作用域变量</strong>：使用 <code>static</code> 可将全局变量的作用域限制在当前源文件中，防止其他文件访问或修改。</li>
-</ol>
-  <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">static</span> <span class="type">int</span> globalVar = <span class="number">5</span>; <span class="comment">// 限制作用域在当前文件中</span></span><br></pre></td></tr></table></figure>
-
-<ol start="2">
-<li><strong>静态局部变量</strong>：在函数内部使用 <code>static</code> 可使局部变量在函数调用之间保持其值。</li>
-</ol>
-  <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">myFunction</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="type">static</span> <span class="type">int</span> counter = <span class="number">0</span>; <span class="comment">// 保持在函数调用之间的值</span></span><br><span class="line">    counter++;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ol start="3">
-<li><strong>静态函数</strong>：使用 <code>static</code> 可将函数的作用域限制在当前源文件中，避免与其他文件的函数冲突。</li>
-</ol>
-  <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">static</span> <span class="type">void</span> <span class="title function_">internalFunction</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="comment">// 内部链接函数，只在当前文件中可见</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ol start="4">
-<li><strong>模块局变量</strong>：通过将变量声明为 <code>static</code>，可以在不同的文件中创建具有持久性的变量，以避免冲突。</li>
-</ol>
-  <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// File1.c</span></span><br><span class="line"><span class="type">static</span> <span class="type">int</span> globalVar = <span class="number">42</span>; <span class="comment">// 只能在当前文件中访问</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// File2.c</span></span><br><span class="line"><span class="type">int</span> anotherVar = <span class="number">123</span>; <span class="comment">// 可以被其他文件访问的全局变量</span></span><br></pre></td></tr></table></figure>
-
-<p><strong>核心</strong></p>
-<ul>
-<li>限制作用域</li>
-<li>限制存储域</li>
-</ul>
-</blockquote>
-<h3 id="sizeof-strlen"><a href="#sizeof-strlen" class="headerlink" title="sizeof &amp; strlen()"></a>sizeof &amp; strlen()</h3><blockquote>
-<p><strong>区别</strong></p>
-<p>首先<strong>sizeof是关键字，strlen是函数</strong>，sizeof用来计算占用<strong>内存大小</strong>，strlen是用来计算<strong>字符串的长度</strong>，特别是对于需不需要包含\0问题：Sizeof是需要给\0计算空间的，strlen是不需要，sizeof是在编译的时候计算的，而strlen是在运行的时候计算</p>
-<p><strong>求指针大小</strong></p>
-<p>在32位机器下，对于sizeof(指针变量)都是4个字节，比如 Int *a;    Sizeof(a);</p>
-<p><strong>求引用大小</strong></p>
-<p>Sizeof(char &amp;)   &#x2F;&#x2F; 1 引用大小和数据类型有关</p>
-<p><strong>计算数组大小</strong></p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&gt;<span class="type">int</span> num[<span class="number">5</span>]=&#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>&#125;;</span><br><span class="line">&gt;<span class="built_in">printf</span>(<span class="string">&quot;%ld\n&quot;</span>,<span class="keyword">sizeof</span>(num));<span class="comment">//20</span></span><br><span class="line"></span><br><span class="line">&gt;<span class="type">char</span> str[<span class="number">10</span>]=&#123;<span class="string">&quot;hello&quot;</span>&#125;;</span><br><span class="line">&gt;<span class="built_in">printf</span>(<span class="string">&quot;%ld\n&quot;</span>,<span class="built_in">strlen</span>(str));<span class="comment">//5</span></span><br><span class="line">&gt;<span class="built_in">printf</span>(<span class="string">&quot;%ld\n&quot;</span>,<span class="keyword">sizeof</span>(str));<span class="comment">//10</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p><strong>不使用sizeof求数据类型字节的大小</strong></p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">define</span> mysieof(value)  (char*)(&amp;value+1)-(char*)(&amp;value)</span></span><br></pre></td></tr></table></figure>
-
-<p><strong>strlen(“\0”) &#x3D; ? sizeof(“\0”)</strong></p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt;<span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>,<span class="keyword">sizeof</span>(<span class="string">&quot;\0&quot;</span>));<span class="comment">//2 因为这里有\0\0</span></span><br><span class="line">&gt;<span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>,<span class="built_in">strlen</span>(<span class="string">&quot;\0&quot;</span>));<span class="comment">//0</span></span><br></pre></td></tr></table></figure>
-
-<p><strong>sizeof(a++)</strong></p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt;<span class="type">int</span> a = <span class="number">2</span>;</span><br><span class="line">&gt;<span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>,<span class="keyword">sizeof</span>(a++)); <span class="comment">//4</span></span><br><span class="line">&gt;<span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>,a);	<span class="comment">// a = 2</span></span><br><span class="line">&gt;<span class="comment">// 注意：对于sizeof只会求所占内存大小，不会进行表达式运算</span></span><br></pre></td></tr></table></figure>
-
-<p><strong>计算字符数组大小</strong></p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&gt;<span class="type">char</span> ch[]  = <span class="string">&quot;hello&quot;</span>;</span><br><span class="line">&gt;<span class="type">char</span> str[<span class="number">10</span>] = &#123;<span class="string">&#x27;h&#x27;</span>,<span class="string">&#x27;e&#x27;</span>,<span class="string">&#x27;l&#x27;</span>,<span class="string">&#x27;l&#x27;</span>,<span class="string">&#x27;o&#x27;</span>&#125;;</span><br><span class="line">&gt;<span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>,<span class="keyword">sizeof</span>(ch));<span class="comment">//6</span></span><br><span class="line">&gt;<span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>,<span class="built_in">strlen</span>(ch));<span class="comment">//5</span></span><br><span class="line">&gt;<span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>,<span class="keyword">sizeof</span>(str));<span class="comment">//10</span></span><br><span class="line">&gt;<span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>,<span class="built_in">strlen</span>(str));<span class="comment">//5</span></span><br></pre></td></tr></table></figure>
-
-<p>*<em>char <em>str1 &#x3D; “hello”和char str2[] &#x3D; “hello”</em></em></p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&gt;<span class="type">char</span> str[] = <span class="string">&quot;hello&quot;</span>;</span><br><span class="line">&gt;<span class="type">char</span> *str1 =<span class="string">&quot;hello&quot;</span>;</span><br><span class="line">&gt;<span class="comment">//区别一 数组名不可以自加,因为数组名是地址常量</span></span><br><span class="line">&gt;<span class="comment">//str++;</span></span><br><span class="line">&gt;<span class="comment">//str1++;</span></span><br><span class="line">&gt;<span class="comment">//区别二 ,数组里面的元素可以修改，str1指向的地址的内容不可以修改 </span></span><br><span class="line">&gt;str[<span class="number">0</span>] = <span class="string">&#x27;W&#x27;</span>;</span><br><span class="line">&gt;*str1 = <span class="string">&#x27;w&#x27;</span>;<span class="comment">//段错误</span></span><br><span class="line">&gt;<span class="comment">//总结： 数组名就相当于是指针常量，只可以修改里面的内容，不可以修改指向的地址，字符指针相当于是常量指针，不可以修改指向的地址的内容，可以修改地址</span></span><br></pre></td></tr></table></figure>
-
-</blockquote>
-
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="../../2024/09/09/1-4-C%E8%AF%AD%E8%A8%80-%E5%85%B3%E9%94%AE%E5%AD%97/index/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-1-3-C语言-预处理/index" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-  <div class="article-entry" itemprop="articleBody">
-    
-    <p>+++<br>author &#x3D; “coucou”<br>title &#x3D; “C语言——预处理”<br>date &#x3D; “2023-08-01”<br>description &#x3D; “C语言专题之预处理篇”<br>categories &#x3D; [<br>    “C语言”<br>]<br>tags &#x3D; [<br>    “C语言”,”预处理篇”<br>]<br>+++<br><img src="1.jpg"></p>
-<h2 id="C语言——预处理"><a href="#C语言——预处理" class="headerlink" title="C语言——预处理"></a>C语言——预处理</h2><h3 id="error"><a href="#error" class="headerlink" title="#error"></a>#error</h3><blockquote>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&gt;<span class="comment">// 编译程序时，只要遇到#error就会生成一个编译错误提醒，并且停止编译，</span></span><br><span class="line">&gt;语法格式:</span><br><span class="line">&gt;<span class="meta">#<span class="keyword">error</span> <span class="keyword">error</span>-message</span></span><br><span class="line">&gt;实例:</span><br><span class="line">&gt;<span class="meta">#<span class="keyword">ifdef</span> xxx</span></span><br><span class="line">&gt;<span class="meta">#<span class="keyword">error</span> “xxx has been defined”</span></span><br><span class="line">&gt;<span class="meta">#<span class="keyword">else</span></span></span><br><span class="line">&gt;<span class="meta">#<span class="keyword">endif</span></span></span><br></pre></td></tr></table></figure>
-</blockquote>
-<h3 id="ifndef-define-endif"><a href="#ifndef-define-endif" class="headerlink" title="#ifndef #define #endif"></a>#ifndef #define #endif</h3><blockquote>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&gt;<span class="comment">// 当项目中有多个c文件使用到同一个头文件是，在编译的时候会出现大量的变量，函数声明冲突，解决就是使用</span></span><br><span class="line">&gt;<span class="meta">#<span class="keyword">ifndef</span> _HEAR_H_</span></span><br><span class="line">&gt;<span class="meta">#<span class="keyword">define</span> _HEAR_H_</span></span><br><span class="line">&gt;<span class="meta">#<span class="keyword">endif</span></span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-</blockquote>
-<h3 id="define和const"><a href="#define和const" class="headerlink" title="#define和const"></a>#define和const</h3><blockquote>
-<p>Define和const 都可以用于定义常量但以下区别(<strong>生效时间，内存占用情况，类型检查</strong>)：</p>
-<ol>
-<li>define只是单纯的文本替换，define常量的生命生命周期止于编译器，不存在分配内存，存在与程序的代码段</li>
-<li>const生效于编译的阶段；define生效于预处理阶段</li>
-<li>Const修饰的常量处于程序的数据段，在堆栈中分配空间</li>
-<li>Const有数据类型检查，define没有</li>
-<li>#define不可调试，const能调试</li>
-<li>const定义的变量在C中不是真正的常量</li>
-<li>Const 定义的常量不能作为数组的大小</li>
-</ol>
-</blockquote>
-<h3 id="typedef和-define"><a href="#typedef和-define" class="headerlink" title="typedef和#define"></a>typedef和#define</h3><blockquote>
-<p>原理不同：</p>
-<ol>
-<li>首先#define是预处理命令，在预处理阶段只是机械的替换带入字符串，并不会左类型检查，</li>
-<li>typedef是关键字，作用是给自己的作用域内给一个已经存在的类型起个别名</li>
-<li>#define没有作用域的限制，只要是之前预定义过的宏，在以后的程序中都可以使用，而typedef有自己的作用域</li>
-<li>对指针的操作不同</li>
-</ol>
-</blockquote>
-<h3 id="define"><a href="#define" class="headerlink" title="#define"></a>#define</h3><blockquote>
-<p><strong>表明一年</strong></p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">define</span> YEAR (60 * 60  * 24 * 365)ul</span></span><br></pre></td></tr></table></figure>
-
-<p><strong>标准宏MIN</strong></p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">define</span> MIN(a, b) ((a) &lt; (b) ? (a) : (b))</span></span><br></pre></td></tr></table></figure>
-
-<p><strong>缺点</strong></p>
-<ol>
-<li>无法进行类型检查</li>
-<li>运算优先级问题</li>
-<li>无法调试</li>
-<li>代码膨胀</li>
-<li>无法操作类的私有数据成员</li>
-</ol>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">define</span> m(a,b) a*b</span></span><br><span class="line"><span class="comment">// #define m(a,b) (a)*(b)//避免出问题最好加上()</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>,m(<span class="number">5</span>,<span class="number">6</span>));</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>,m(<span class="number">5</span>+<span class="number">1</span>,<span class="number">6</span>));<span class="comment">//实际是这样的：5+1*6</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> sqort(a)  ((a)*(a))</span></span><br><span class="line"><span class="comment">// 实例1： </span></span><br><span class="line"><span class="type">int</span> a = <span class="number">5</span>;</span><br><span class="line"><span class="type">int</span> b = sqort(a++);<span class="comment">//( (a++) * (a++) )  先给括号赋值 5之后a再+1=6</span></span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>,b);<span class="comment">//30</span></span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>,a);<span class="comment">//7</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 实例2：	</span></span><br><span class="line"><span class="type">int</span> a = <span class="number">5</span>;</span><br><span class="line"><span class="type">int</span> b = sqort(++a);<span class="comment">//(（++a）* (++a)) </span></span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>,b);<span class="comment">//49</span></span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>,a);<span class="comment">//7</span></span><br><span class="line"></span><br><span class="line">这里主要是考察++a和后加加的问题</span><br><span class="line"><span class="comment">// 记住一点：</span></span><br><span class="line">++a返回的a的引用，a++返回的是a加之前的数值</span><br><span class="line">a的引用是要等最终的那个a才能确定的</span><br></pre></td></tr></table></figure>
-</blockquote>
-<h3 id="include"><a href="#include" class="headerlink" title="#include"></a>#include</h3><blockquote>
-<p>对于.#include&lt;头文件&gt;，表示是系统文件，编译会先从标准库路径下搜索，编译器设置的头文件路径–&gt;系统变量</p>
-<p>对于#include”头文件”，当前头文件目录–&gt;编译器设置的头文件路径–&gt;系统变量</p>
-</blockquote>
-<h3 id="C代码编译过程"><a href="#C代码编译过程" class="headerlink" title="C代码编译过程"></a>C代码编译过程</h3><blockquote>
-<ol>
-<li><strong>预处理（Preprocessing）：</strong></li>
-</ol>
-<ul>
-<li>预处理阶段是在实际编译之前的一个可选步骤，用于处理源代码中的预处理指令，比如 <code>#include</code> 和 <code>#define</code>。</li>
-<li>预处理器将处理这些指令，并且可能会包含其他文件、进行宏替换等。</li>
-<li>预处理的输出是一个经过处理的源文件，通常以<code>.i</code>或<code>.ii</code>为扩展名。</li>
-</ul>
-<ol start="2">
-<li><strong>编译（Compiling）：</strong></li>
-</ol>
-<ul>
-<li>编译阶段将预处理后的源代码转换为汇编代码（Assembly Code）。</li>
-<li>编译器（如GNU Compiler Collection中的<code>gcc</code>）将C源代码翻译成汇编语言。</li>
-<li>输出是一个以<code>.s</code>为扩展名的汇编代码文件。</li>
-</ul>
-<ol start="3">
-<li><strong>汇编（Assembling）：</strong></li>
-</ol>
-<ul>
-<li>汇编阶段将汇编代码转换为机器语言指令。</li>
-<li>汇编器（如GNU Assembler中的<code>as</code>）将汇编代码翻译成机器码。</li>
-<li>输出是一个以<code>.o</code>或<code>.obj</code>为扩展名的目标文件，包含了二进制指令。</li>
-</ul>
-<ol start="4">
-<li><strong>链接（Linking）：</strong></li>
-</ol>
-<ul>
-<li>链接阶段将多个目标文件（例如，多个C文件分别编译得到的目标文件）合并为一个可执行文件。</li>
-<li>链接器（如GNU的<code>ld</code>或<code>gcc</code>中的链接器部分）将各个目标文件中的函数和变量引用解析，并创建一个可执行文件。</li>
-<li>链接的输出是一个可执行的二进制文件，可以在操作系统上运行。</li>
-</ul>
-</blockquote>
-<h3 id="在头文件中是否可以定义静态变量"><a href="#在头文件中是否可以定义静态变量" class="headerlink" title="在头文件中是否可以定义静态变量"></a>在头文件中是否可以定义静态变量</h3><blockquote>
-<p>不可以，因为静态变量是有记忆的，不会随函数结束而结束，所以，如果定义在头文件中，那么就会被多个文件开辟空间，浪费资源或者重新出错</p>
-</blockquote>
-<h3 id="和-的作用"><a href="#和-的作用" class="headerlink" title="#和##的作用"></a>#和##的作用</h3><blockquote>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&gt;<span class="comment">// #利用宏参数字符串化</span></span><br><span class="line">&gt;<span class="meta">#<span class="keyword">define</span> ARGV(x) printf(<span class="string">&quot;&quot;</span>#x<span class="string">&quot; is %s\n&quot;</span>,#x) <span class="comment">//表示把参数x解释为字符串</span></span></span><br><span class="line">&gt;<span class="type">int</span> a = <span class="number">5</span>;</span><br><span class="line">&gt;ARGV(a); <span class="comment">//a is a</span></span><br><span class="line"></span><br><span class="line">&gt;<span class="comment">// ##运算符粘合剂 组合成一个变量，强制分隔</span></span><br><span class="line">&gt;<span class="meta">#<span class="keyword">define</span> targ( n )   X##n   <span class="comment">//表示X1......或Xn</span></span></span><br><span class="line">&gt;<span class="type">int</span> <span class="title function_">main</span><span class="params">()</span></span><br><span class="line">&gt;&#123;</span><br><span class="line">   <span class="type">int</span> a = <span class="number">5</span>;</span><br><span class="line">   <span class="comment">// ARGV(a);</span></span><br><span class="line">   <span class="type">int</span> <span class="title function_">targ</span><span class="params">(<span class="number">1</span>)</span> = <span class="number">10</span>;<span class="comment">//表示 X1 =10</span></span><br><span class="line">   <span class="built_in">printf</span>(<span class="string">&quot;%d\&quot;,X1);//10</span></span><br><span class="line"><span class="string">   return 0</span></span><br><span class="line"><span class="string">&gt;&#125;</span></span><br><span class="line"><span class="string"></span></span><br></pre></td></tr></table></figure>
-
-</blockquote>
-
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="../../2024/09/09/1-3-C%E8%AF%AD%E8%A8%80-%E9%A2%84%E5%A4%84%E7%90%86/index/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-hello-world" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-7-2-微信小程序-生成二维码/index" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
@@ -1148,7 +228,7 @@
   
     <h1 itemprop="name">
 	
-	  <a class="article-title" href="../../2024/09/06/hello-world/" target="_blank">Hello World</a>
+	  <a class="article-title" href="../../2023/08/01/7-2-%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F-%E7%94%9F%E6%88%90%E4%BA%8C%E7%BB%B4%E7%A0%81/index/" target="_blank">微信小程序——生成二维码</a>
   
     </h1>
   
@@ -1156,82 +236,7 @@
 
   
   
-<a href="../../2024/09/06/hello-world/" class="archive-article-date">
-        <time datetime="2024-09-06T03:26:41.167Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-09-06</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-    
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="../../2024/09/06/hello-world/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-0-1-嵌软笔试面试/index" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="../../2023/08/01/0-1-%E5%B5%8C%E8%BD%AF%E7%AC%94%E8%AF%95%E9%9D%A2%E8%AF%95/index/" target="_blank">嵌软笔试面试——基础</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="../../2023/08/01/0-1-%E5%B5%8C%E8%BD%AF%E7%AC%94%E8%AF%95%E9%9D%A2%E8%AF%95/index/" class="archive-article-date">
+<a href="../../2023/08/01/7-2-%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F-%E7%94%9F%E6%88%90%E4%BA%8C%E7%BB%B4%E7%A0%81/index/" class="archive-article-date">
         <time datetime="2023-08-01T00:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-08-01</time>
 </a>
 
@@ -1244,8 +249,8 @@
   
   <div class="article-entry" itemprop="articleBody">
     
-    <p><img src="/0-1-%E5%B5%8C%E8%BD%AF%E7%AC%94%E8%AF%95%E9%9D%A2%E8%AF%95/1.jpg"></p>
-<h2 id="嵌入式软件笔试面试"><a href="#嵌入式软件笔试面试" class="headerlink" title="嵌入式软件笔试面试"></a>嵌入式软件笔试面试</h2>
+    <p><img src="1.jpg"></p>
+<h2 id="小程序生成二维码"><a href="#小程序生成二维码" class="headerlink" title="小程序生成二维码"></a>小程序生成二维码</h2>
     
     
 
@@ -1262,7 +267,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">嵌软笔试面试</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">微信小程序</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">生成二维码</a>
         		</li>
       		
 		</ul>
@@ -1274,7 +283,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/嵌软笔试面试//" class="article-tag-list-link color2">嵌软笔试面试</a>
+        			<a href="/categories/微信小程序//" class="article-tag-list-link color1">微信小程序</a>
         		</li>
       		
 		</ul>
@@ -1283,7 +292,415 @@
 
     
     <p class="article-more-link">
-      <a class="article-more-a" href="../../2023/08/01/0-1-%E5%B5%8C%E8%BD%AF%E7%AC%94%E8%AF%95%E9%9D%A2%E8%AF%95/index/">展开全文 >></a>
+      <a class="article-more-a" href="../../2023/08/01/7-2-%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F-%E7%94%9F%E6%88%90%E4%BA%8C%E7%BB%B4%E7%A0%81/index/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-8-2-开发工具-Git/index" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="../../2023/08/01/8-2-%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7-Git/index/" target="_blank">开发工具——Git</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="../../2023/08/01/8-2-%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7-Git/index/" class="archive-article-date">
+        <time datetime="2023-08-01T00:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-08-01</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <p><img src="1.jpg"></p>
+<h2 id="Git学习记录"><a href="#Git学习记录" class="headerlink" title="Git学习记录"></a>Git学习记录</h2>
+    
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">开发工具</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Git</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/开发工具//" class="article-tag-list-link color5">开发工具</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="../../2023/08/01/8-2-%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7-Git/index/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-8-3-开发工具-Makefile&amp;CMake/index" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="../../2023/08/01/8-3-%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7-Makefile&CMake/index/" target="_blank">开发工具——Makefile&amp;CMake</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="../../2023/08/01/8-3-%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7-Makefile&CMake/index/" class="archive-article-date">
+        <time datetime="2023-08-01T00:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-08-01</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <p><img src="1.jpg"></p>
+<h2 id="Makefile"><a href="#Makefile" class="headerlink" title="Makefile"></a>Makefile</h2>
+    
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">开发工具</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Makefile&CMake</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/开发工具//" class="article-tag-list-link color5">开发工具</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="../../2023/08/01/8-3-%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7-Makefile&CMake/index/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-8-5-开发工具-Mysql/index" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="../../2023/08/01/8-5-%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7-Mysql/index/" target="_blank">开发工具——Mysql</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="../../2023/08/01/8-5-%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7-Mysql/index/" class="archive-article-date">
+        <time datetime="2023-08-01T00:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-08-01</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <p><img src="1.jpg"></p>
+<h2 id="mysql-命令集"><a href="#mysql-命令集" class="headerlink" title="mysql 命令集"></a>mysql 命令集</h2>
+    
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">开发工具</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Mysql</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/开发工具//" class="article-tag-list-link color5">开发工具</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="../../2023/08/01/8-5-%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7-Mysql/index/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-8-4-开发工具-Markdown/index" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="../../2023/08/01/8-4-%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7-Markdown/index/" target="_blank">开发工具——Markdown</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="../../2023/08/01/8-4-%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7-Markdown/index/" class="archive-article-date">
+        <time datetime="2023-08-01T00:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-08-01</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <p><img src="1.jpg"></p>
+<h2 id="My-first-markdown"><a href="#My-first-markdown" class="headerlink" title="My first markdown"></a>My first markdown</h2>
+    
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">开发工具</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Markdown</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/开发工具//" class="article-tag-list-link color5">开发工具</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="../../2023/08/01/8-4-%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7-Markdown/index/">展开全文 >></a>
     </p>
     
 
@@ -1447,6 +864,202 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">嵌软笔试面试</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">C语言</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">指针&数组篇</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">内存篇</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">预处理篇</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">关键字篇</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">操作系统</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">FreeRTOS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">杂项</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">进程&线程实操</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">进程&线程</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Linux命令</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">UCOS3</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">imx6ull</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">单片机</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">IO</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">通信协议</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">配置相关术语</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">ARM架构</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">蓝桥杯51</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">汇编</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">网络协议</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">常见协议</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Zigbee</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">LVGL</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">计算机网络</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">MQTT</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">TCP&UDP</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">硬件</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">模拟电路</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">数字逻辑</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">处理器&架构</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">计算机组成原理</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">存储</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">理论</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">实践</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">基础</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">c++容器</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">微信小程序</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">云开发</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">echarts可视化</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">开发工具</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Cjson</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">生成二维码</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Git</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Makefile&CMake</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Mysql</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Markdown</a>
               </li>
             
             <div class="clearfix"></div>
