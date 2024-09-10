@@ -273,7 +273,7 @@
   
   <div class="article-entry" itemprop="articleBody">
     
-    <p><img src="1.jpg"></p>
+    <p><img src="/2023/08/01/3-4-%E5%8D%95%E7%89%87%E6%9C%BA-ARM%E6%9E%B6%E6%9E%84/index/1.jpg"></p>
 <h2 id="ARM通识"><a href="#ARM通识" class="headerlink" title="ARM通识"></a>ARM通识</h2><span id="more"></span>
 <h3 id="ARM采用32位架构"><a href="#ARM采用32位架构" class="headerlink" title="ARM采用32位架构"></a>ARM采用32位架构</h3><blockquote>
 <p>ARM约定一个Byte是8 bits，一个Halfword是16 bits (2 byte)，一个Word是32 bits (4 byte)。</p>
@@ -297,7 +297,7 @@
 <p><strong>（2）特殊功能寄存器</strong><br>特殊功能寄存器，属于外设硬件的组成部分。使用软件编程控制某一硬件，其实就是编程读写这个硬件的特殊功能寄存器。</p>
 <p>注意，特殊功能寄存器有地址，通过地址来访问寄存器。</p>
 </blockquote>
-<p><img src="arm.jpg" alt="img"></p>
+<p><img src="/2023/08/01/3-4-%E5%8D%95%E7%89%87%E6%9C%BA-ARM%E6%9E%B6%E6%9E%84/index/arm.jpg" alt="img"></p>
 <blockquote>
 <p><strong>（1）影子式设计</strong><br>注意，上图中除了Abort模式列出所有的寄存器外，其他模式只列出对应位置该模式下特有的寄存器，没有列出的寄存器，则说明和Abort模式共用。比如User模式下有自己的r13和r14寄存器，其他寄存器和Abort模式相同。这样算下来，ARM总共有 37 个寄存器，但<strong>最多只能同时存在18个寄存器</strong>。有些寄存器虽然名字相同，但是在当前模式是不可见的。比如在ARM中有6个名叫r13的寄存器，但在特定处理器模式下，只有一个r13是当前可见的，其他的r13必须切换到对应的模式才能看到。这种设计叫影子寄存器。</p>
 <p>这样设计的好处是，当各种异常发生的时候，每种异常模式都可以保存一些重要的数据，异常处理程序完成之后返回异常前的程序时，不会破坏原有的寄存器或状态。</p>
@@ -693,7 +693,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">指针&数组篇</a>
+                <a href="javascript:void(0)" class="js-tag color5">预处理篇</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -701,7 +701,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">预处理篇</a>
+                <a href="javascript:void(0)" class="js-tag color2">指针&数组篇</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -713,7 +713,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">FreeRTOS</a>
+                <a href="javascript:void(0)" class="js-tag color1">进程&线程</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -725,11 +725,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">进程&线程</a>
+                <a href="javascript:void(0)" class="js-tag color3">Linux命令</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Linux命令</a>
+                <a href="javascript:void(0)" class="js-tag color4">FreeRTOS</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -749,11 +749,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">IO</a>
+                <a href="javascript:void(0)" class="js-tag color5">通信协议</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">通信协议</a>
+                <a href="javascript:void(0)" class="js-tag color3">IO</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -781,6 +781,14 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">MQTT</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">TCP&UDP</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Zigbee</a>
               </li>
              
@@ -790,14 +798,6 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">计算机网络</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">MQTT</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">TCP&UDP</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -817,11 +817,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">计算机组成原理</a>
+                <a href="javascript:void(0)" class="js-tag color3">存储</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">存储</a>
+                <a href="javascript:void(0)" class="js-tag color3">计算机组成原理</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -837,10 +837,6 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">基础</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">c++容器</a>
               </li>
              
@@ -849,11 +845,15 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">云开发</a>
+                <a href="javascript:void(0)" class="js-tag color1">echarts可视化</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">echarts可视化</a>
+                <a href="javascript:void(0)" class="js-tag color3">基础</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">生成二维码</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -865,7 +865,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">生成二维码</a>
+                <a href="javascript:void(0)" class="js-tag color4">云开发</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -877,11 +877,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Mysql</a>
+                <a href="javascript:void(0)" class="js-tag color4">Markdown</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Markdown</a>
+                <a href="javascript:void(0)" class="js-tag color1">Mysql</a>
               </li>
             
             <div class="clearfix"></div>

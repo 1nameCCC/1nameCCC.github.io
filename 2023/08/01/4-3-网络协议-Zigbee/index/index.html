@@ -276,7 +276,7 @@
   
   <div class="article-entry" itemprop="articleBody">
     
-    <p><img src="1.jpg"></p>
+    <p><img src="/2023/08/01/4-3-%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE-Zigbee/index/1.jpg"></p>
 <h2 id="Zigbee通信"><a href="#Zigbee通信" class="headerlink" title="Zigbee通信"></a>Zigbee通信</h2><span id="more"></span>
 <h3 id="1-说明"><a href="#1-说明" class="headerlink" title="1. 说明"></a>1. 说明</h3><h4 id="1-1-按网络功能划分，"><a href="#1-1-按网络功能划分，" class="headerlink" title="1.1 按网络功能划分，"></a>1.1 按网络功能划分，</h4><ul>
 <li>协调器  (协调器模块在网络里的地址永远是0x0000)</li>
@@ -303,13 +303,13 @@
 <li>终端</li>
 </ul>
 <p>​	它在入网前的行为和下载了路由器代码模块在入网前行为是一样的。</p>
-<p><img src="1.bmp"></p>
+<p><img src="/2023/08/01/4-3-%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE-Zigbee/index/1.bmp"></p>
 <ul>
 <li>协调器</li>
 </ul>
 <p>​	发送了一帧信标请求帧，发送这一帧也会得到周围具备介绍人资格的节点回复信标帧，但是协调器拿到这些信标帧，用来判断周围的环境情况，为创建网络做准备。</p>
 <p>​	当协调器创建成功以后，就会发送一个数据帧，这个帧里面可以看到协调器的地址0x0000,PANID,可以把这个帧叫做网络连接状态帧。</p>
-<p><img src="2.bmp"></p>
+<p><img src="/2023/08/01/4-3-%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE-Zigbee/index/2.bmp"></p>
 <h4 id="2-2入网到稳定工作"><a href="#2-2入网到稳定工作" class="headerlink" title="2.2入网到稳定工作"></a>2.2入网到稳定工作</h4><ul>
 <li>路由器</li>
 </ul>
@@ -356,7 +356,7 @@
 <li>终端节点发送给它的父节点协调器的数据请求帧，为了告诉它的父节点，我还在线。</li>
 <li>协调器在收到终端发来的帧，硬件自动回复的ACK</li>
 </ol>
-<p><img src="3.bmp"></p>
+<p><img src="/2023/08/01/4-3-%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE-Zigbee/index/3.bmp"></p>
 <h3 id="3-PANID网段值"><a href="#3-PANID网段值" class="headerlink" title="3.  PANID网段值"></a>3.  PANID网段值</h3><ul>
 <li>非0xFFFF</li>
 </ul>
@@ -437,7 +437,7 @@
 </ol>
 <h4 id="7-2-实例"><a href="#7-2-实例" class="headerlink" title="7.2 实例"></a>7.2 实例</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 发送模块</span></span><br><span class="line"><span class="type">char</span> theMessageData[] =<span class="string">&quot;Hello\r\n&quot;</span>;</span><br><span class="line"></span><br><span class="line">SDApp_DstAddr.addrMode = (afAddrMode_t)AddrGroup; <span class="comment">//发送模式是组播的方式</span></span><br><span class="line"></span><br><span class="line">SDApp_DstAddr.addr.shortAddr = <span class="number">0x0001</span>; <span class="comment">//接收模块的组编号</span></span><br><span class="line"></span><br><span class="line">SDApp_DstAddr.endPoint =<span class="number">10</span> ;</span><br><span class="line"></span><br><span class="line">AF_DataRequest( &amp;SDApp_DstAddr, &amp;SDApp_epDesc,</span><br><span class="line"></span><br><span class="line">                <span class="number">0x0001</span>,<span class="comment">//接收模块的簇编号</span></span><br><span class="line"></span><br><span class="line">                (byte)osal_strlen( theMessageData ) + <span class="number">1</span>,</span><br><span class="line"></span><br><span class="line">                (byte *)&amp;theMessageData,</span><br><span class="line"></span><br><span class="line">                &amp;SDApp_TransID,</span><br><span class="line"></span><br><span class="line">                AF_DISCV_ROUTE, AF_DEFAULT_RADIUS );</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line"><span class="comment">// 协调器接收模块</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&quot;aps_groups.h&quot;</span> <span class="comment">//用到了组相关的结构体，所有添加组头文件</span></span></span><br><span class="line"></span><br><span class="line">aps_Group_t SampleApp_Group1;</span><br><span class="line"></span><br><span class="line">aps_Group_t SampleApp_Group2;</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line"><span class="comment">// 按下按钮标记组</span></span><br><span class="line"><span class="keyword">if</span>(P0_1 == <span class="number">0</span>)</span><br><span class="line">&#123;<span class="comment">//按钮3按下</span></span><br><span class="line">     aps_RemoveGroup(<span class="number">10</span>,<span class="number">0x0002</span>); <span class="comment">// 如果10号端点上关联了0x0002，那么就去掉组2个这个关联，如果根本没有关联，不做处理</span></span><br><span class="line"></span><br><span class="line">     SampleApp_Group1.ID=<span class="number">0X0001</span>; <span class="comment">// 关联组</span></span><br><span class="line"></span><br><span class="line">     aps_AddGroup( <span class="number">10</span>, &amp;SampleApp_Group1 ); <span class="comment">// 添加关联</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(<span class="number">0</span>==P2_0)</span><br><span class="line">&#123;</span><br><span class="line">     aps_RemoveGroup(<span class="number">10</span>,<span class="number">0x0001</span>);<span class="comment">//如果10号端点上关联了0x0001，那么就去掉组1个这个关联，如果根本没有关联，不做处理</span></span><br><span class="line">     SampleApp_Group2.ID=<span class="number">0X0002</span>;</span><br><span class="line">     aps_AddGroup( <span class="number">10</span>, &amp;SampleApp_Group2 ); </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(<span class="number">0</span>==P0_5)</span><br><span class="line">&#123;</span><br><span class="line">     aps_RemoveAllGroup(<span class="number">10</span>);  <span class="comment">// 移除所有关联</span></span><br><span class="line">    </span><br><span class="line">     SampleApp_Group1.ID=<span class="number">0X0001</span>;</span><br><span class="line">     aps_AddGroup( <span class="number">10</span>, &amp;SampleApp_Group1 ); </span><br><span class="line">     SampleApp_Group2.ID=<span class="number">0X0002</span>;</span><br><span class="line">     aps_AddGroup( <span class="number">10</span>, &amp;SampleApp_Group2 );      </span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 数据处理</span></span><br><span class="line"><span class="keyword">if</span>(<span class="number">0x0001</span>==pkt-&gt;groupId)  <span class="comment">// 找组</span></span><br><span class="line">&#123;</span><br><span class="line">     <span class="keyword">if</span>(<span class="number">10</span>==pkt-&gt;endPoint)  <span class="comment">// 找端点</span></span><br><span class="line">     &#123;</span><br><span class="line">         <span class="keyword">switch</span> ( pkt-&gt;clusterId )  <span class="comment">// 找簇</span></span><br><span class="line">         &#123;</span><br><span class="line">         	<span class="keyword">case</span> <span class="number">0x0001</span>:</span><br><span class="line">                <span class="comment">// 数据处理</span></span><br><span class="line">             <span class="keyword">break</span>;</span><br><span class="line">         &#125;</span><br><span class="line">      &#125;</span><br><span class="line">&#125;</span><br><span class="line">  </span><br><span class="line"><span class="keyword">if</span>(<span class="number">0x0002</span>==pkt-&gt;groupId)</span><br><span class="line">&#123;</span><br><span class="line">     <span class="keyword">if</span>(<span class="number">10</span>==pkt-&gt;endPoint)</span><br><span class="line">     &#123;</span><br><span class="line">         <span class="keyword">switch</span> ( pkt-&gt;clusterId )</span><br><span class="line">         &#123;</span><br><span class="line">         	<span class="keyword">case</span> <span class="number">0x0001</span>:</span><br><span class="line">               <span class="comment">// 数据处理</span></span><br><span class="line">             <span class="keyword">break</span>;</span><br><span class="line">          &#125;</span><br><span class="line">     &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
-<p><img src="66.jpg"></p>
+<p><img src="/2023/08/01/4-3-%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE-Zigbee/index/66.jpg"></p>
 
     
 
@@ -560,11 +560,11 @@
 
 <nav id="article-nav">
   
-    <a href="/2023/08/01/4-1-%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE-%E5%B8%B8%E8%A7%81%E5%8D%8F%E8%AE%AE/index/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2023/08/01/4-4-%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE-TCP&UDP/index/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          网络协议——常见协议
+          网络协议——TCP&amp;UDP
         
       </div>
     </a>
@@ -741,7 +741,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">指针&数组篇</a>
+                <a href="javascript:void(0)" class="js-tag color5">预处理篇</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -749,7 +749,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">预处理篇</a>
+                <a href="javascript:void(0)" class="js-tag color2">指针&数组篇</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -761,7 +761,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">FreeRTOS</a>
+                <a href="javascript:void(0)" class="js-tag color1">进程&线程</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -773,11 +773,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">进程&线程</a>
+                <a href="javascript:void(0)" class="js-tag color3">Linux命令</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Linux命令</a>
+                <a href="javascript:void(0)" class="js-tag color4">FreeRTOS</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -797,11 +797,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">IO</a>
+                <a href="javascript:void(0)" class="js-tag color5">通信协议</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">通信协议</a>
+                <a href="javascript:void(0)" class="js-tag color3">IO</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -829,6 +829,14 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">MQTT</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">TCP&UDP</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Zigbee</a>
               </li>
              
@@ -838,14 +846,6 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">计算机网络</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">MQTT</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">TCP&UDP</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -865,11 +865,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">计算机组成原理</a>
+                <a href="javascript:void(0)" class="js-tag color3">存储</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">存储</a>
+                <a href="javascript:void(0)" class="js-tag color3">计算机组成原理</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -885,10 +885,6 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">基础</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">c++容器</a>
               </li>
              
@@ -897,11 +893,15 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">云开发</a>
+                <a href="javascript:void(0)" class="js-tag color1">echarts可视化</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">echarts可视化</a>
+                <a href="javascript:void(0)" class="js-tag color3">基础</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">生成二维码</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -913,7 +913,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">生成二维码</a>
+                <a href="javascript:void(0)" class="js-tag color4">云开发</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -925,11 +925,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Mysql</a>
+                <a href="javascript:void(0)" class="js-tag color4">Markdown</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Markdown</a>
+                <a href="javascript:void(0)" class="js-tag color1">Mysql</a>
               </li>
             
             <div class="clearfix"></div>

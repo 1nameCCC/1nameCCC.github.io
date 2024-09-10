@@ -296,7 +296,7 @@
   
   <div class="article-entry" itemprop="articleBody">
     
-    <p><img src="1.jpg"></p>
+    <p><img src="/2023/08/01/3-0-%E5%8D%95%E7%89%87%E6%9C%BA-%E6%9D%82%E9%A1%B9/index/1.jpg"></p>
 <h2 id="单片机"><a href="#单片机" class="headerlink" title="单片机"></a>单片机</h2><span id="more"></span>
 <h2 id="51单片机的延时计算"><a href="#51单片机的延时计算" class="headerlink" title="51单片机的延时计算"></a>51单片机的延时计算</h2><p>前言<br>正文<br>首先是时钟周期的算法：时钟周期（T）&#x3D;1（秒）&#x2F;晶振频率。<br>其次是机器周期：机器周期是由时钟周期组成的，机器周期是单片机完成一个基本操作所需要的时间。<br>1 传统的8051单片机：<br>2 STC单片机：<br>最后是指令周期：这个是单片机执行一条指令所需要的时间，它是由机器周期组成的。<br>总结<br>前言<br>我使用51,STC这一类的单片机做控制好几年，一直是使用现成的程序，在其上修修改改，以达到需求动作目的即可。从来都是不求甚解。想法既是如此，会用即可，了解那么多做什么。<br>此次又在做一项目，里面用到I2C通讯。本来是直接复制粘贴了事，却没想对里面的一个小小的延时函数起了兴趣，由于本人是基础功底只有5战斗力的渣渣，写写画画了一天才搞了个大体明白。<br>以前总是在看其他博主的文章，默默潜水。然而此次，突然就忍不住想写篇文章发表一下费尽心思的微不足道的心得体会。</p>
 <p>正文<br>void Delay10us()		&#x2F;&#x2F;@12.000MHz<br>{<br>    unsigned char i;</p>
@@ -636,18 +636,18 @@ while (--i);
 
 <nav id="article-nav">
   
-    <a href="/2023/08/01/2-7-%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-imx6ull/index/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2023/08/01/3-1-%E5%8D%95%E7%89%87%E6%9C%BA-IO/index/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          操作系统——imx6ull
+          单片机——IO
         
       </div>
     </a>
   
   
-    <a href="/2023/08/01/3-1-%E5%8D%95%E7%89%87%E6%9C%BA-IO/index/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">单片机——IO</div>
+    <a href="/2023/08/01/3-3-%E5%8D%95%E7%89%87%E6%9C%BA-%E9%85%8D%E7%BD%AE%E7%9B%B8%E5%85%B3%E6%9C%AF%E8%AF%AD/index/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">单片机——配置相关术语</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -817,7 +817,7 @@ while (--i);
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">指针&数组篇</a>
+                <a href="javascript:void(0)" class="js-tag color5">预处理篇</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -825,7 +825,7 @@ while (--i);
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">预处理篇</a>
+                <a href="javascript:void(0)" class="js-tag color2">指针&数组篇</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -837,7 +837,7 @@ while (--i);
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">FreeRTOS</a>
+                <a href="javascript:void(0)" class="js-tag color1">进程&线程</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -849,11 +849,11 @@ while (--i);
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">进程&线程</a>
+                <a href="javascript:void(0)" class="js-tag color3">Linux命令</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Linux命令</a>
+                <a href="javascript:void(0)" class="js-tag color4">FreeRTOS</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -873,11 +873,11 @@ while (--i);
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">IO</a>
+                <a href="javascript:void(0)" class="js-tag color5">通信协议</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">通信协议</a>
+                <a href="javascript:void(0)" class="js-tag color3">IO</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -905,6 +905,14 @@ while (--i);
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">MQTT</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">TCP&UDP</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Zigbee</a>
               </li>
              
@@ -914,14 +922,6 @@ while (--i);
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">计算机网络</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">MQTT</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">TCP&UDP</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -941,11 +941,11 @@ while (--i);
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">计算机组成原理</a>
+                <a href="javascript:void(0)" class="js-tag color3">存储</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">存储</a>
+                <a href="javascript:void(0)" class="js-tag color3">计算机组成原理</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -961,10 +961,6 @@ while (--i);
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">基础</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">c++容器</a>
               </li>
              
@@ -973,11 +969,15 @@ while (--i);
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">云开发</a>
+                <a href="javascript:void(0)" class="js-tag color1">echarts可视化</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">echarts可视化</a>
+                <a href="javascript:void(0)" class="js-tag color3">基础</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">生成二维码</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -989,7 +989,7 @@ while (--i);
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">生成二维码</a>
+                <a href="javascript:void(0)" class="js-tag color4">云开发</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1001,11 +1001,11 @@ while (--i);
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Mysql</a>
+                <a href="javascript:void(0)" class="js-tag color4">Markdown</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Markdown</a>
+                <a href="javascript:void(0)" class="js-tag color1">Mysql</a>
               </li>
             
             <div class="clearfix"></div>

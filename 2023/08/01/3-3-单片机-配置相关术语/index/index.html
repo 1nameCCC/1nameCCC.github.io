@@ -278,7 +278,7 @@
   
   <div class="article-entry" itemprop="articleBody">
     
-    <p><img src="1.jpg"></p>
+    <p><img src="/2023/08/01/3-3-%E5%8D%95%E7%89%87%E6%9C%BA-%E9%85%8D%E7%BD%AE%E7%9B%B8%E5%85%B3%E6%9C%AF%E8%AF%AD/index/1.jpg"></p>
 <h1 id="单片机配置"><a href="#单片机配置" class="headerlink" title="单片机配置"></a>单片机配置</h1><span id="more"></span>
 <h2 id="指令周期、机器周期、时钟周期的概念及三者之间的关系"><a href="#指令周期、机器周期、时钟周期的概念及三者之间的关系" class="headerlink" title="指令周期、机器周期、时钟周期的概念及三者之间的关系"></a>指令周期、机器周期、时钟周期的概念及三者之间的关系</h2><blockquote>
 <h2 id="指令周期："><a href="#指令周期：" class="headerlink" title="指令周期："></a>指令周期：</h2><p>​    CPU每 <em><strong>*取出*</strong></em> 一条指令并 <strong>执行</strong> 这条指令，都要完成一系列的操作，这一系列操作所需要的时间通常叫做一个<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E6%8C%87%E4%BB%A4%E5%91%A8%E6%9C%9F">指令周期</a>。换言之****指令周期是取出一条指令并执行这条指令的时间*<em><strong>。由于各条指令的操作功能不同，因此</strong></em>*各种指令的指令周期是不尽相同的****。例如一条加法指令的指令周期同一条乘法指令的指令周期是不相同的 。</p>
@@ -342,7 +342,7 @@
 </blockquote>
 <h2 id="PWM输出"><a href="#PWM输出" class="headerlink" title="PWM输出"></a>PWM输出</h2><p><strong>PWM</strong>，是脉冲宽度调制，是控制在一个周期内，控制高电平多长时间，低电平多长时间，在数字电路中IO口就只有两种状态，<strong>0和1(高低)，对应就是0和5V或者0和3.3V）。也就是说，通过调节高低电平时间的变化来调节信号、能量等的变化</strong></p>
 <p><strong>占空比</strong>是指 <em><strong>高电平持续</strong></em> <strong>时间</strong> <em><strong>比</strong></em> 一个 <em><strong>周期持续</strong></em> 的<strong>时间</strong>。<br>所以可以通过控制占空比，来控制输出的等效电压。所以对于方波的话，频率和占空比就确定了一个波</p>
-<p><img src="pwm.png" alt="img"></p>
+<p><img src="/2023/08/01/3-3-%E5%8D%95%E7%89%87%E6%9C%BA-%E9%85%8D%E7%BD%AE%E7%9B%B8%E5%85%B3%E6%9C%AF%E8%AF%AD/index/pwm.png" alt="img"></p>
 <blockquote>
 <p><strong>PWM的频率：</strong></p>
 <p>是指1秒钟内信号从高电平到低电平再回到高电平的次数(一个周期)；也就是说一秒钟PWM有多少个周期, 单位： Hz</p>
@@ -350,9 +350,9 @@
 <p><strong>周期：</strong><br>T&#x3D;(TIMx_ARR+1)*(TIMx_PSC+1)&#x2F;TIMxCLK<br>其中，TIMxCLK是其时钟频率，若是晶振为8MHz的，一般为72MHz</p>
 <p><strong>占空比：</strong><br>(TIMx_CRRx&#x2F;TIMx_ARR)*100%</p>
 </blockquote>
-<p><img src="pwm1.png" alt="img"></p>
+<p><img src="/2023/08/01/3-3-%E5%8D%95%E7%89%87%E6%9C%BA-%E9%85%8D%E7%BD%AE%E7%9B%B8%E5%85%B3%E6%9C%AF%E8%AF%AD/index/pwm1.png" alt="img"></p>
 <h2 id="输入捕获"><a href="#输入捕获" class="headerlink" title="输入捕获"></a>输入捕获</h2><p>输入捕获模式可以用来<strong>测量脉冲宽度或者测量频率</strong>，下图以测量脉宽为例来说明输入捕获的原理</p>
-<p><img src="pwm2.png" alt="img"></p>
+<p><img src="/2023/08/01/3-3-%E5%8D%95%E7%89%87%E6%9C%BA-%E9%85%8D%E7%BD%AE%E7%9B%B8%E5%85%B3%E6%9C%AF%E8%AF%AD/index/pwm2.png" alt="img"></p>
 <blockquote>
 <p>假定定时器工作在向上计数模式，图中t1-t2的时间就是我们需要测量的低电平时间。测量方法为：首先设置定时器通道x为下降沿捕获，在t1时刻就会捕获到当前的CNT值，然后立即清零CNT，并设置通道x为上升沿捕获，到t2时刻又会发送捕获事件，得到此时的CNT值（记为CCRx2）。在t1-t2之间可能产生N次定时器溢出，因此需要对定时器溢出做处理，防止低电平太长导致数据不准确。</p>
 <p>t1-t2之间计数的次数为：N * ARR + CCRx2，再乘以CNT计数周期即可得到低电平持续时间</p>
@@ -438,13 +438,13 @@
 <p>在空闲状态时（SCL，SDA为高电平），SDA产生下降沿为起始信号</p>
 <p>在SCL为高电平时，SDA产生上升沿信号，之后SCL，SDA全为高，进入空闲状态</p>
 </blockquote>
-<p><img src="I2C.png" alt="img"></p>
+<p><img src="/2023/08/01/3-3-%E5%8D%95%E7%89%87%E6%9C%BA-%E9%85%8D%E7%BD%AE%E7%9B%B8%E5%85%B3%E6%9C%AF%E8%AF%AD/index/I2C.png" alt="img"></p>
 <h2 id="SPI"><a href="#SPI" class="headerlink" title="SPI"></a>SPI</h2><p><strong>SPI</strong>是一种<strong>高速的，全双工，同步</strong>的通信总线</p>
-<p><img src="spi.png" alt="img"></p>
+<p><img src="/2023/08/01/3-3-%E5%8D%95%E7%89%87%E6%9C%BA-%E9%85%8D%E7%BD%AE%E7%9B%B8%E5%85%B3%E6%9C%AF%E8%AF%AD/index/spi.png" alt="img"></p>
 <blockquote>
 <p>（1）<strong>MOSI：</strong>主器件数据输出，从器件数据输入<br>（2）<strong>MISO：</strong>主器件数据输入，从器件数据输出<br>（3）<strong>SCLK ：</strong>时钟信号，由主器件产生<br>（4）<strong>CS：</strong>从器件使能信号，由主器件控制</p>
 </blockquote>
-<p><img src="spi1.png" alt="img"></p>
+<p><img src="/2023/08/01/3-3-%E5%8D%95%E7%89%87%E6%9C%BA-%E9%85%8D%E7%BD%AE%E7%9B%B8%E5%85%B3%E6%9C%AF%E8%AF%AD/index/spi1.png" alt="img"></p>
 <blockquote>
 <p><strong>采样沿</strong>：SPI采用边沿触发采样、移位发送，CPHA&#x2F;CPOL组合形成四种SPI时序模式：</p>
 <p>1.CPOL &#x3D; 0低电平为空闲，数据线在时钟为低时可改变，两根数据线在时钟高电平期间须保持稳定，分两种情况：<br>  1.1 CPHA&#x3D;0时，输入侧上升沿采样，输出侧在下降沿移位输出到线上<br>  1.2 CPHA&#x3D;1时，输入侧下降沿采样，输出侧在上升沿移位输出到线上</p>
@@ -597,11 +597,11 @@
 
 <nav id="article-nav">
   
-    <a href="/2023/08/01/3-2-%E5%8D%95%E7%89%87%E6%9C%BA-%E9%80%9A%E4%BF%A1%E5%8D%8F%E8%AE%AE/index/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2023/08/01/3-0-%E5%8D%95%E7%89%87%E6%9C%BA-%E6%9D%82%E9%A1%B9/index/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          单片机——通信协议
+          单片机——杂项
         
       </div>
     </a>
@@ -778,7 +778,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">指针&数组篇</a>
+                <a href="javascript:void(0)" class="js-tag color5">预处理篇</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -786,7 +786,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">预处理篇</a>
+                <a href="javascript:void(0)" class="js-tag color2">指针&数组篇</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -798,7 +798,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">FreeRTOS</a>
+                <a href="javascript:void(0)" class="js-tag color1">进程&线程</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -810,11 +810,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">进程&线程</a>
+                <a href="javascript:void(0)" class="js-tag color3">Linux命令</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Linux命令</a>
+                <a href="javascript:void(0)" class="js-tag color4">FreeRTOS</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -834,11 +834,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">IO</a>
+                <a href="javascript:void(0)" class="js-tag color5">通信协议</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">通信协议</a>
+                <a href="javascript:void(0)" class="js-tag color3">IO</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -866,6 +866,14 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">MQTT</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">TCP&UDP</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Zigbee</a>
               </li>
              
@@ -875,14 +883,6 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">计算机网络</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">MQTT</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">TCP&UDP</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -902,11 +902,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">计算机组成原理</a>
+                <a href="javascript:void(0)" class="js-tag color3">存储</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">存储</a>
+                <a href="javascript:void(0)" class="js-tag color3">计算机组成原理</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -922,10 +922,6 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">基础</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">c++容器</a>
               </li>
              
@@ -934,11 +930,15 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">云开发</a>
+                <a href="javascript:void(0)" class="js-tag color1">echarts可视化</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">echarts可视化</a>
+                <a href="javascript:void(0)" class="js-tag color3">基础</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">生成二维码</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -950,7 +950,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">生成二维码</a>
+                <a href="javascript:void(0)" class="js-tag color4">云开发</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -962,11 +962,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Mysql</a>
+                <a href="javascript:void(0)" class="js-tag color4">Markdown</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Markdown</a>
+                <a href="javascript:void(0)" class="js-tag color1">Mysql</a>
               </li>
             
             <div class="clearfix"></div>

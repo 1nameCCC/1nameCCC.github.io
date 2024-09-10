@@ -286,13 +286,13 @@
   
   <div class="article-entry" itemprop="articleBody">
     
-    <p><img src="1.jpg"></p>
+    <p><img src="/2023/08/01/2-6-%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-UCOS3/index/1.jpg"></p>
 <h2 id="实时操作系统之UCOS3"><a href="#实时操作系统之UCOS3" class="headerlink" title="实时操作系统之UCOS3"></a>实时操作系统之UCOS3</h2><span id="more"></span>
 <h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><blockquote>
 <p>RTOS的内核负责管理所有的任务，内核决定了运行哪个任务，何时停止当前任务切换到其他任务，这个是内核的多任务管理能力。多任务管理给人的感觉就好像芯片有多个CPU，多任务管理实现了CPU资源的最大化利用，多任务管理有助于实现程序的模块化开发，能够实现复杂的实时应用。		</p>
 <p>RTOS操作系统：<strong>UCOS，FreeRTOS，RTX，RT-Thread，DJYOS</strong>等</p>
 </blockquote>
-<p><img src="detail.jpg" alt="img"></p>
+<p><img src="/2023/08/01/2-6-%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-UCOS3/index/detail.jpg" alt="img"></p>
 <h3 id="任务管理"><a href="#任务管理" class="headerlink" title="任务管理"></a>任务管理</h3><h4 id="延时函数"><a href="#延时函数" class="headerlink" title="延时函数"></a>延时函数</h4><table>
 <thead>
 <tr>
@@ -364,7 +364,7 @@
 <p> 4、等待态：正在运行的任务需要等待一段时间，或者等待某个事件，这个任务就进入了等待态，此时系统就会把CPU使用权转交给别的任务。</p>
 <p> 5、中断服务态：当发送中断，当前正在运行的任务会被挂起，CPU转而去执行中断服务函数，此时任务的任务状态叫做中断服务态。</p>
 </blockquote>
-<p><img src="state.jpg" alt="state"></p>
+<p><img src="/2023/08/01/2-6-%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-UCOS3/index/state.jpg" alt="state"></p>
 <h4 id="任务堆栈的创建"><a href="#任务堆栈的创建" class="headerlink" title="任务堆栈的创建"></a>任务堆栈的创建</h4><blockquote>
 <p>任务堆栈是任务的重要部分，堆栈是在RAM中按照“先进先出(FIFO)”的原则组织的一块连续的存储空间。为了满足任务切换和响应中断时保存CPU寄存器中的内容及任务调用其它函数时的需要，每个任务都应该有自己的堆栈。</p>
 <p>#define START_STK_SIZE  512 &#x2F;&#x2F;堆栈大小</p>
@@ -384,8 +384,8 @@
 <p>1、优先级位映射表OSPrioTbl[]：用来记录哪个优先级下有任务就绪。</p>
 <p>2、就绪任务列表OSRdyList[]：用来记录每一个优先级下所有就绪的任务。</p>
 </blockquote>
-<p><img src="prio.jpg" alt="prio"></p>
-<p><img src="OSrdylist.jpg" alt="OSrdylist"></p>
+<p><img src="/2023/08/01/2-6-%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-UCOS3/index/prio.jpg" alt="prio"></p>
+<p><img src="/2023/08/01/2-6-%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-UCOS3/index/OSrdylist.jpg" alt="OSrdylist"></p>
 <h4 id="任务调度"><a href="#任务调度" class="headerlink" title="任务调度"></a>任务调度</h4><blockquote>
 <p><strong>任务级调度器</strong>为函数OSSched()。</p>
 <p><strong>中断级调度器</strong>为函数OSIntExit()，当退出外部中断服务函数的时候使用中断级任务调度。</p>
@@ -431,7 +431,7 @@
 <td align="center">4</td>
 </tr>
 </tbody></table>
-<p><img src="turnOfTime.jpg" alt="turnOfTime"></p>
+<p><img src="/2023/08/01/2-6-%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-UCOS3/index/turnOfTime.jpg" alt="turnOfTime"></p>
 <h4 id="任务切换"><a href="#任务切换" class="headerlink" title="任务切换"></a>任务切换</h4><blockquote>
 <p>当UCOSIII需要切换到另外一个任务时，它将保存当前任务的现场到当前任务的堆栈中，主要是CPU寄存器值，然后恢复新的现场并且执行新的任务，这个过程就是任务切换。</p>
 <p>任务切换分为两种：<strong>任务级切换和中断级切换</strong>。</p>
@@ -504,10 +504,10 @@
 </tbody></table>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 创建定时器</span></span><br><span class="line">OSTmrCreate (OS_TMR               *p_tmr,</span><br><span class="line">             CPU_CHAR             *p_name,</span><br><span class="line">             OS_TICK               dly,</span><br><span class="line">             OS_TICK               period,</span><br><span class="line">             OS_OPT                opt,            <span class="comment">// 模式</span></span><br><span class="line">             OS_TMR_CALLBACK_PTR   p_callback,</span><br><span class="line">             <span class="type">void</span>                 *p_callback_arg,</span><br><span class="line">             OS_ERR               *p_err)</span><br></pre></td></tr></table></figure>
 
-<p><img src="timer1.jpg" alt="timer1"></p>
-<p><img src="timer2.jpg" alt="tiemr2"></p>
-<p><img src="timer3.jpg" alt="timer3"></p>
-<p><img src="timer4.jpg" alt="tiemr4"></p>
+<p><img src="/2023/08/01/2-6-%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-UCOS3/index/timer1.jpg" alt="timer1"></p>
+<p><img src="/2023/08/01/2-6-%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-UCOS3/index/timer2.jpg" alt="tiemr2"></p>
+<p><img src="/2023/08/01/2-6-%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-UCOS3/index/timer3.jpg" alt="timer3"></p>
+<p><img src="/2023/08/01/2-6-%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-UCOS3/index/timer4.jpg" alt="tiemr4"></p>
 <h3 id="信号量和互斥信号量"><a href="#信号量和互斥信号量" class="headerlink" title="信号量和互斥信号量"></a>信号量和互斥信号量</h3><h4 id="信号量"><a href="#信号量" class="headerlink" title="信号量"></a>信号量</h4><blockquote>
 <p>信号量像是一种上锁机制，代码必须获得对应的钥匙才能继续执行，一旦获得了钥匙，也就意味着该任务具有进入被锁部分代码的权限。一旦执行至被锁代码段，则任务一直等待，直到对应被锁部分代码的钥匙被再次释放才能继续执行。</p>
 <p>信号量用于控制<strong>对共享资源的保护</strong>，但是现在基本用来做<strong>任务同步用</strong>。</p>
@@ -548,8 +548,8 @@
 <td align="center">强制设置一个信号量的值</td>
 </tr>
 </tbody></table>
-<h4 id="互斥信号量"><a href="#互斥信号量" class="headerlink" title="互斥信号量"></a>互斥信号量</h4><p><img src="prioTurn1.jpg" alt="prioTurn1"></p>
-<p><img src="prioTurn2.jpg" alt="prioTurn2"></p>
+<h4 id="互斥信号量"><a href="#互斥信号量" class="headerlink" title="互斥信号量"></a>互斥信号量</h4><p><img src="/2023/08/01/2-6-%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-UCOS3/index/prioTurn1.jpg" alt="prioTurn1"></p>
+<p><img src="/2023/08/01/2-6-%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-UCOS3/index/prioTurn2.jpg" alt="prioTurn2"></p>
 <table>
 <thead>
 <tr>
@@ -608,7 +608,7 @@
 </blockquote>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 消息队列是UCOSIII中的一个内核对象，为结构体OS_Q</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span>  <span class="title">os_q</span> &#123;</span></span><br><span class="line">OS_OBJ_TYPE         	 Type; </span><br><span class="line">CPU_CHAR            	*NamePtr; </span><br><span class="line">OS_PEND_LIST         	PendList;                          </span><br><span class="line"><span class="meta">#<span class="keyword">if</span> OS_CFG_DBG_EN &gt; 0u</span></span><br><span class="line">    OS_Q                *DbgPrevPtr;</span><br><span class="line">    OS_Q                *DbgNextPtr;</span><br><span class="line">    CPU_CHAR            *DbgNamePtr;</span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br><span class="line">OS_MSG_Q             	MsgQ	<span class="comment">//消息列表</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">// OS_MSG_Q也是一个结构体</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span>  <span class="title">os_msg_q</span> &#123;</span>                                           </span><br><span class="line">OS_MSG              *InPtr;   </span><br><span class="line">OS_MSG              *OutPtr; </span><br><span class="line">OS_MSG_QTY           NbrEntriesSize; </span><br><span class="line">OS_MSG_QTY           NbrEntries; </span><br><span class="line">OS_MSG_QTY           NbrEntriesMax;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">// 消息发布以后会被存放在OS_MSG类型的数据结构中，OS_MSG如下</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span>  <span class="title">os_msg</span> &#123;</span></span><br><span class="line">OS_MSG              *NextPtr;                           </span><br><span class="line"><span class="type">void</span>                *MsgPtr; </span><br><span class="line">OS_MSG_SIZE          MsgSize; </span><br><span class="line">CPU_TS               MsgTS;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
-<p><img src="msg.jpg" alt="msg"></p>
+<p><img src="/2023/08/01/2-6-%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-UCOS3/index/msg.jpg" alt="msg"></p>
 <table>
 <thead>
 <tr>
@@ -720,10 +720,10 @@
 <p>UCOSIII中提供了一种替代malloc()和free()函数的方法，<strong>UCOSIII中将存储空间分成区和块</strong>，每个存储区有数量不等大小相同的存储块，在一个系统中可以有多个存储区。</p>
 <p>一般存储区是固定的，在程序中可以用数组来表示一个存储区，<strong>比如u8 buffer[20]10]，就表示一个拥有20个存储块，每个存储块10个字节的存储区</strong>。</p>
 </blockquote>
-<p><img src="store.jpg" alt="store"></p>
+<p><img src="/2023/08/01/2-6-%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-UCOS3/index/store.jpg" alt="store"></p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// UCOSIII中用存储控制块来表示存储区，存储控制块为OS_MEM</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">os_mem</span> &#123;</span></span><br><span class="line">    OS_OBJ_TYPE          Type; </span><br><span class="line">    <span class="type">void</span>                *AddrPtr; </span><br><span class="line">    CPU_CHAR            *NamePtr;</span><br><span class="line">    <span class="type">void</span>                *FreeListPtr; </span><br><span class="line">    OS_MEM_SIZE          BlkSize; </span><br><span class="line">    OS_MEM_QTY           NbrMax; </span><br><span class="line">    OS_MEM_QTY           NbrFree; </span><br><span class="line">    <span class="meta">#<span class="keyword">if</span> OS_CFG_DBG_EN &gt; 0u</span></span><br><span class="line">        OS_MEM          *DbgPrevPtr;</span><br><span class="line">        OS_MEM         *DbgNextPtr;</span><br><span class="line">    <span class="meta">#<span class="keyword">endif</span></span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
-<p><img src="store2.jpg" alt="store"></p>
+<p><img src="/2023/08/01/2-6-%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-UCOS3/index/store2.jpg" alt="store"></p>
 <table>
 <thead>
 <tr>
@@ -1043,7 +1043,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">指针&数组篇</a>
+                <a href="javascript:void(0)" class="js-tag color5">预处理篇</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1051,7 +1051,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">预处理篇</a>
+                <a href="javascript:void(0)" class="js-tag color2">指针&数组篇</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1063,7 +1063,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">FreeRTOS</a>
+                <a href="javascript:void(0)" class="js-tag color1">进程&线程</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1075,11 +1075,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">进程&线程</a>
+                <a href="javascript:void(0)" class="js-tag color3">Linux命令</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Linux命令</a>
+                <a href="javascript:void(0)" class="js-tag color4">FreeRTOS</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1099,11 +1099,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">IO</a>
+                <a href="javascript:void(0)" class="js-tag color5">通信协议</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">通信协议</a>
+                <a href="javascript:void(0)" class="js-tag color3">IO</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1131,6 +1131,14 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">MQTT</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">TCP&UDP</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Zigbee</a>
               </li>
              
@@ -1140,14 +1148,6 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">计算机网络</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">MQTT</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">TCP&UDP</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1167,11 +1167,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">计算机组成原理</a>
+                <a href="javascript:void(0)" class="js-tag color3">存储</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">存储</a>
+                <a href="javascript:void(0)" class="js-tag color3">计算机组成原理</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1187,10 +1187,6 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">基础</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">c++容器</a>
               </li>
              
@@ -1199,11 +1195,15 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">云开发</a>
+                <a href="javascript:void(0)" class="js-tag color1">echarts可视化</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">echarts可视化</a>
+                <a href="javascript:void(0)" class="js-tag color3">基础</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">生成二维码</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1215,7 +1215,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">生成二维码</a>
+                <a href="javascript:void(0)" class="js-tag color4">云开发</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1227,11 +1227,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Mysql</a>
+                <a href="javascript:void(0)" class="js-tag color4">Markdown</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Markdown</a>
+                <a href="javascript:void(0)" class="js-tag color1">Mysql</a>
               </li>
             
             <div class="clearfix"></div>

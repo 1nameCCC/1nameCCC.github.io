@@ -20,7 +20,7 @@
 <meta property="og:image" content="http://1nameccc.github.io/2023/08/01/4-1-%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE-%E5%B8%B8%E8%A7%81%E5%8D%8F%E8%AE%AE/index/1.jpg">
 <meta property="og:image" content="http://1nameccc.github.io/2023/08/01/4-1-%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE-%E5%B8%B8%E8%A7%81%E5%8D%8F%E8%AE%AE/index/tcp.jpg">
 <meta property="og:image" content="http://1nameccc.github.io/2023/08/01/4-1-%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE-%E5%B8%B8%E8%A7%81%E5%8D%8F%E8%AE%AE/index/udp.jpg">
-<meta property="og:image" content="http://1nameccc.github.io/2023/08/01/4-1-%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE-%E5%B8%B8%E8%A7%81%E5%8D%8F%E8%AE%AE/index/http.jpg">
+<meta property="og:image" content="http://1nameccc.github.io/http.jpg">
 <meta property="og:image" content="http://1nameccc.github.io/2023/08/01/4-1-%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE-%E5%B8%B8%E8%A7%81%E5%8D%8F%E8%AE%AE/index/HTTP1.JPG">
 <meta property="og:image" content="http://1nameccc.github.io/2023/08/01/4-1-%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE-%E5%B8%B8%E8%A7%81%E5%8D%8F%E8%AE%AE/index/mqtt.jpg">
 <meta property="og:image" content="http://1nameccc.github.io/2023/08/01/4-1-%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE-%E5%B8%B8%E8%A7%81%E5%8D%8F%E8%AE%AE/index/mqtt_1.jpg">
@@ -280,7 +280,7 @@
   
   <div class="article-entry" itemprop="articleBody">
     
-    <p><img src="1.jpg"></p>
+    <p><img src="/2023/08/01/4-1-%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE-%E5%B8%B8%E8%A7%81%E5%8D%8F%E8%AE%AE/index/1.jpg"></p>
 <h1 id="网络协议"><a href="#网络协议" class="headerlink" title="网络协议"></a>网络协议</h1><span id="more"></span>
 <h2 id="TCP-UDP"><a href="#TCP-UDP" class="headerlink" title="TCP&#x2F;UDP"></a>TCP&#x2F;UDP</h2><table>
 <thead>
@@ -307,7 +307,7 @@
 <td>8个字节</td>
 </tr>
 </tbody></table>
-<h3 id="TCP三次握手和四次挥手"><a href="#TCP三次握手和四次挥手" class="headerlink" title="TCP三次握手和四次挥手"></a>TCP三次握手和四次挥手</h3><p><img src="tcp.jpg"></p>
+<h3 id="TCP三次握手和四次挥手"><a href="#TCP三次握手和四次挥手" class="headerlink" title="TCP三次握手和四次挥手"></a>TCP三次握手和四次挥手</h3><p><img src="/2023/08/01/4-1-%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE-%E5%B8%B8%E8%A7%81%E5%8D%8F%E8%AE%AE/index/tcp.jpg"></p>
 <blockquote>
 <p><strong>原因为了防止建立重复的连接而损耗资源或造成其他问题</strong></p>
 <p><strong>第一次握手</strong><br>第一次握手由客户端向服务器 发出：客户端发送一个TCP数据报，其中，TCP分组的源端口为客户端发起通信建立的进程端口，而目的端口为服务器处理请求的进程端口号，比如80端口。在表示建立连接的TCP分组中，SYN标志位为被置1，则告知服务器发送该分组的目的是请求建立连接，并且当SYN置1时，该分组中的seq字段发送的是初始序列号cilent_isn，初始序列号的取值方案有多种，一般取随机值。</p>
@@ -321,7 +321,7 @@
 </blockquote>
 <h3 id="UDP"><a href="#UDP" class="headerlink" title="UDP"></a>UDP</h3><blockquote>
 <p><strong>格式</strong></p>
-<p><img src="udp.jpg"></p>
+<p><img src="/2023/08/01/4-1-%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE-%E5%B8%B8%E8%A7%81%E5%8D%8F%E8%AE%AE/index/udp.jpg"></p>
 <ul>
 <li>源端口号：表示数据从哪里发送</li>
 <li>目的端口号：表示数据要发送到哪里区</li>
@@ -339,9 +339,9 @@
 <p><strong>HTTP (全称为 “超文本传输协议”) 是一种应用非常广泛的应用层协议。</strong></p>
 </blockquote>
 <h3 id="tcp协议与http协议"><a href="#tcp协议与http协议" class="headerlink" title="tcp协议与http协议"></a>tcp协议与http协议</h3><blockquote>
-<p>从应用领域来说，tcp协议主要用以数据传输控制，而http协议主要用于应用层面的数据交互，本质上两者没有可比性。<br>http协议属于应用层协议，是建立在tcp协议的基础上的，http协议以客户端请求和服务端应答为标准，浏览器通常为客户端，而web服务器称之为服务端；客户端打开任意一个端口向服务端的指定端口发起http请求，首先是发起tcp三次握手，tcp三次握手的目的是建立可靠的数据连接通道，tcp三次握手建立完毕，进行http数据交互，如下图：<br><img src="http.jpg"></p>
+<p>从应用领域来说，tcp协议主要用以数据传输控制，而http协议主要用于应用层面的数据交互，本质上两者没有可比性。<br>http协议属于应用层协议，是建立在tcp协议的基础上的，http协议以客户端请求和服务端应答为标准，浏览器通常为客户端，而web服务器称之为服务端；客户端打开任意一个端口向服务端的指定端口发起http请求，首先是发起tcp三次握手，tcp三次握手的目的是建立可靠的数据连接通道，tcp三次握手建立完毕，进行http数据交互，如下图：<br><img src="/http.jpg"></p>
 </blockquote>
-<h3 id="http原理"><a href="#http原理" class="headerlink" title="http原理"></a>http原理</h3><p><img src="HTTP1.JPG"></p>
+<h3 id="http原理"><a href="#http原理" class="headerlink" title="http原理"></a>http原理</h3><p><img src="/2023/08/01/4-1-%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE-%E5%B8%B8%E8%A7%81%E5%8D%8F%E8%AE%AE/index/HTTP1.JPG"></p>
 <blockquote>
 <p>客户端浏览器向服务器发起请求request，服务器收到request后进行处理，会产生响应的response信息返回给浏览器，客户端浏览器收到服务器返回的response信息，会对信息进行解析处理，最终用户看到浏览器展示web服务器的网页内容，客户端发起请求request，服务器响应response；</p>
 <p>request消息分为3个部分：request line ，request header、空行、body；<br>response消息分为3个部分： response line ，response header，空行、body；</p>
@@ -395,16 +395,16 @@
 <p>MQTT（Message Queuing Telemetry Transport，消息队列遥测传输协议），是一种基于<code>发布/订阅</code>（<code>publish/subscribe</code>）模式的“轻量级”通讯协议，该协议构建于<strong>TCP&#x2F;IP协议</strong>上</p>
 <p>MQTT最大优点在于，<strong>用极少的代码和有限的带宽，为连接远程设备提供实时可靠的消息服务</strong>。作为一种低开销、低带宽占用的即时通讯协议，使其在物联网、小型设备、移动应用等方面有较广泛的应用。</p>
 </blockquote>
-<p><img src="mqtt.jpg"></p>
+<p><img src="/2023/08/01/4-1-%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE-%E5%B8%B8%E8%A7%81%E5%8D%8F%E8%AE%AE/index/mqtt.jpg"></p>
 <h3 id="消息格式"><a href="#消息格式" class="headerlink" title="消息格式"></a>消息格式</h3><blockquote>
 <p><strong>消息格式如下</strong></p>
 <p>固定报头|可变报头|负载(消息体)</p>
 <ol>
 <li>固定报头</li>
 </ol>
-<p><img src="mqtt_1.jpg"></p>
-<p><img src="mqtt_2.jpg"></p>
-<p><img src="mqtt_3.jpg"></p>
+<p><img src="/2023/08/01/4-1-%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE-%E5%B8%B8%E8%A7%81%E5%8D%8F%E8%AE%AE/index/mqtt_1.jpg"></p>
+<p><img src="/2023/08/01/4-1-%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE-%E5%B8%B8%E8%A7%81%E5%8D%8F%E8%AE%AE/index/mqtt_2.jpg"></p>
+<p><img src="/2023/08/01/4-1-%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE-%E5%B8%B8%E8%A7%81%E5%8D%8F%E8%AE%AE/index/mqtt_3.jpg"></p>
 <p><strong>byte2:剩余长度</strong>( Remaining Length)表示当前报文剩余部分的字节数，包括可变报头和负载的数据。剩余长度不包括用于编码剩余长度字段本身的字节数。共1~4个字节，每个字节的低7位用于编码数据，最高位表示是否有更多字节。最大允许发送256M控制报文(0xff,0xff,0xff,0x7f)&#x3D;256M;</p>
 <ol start="2">
 <li>可变报头</li>
@@ -620,8 +620,8 @@
     </a>
   
   
-    <a href="/2023/08/01/4-3-%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE-Zigbee/index/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">网络协议——Zigbee</div>
+    <a href="/2023/08/01/4-2-%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE-MQTT/index/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">网络协议——MQTT</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -791,7 +791,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">指针&数组篇</a>
+                <a href="javascript:void(0)" class="js-tag color5">预处理篇</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -799,7 +799,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">预处理篇</a>
+                <a href="javascript:void(0)" class="js-tag color2">指针&数组篇</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -811,7 +811,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">FreeRTOS</a>
+                <a href="javascript:void(0)" class="js-tag color1">进程&线程</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -823,11 +823,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">进程&线程</a>
+                <a href="javascript:void(0)" class="js-tag color3">Linux命令</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Linux命令</a>
+                <a href="javascript:void(0)" class="js-tag color4">FreeRTOS</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -847,11 +847,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">IO</a>
+                <a href="javascript:void(0)" class="js-tag color5">通信协议</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">通信协议</a>
+                <a href="javascript:void(0)" class="js-tag color3">IO</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -879,6 +879,14 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">MQTT</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">TCP&UDP</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Zigbee</a>
               </li>
              
@@ -888,14 +896,6 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">计算机网络</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">MQTT</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">TCP&UDP</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -915,11 +915,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">计算机组成原理</a>
+                <a href="javascript:void(0)" class="js-tag color3">存储</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">存储</a>
+                <a href="javascript:void(0)" class="js-tag color3">计算机组成原理</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -935,10 +935,6 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">基础</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">c++容器</a>
               </li>
              
@@ -947,11 +943,15 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">云开发</a>
+                <a href="javascript:void(0)" class="js-tag color1">echarts可视化</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">echarts可视化</a>
+                <a href="javascript:void(0)" class="js-tag color3">基础</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">生成二维码</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -963,7 +963,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">生成二维码</a>
+                <a href="javascript:void(0)" class="js-tag color4">云开发</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -975,11 +975,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Mysql</a>
+                <a href="javascript:void(0)" class="js-tag color4">Markdown</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Markdown</a>
+                <a href="javascript:void(0)" class="js-tag color1">Mysql</a>
               </li>
             
             <div class="clearfix"></div>

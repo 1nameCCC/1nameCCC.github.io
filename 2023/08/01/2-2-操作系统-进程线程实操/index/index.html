@@ -273,7 +273,7 @@
   
   <div class="article-entry" itemprop="articleBody">
     
-    <p><img src="1.jpg"></p>
+    <p><img src="/2023/08/01/2-2-%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-%E8%BF%9B%E7%A8%8B%E7%BA%BF%E7%A8%8B%E5%AE%9E%E6%93%8D/index/1.jpg"></p>
 <h2 id="Linux-多进程和多线程编程"><a href="#Linux-多进程和多线程编程" class="headerlink" title="Linux 多进程和多线程编程"></a>Linux 多进程和多线程编程</h2><span id="more"></span>
 <h3 id="多进程"><a href="#多进程" class="headerlink" title="多进程"></a>多进程</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">n=fork() </span><br><span class="line"><span class="comment">// 创建一个子进程，该命令执行后将产生一个子进程，子进程的PCB以及进程空间都是由父进程拷贝而来的，因而两者相同，差别是返回值。</span></span><br><span class="line">对子进程，n＝<span class="number">0</span>；</span><br><span class="line">对父进程，n等于子进程的进程号（即n&gt;<span class="number">0</span>）；</span><br><span class="line">n=<span class="number">-1</span>，创建失败。</span><br><span class="line">    </span><br><span class="line"><span class="comment">// 通过判断返回值便可安排父进程和子进程的后继活动，使两者完成不同的任务，通常用法：</span></span><br><span class="line">n=fork();</span><br><span class="line"><span class="keyword">if</span> (n==<span class="number">0</span>)</span><br><span class="line">	&#123;<span class="comment">/*子进程所要执行的代码*/</span> &#125;</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">	&#123;<span class="comment">/*父进程所要执行的代码*/</span>&#125;</span><br></pre></td></tr></table></figure>
 
@@ -293,7 +293,7 @@
 <h3 id="共享存储区"><a href="#共享存储区" class="headerlink" title="共享存储区"></a>共享存储区</h3><blockquote>
 <p>共享存储区（Share Memory）是UNIX系统中通信速度最高的一种通信机制。该机制可使若干进程共享主存中的某一个区域，且使该区域出现（映射）在多个进程的虚地址空间中。另一方面，一个进程的虚地址空间中又可连接多个共享存储区，每个共享存储区都有自己的名字。当进程间欲利用共享存储区进行通信时，必须先在主存中建立一共享存储区，然后将它附接到自己的虚地址空间上。此后，进程对该区的访问操作，与对其虚地址空间的其它部分的操作完全相同。进程之间便可通过对共享存储区中数据的读、写来进行直接通信。图示列出二个进程通过共享一个共享存储区来进行通信的例子</p>
 </blockquote>
-<p><img src="share.jpg" alt="img"></p>
+<p><img src="/2023/08/01/2-2-%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-%E8%BF%9B%E7%A8%8B%E7%BA%BF%E7%A8%8B%E5%AE%9E%E6%93%8D/index/share.jpg" alt="img"></p>
 <blockquote>
 <p>应当指出，共享存储区机制只为进程提供了用于实现通信的共享存储区和对共享存储区进行操作的手段，然而并未提供对该区进行互斥访问及进程同步的措施。因而当用户需要使用该机制时，<strong>必须自己设置同步和互斥措施才能保证实现正确的通信</strong>。</p>
 </blockquote>
@@ -453,8 +453,8 @@
     </a>
   
   
-    <a href="/2023/08/01/2-1-%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-%E8%BF%9B%E7%A8%8B&%E7%BA%BF%E7%A8%8B/index/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">操作系统——进程&amp;线程</div>
+    <a href="/2023/08/01/2-5-%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/index/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">操作系统——Linux命令</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -624,7 +624,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">指针&数组篇</a>
+                <a href="javascript:void(0)" class="js-tag color5">预处理篇</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -632,7 +632,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">预处理篇</a>
+                <a href="javascript:void(0)" class="js-tag color2">指针&数组篇</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -644,7 +644,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">FreeRTOS</a>
+                <a href="javascript:void(0)" class="js-tag color1">进程&线程</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -656,11 +656,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">进程&线程</a>
+                <a href="javascript:void(0)" class="js-tag color3">Linux命令</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Linux命令</a>
+                <a href="javascript:void(0)" class="js-tag color4">FreeRTOS</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -680,11 +680,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">IO</a>
+                <a href="javascript:void(0)" class="js-tag color5">通信协议</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">通信协议</a>
+                <a href="javascript:void(0)" class="js-tag color3">IO</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -712,6 +712,14 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">MQTT</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">TCP&UDP</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Zigbee</a>
               </li>
              
@@ -721,14 +729,6 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">计算机网络</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">MQTT</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">TCP&UDP</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -748,11 +748,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">计算机组成原理</a>
+                <a href="javascript:void(0)" class="js-tag color3">存储</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">存储</a>
+                <a href="javascript:void(0)" class="js-tag color3">计算机组成原理</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -768,10 +768,6 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">基础</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">c++容器</a>
               </li>
              
@@ -780,11 +776,15 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">云开发</a>
+                <a href="javascript:void(0)" class="js-tag color1">echarts可视化</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">echarts可视化</a>
+                <a href="javascript:void(0)" class="js-tag color3">基础</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">生成二维码</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -796,7 +796,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">生成二维码</a>
+                <a href="javascript:void(0)" class="js-tag color4">云开发</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -808,11 +808,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Mysql</a>
+                <a href="javascript:void(0)" class="js-tag color4">Markdown</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Markdown</a>
+                <a href="javascript:void(0)" class="js-tag color1">Mysql</a>
               </li>
             
             <div class="clearfix"></div>

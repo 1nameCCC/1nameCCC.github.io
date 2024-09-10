@@ -272,7 +272,7 @@
   
   <div class="article-entry" itemprop="articleBody">
     
-    <p><img src="1.jpg"></p>
+    <p><img src="/2023/08/01/7-3-%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F-%E4%BA%91%E5%BC%80%E5%8F%91/index/1.jpg"></p>
 <h1 id="小程序云开发"><a href="#小程序云开发" class="headerlink" title="小程序云开发"></a>小程序云开发</h1><span id="more"></span>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">onLaunch</span>: <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">    wx.<span class="property">cloud</span>.<span class="title function_">init</span>(&#123;</span><br><span class="line">        <span class="attr">env</span>:<span class="string">&quot;cloud1-5gffyu7d7a7a5a08&quot;</span>  <span class="comment">// 初始化，填写环境ID</span></span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> db = wx.<span class="property">cloud</span>.<span class="title function_">database</span>().<span class="title function_">collection</span>(<span class="string">&quot;test_db&quot;</span>) <span class="comment">// 创建数据库对象</span></span><br><span class="line"></span><br><span class="line">	<span class="comment">// 增</span></span><br><span class="line">    <span class="title function_">add_data</span>(<span class="params"></span>) &#123;</span><br><span class="line">        db.<span class="title function_">add</span>(&#123;</span><br><span class="line">            <span class="attr">data</span>: &#123;</span><br><span class="line">                <span class="attr">name</span>: <span class="string">&quot;coucou&quot;</span></span><br><span class="line">            &#125;,</span><br><span class="line">            <span class="title function_">success</span>(<span class="params">res</span>) &#123;</span><br><span class="line">                <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;添加成功：&quot;</span>, res)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="comment">// 查</span></span><br><span class="line">    <span class="title function_">select_data</span>(<span class="params"></span>) &#123;</span><br><span class="line">        db.<span class="title function_">get</span>(&#123;</span><br><span class="line">            <span class="title function_">success</span>(<span class="params">res</span>) &#123;</span><br><span class="line">                <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;查询成功：&quot;</span>, res)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="comment">// 删</span></span><br><span class="line">    <span class="title function_">delete_data</span>(<span class="params"></span>) &#123;</span><br><span class="line">        db.<span class="title function_">doc</span>(<span class="variable language_">this</span>.<span class="property">data</span>.<span class="property">db_id</span>).<span class="title function_">remove</span>(&#123;</span><br><span class="line">            <span class="title function_">success</span>(<span class="params">res</span>) &#123;</span><br><span class="line">                <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;删除成功&quot;</span>, res)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="comment">// 改</span></span><br><span class="line">    <span class="title function_">change_data</span>(<span class="params"></span>) &#123;</span><br><span class="line">        db.<span class="title function_">doc</span>(<span class="variable language_">this</span>.<span class="property">data</span>.<span class="property">db_id</span>).<span class="title function_">update</span>(&#123;</span><br><span class="line">            <span class="attr">data</span>: &#123;</span><br><span class="line">                <span class="attr">name</span>: <span class="string">&quot;hhhhh&quot;</span></span><br><span class="line">            &#125;,</span><br><span class="line">            <span class="title function_">success</span>(<span class="params">res</span>) &#123;</span><br><span class="line">                <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;修改成功&quot;</span>, res)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="comment">// 上传图片</span></span><br><span class="line">    <span class="title function_">add_img</span>(<span class="params"></span>) &#123;</span><br><span class="line">        wx.<span class="property">cloud</span>.<span class="title function_">uploadFile</span>(&#123;</span><br><span class="line">            <span class="attr">cloudPath</span>: <span class="string">&quot;my_test/1111.jpg&quot;</span>,</span><br><span class="line">            <span class="attr">filePath</span>: <span class="string">&quot;/image/1.jpg&quot;</span>,</span><br><span class="line">            <span class="title function_">success</span>(<span class="params">res</span>)&#123;</span><br><span class="line">                <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;上传成功&quot;</span>, res)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;,</span><br></pre></td></tr></table></figure>
 
@@ -398,18 +398,18 @@
 
 <nav id="article-nav">
   
-    <a href="/2023/08/01/6-3-%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-c++%E5%AE%B9%E5%99%A8/index/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2023/08/01/8-1-%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7-Cjson/index/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          数据结构——c++容器
+          开发工具——Cjson
         
       </div>
     </a>
   
   
-    <a href="/2023/08/01/7-1-%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F-echarts%E5%8F%AF%E8%A7%86%E5%8C%96/index/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">微信小程序——echarts可视化</div>
+    <a href="/2023/08/01/8-2-%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7-Git/index/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">开发工具——Git</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -579,7 +579,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">指针&数组篇</a>
+                <a href="javascript:void(0)" class="js-tag color5">预处理篇</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -587,7 +587,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">预处理篇</a>
+                <a href="javascript:void(0)" class="js-tag color2">指针&数组篇</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -599,7 +599,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">FreeRTOS</a>
+                <a href="javascript:void(0)" class="js-tag color1">进程&线程</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -611,11 +611,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">进程&线程</a>
+                <a href="javascript:void(0)" class="js-tag color3">Linux命令</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Linux命令</a>
+                <a href="javascript:void(0)" class="js-tag color4">FreeRTOS</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -635,11 +635,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">IO</a>
+                <a href="javascript:void(0)" class="js-tag color5">通信协议</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">通信协议</a>
+                <a href="javascript:void(0)" class="js-tag color3">IO</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -667,6 +667,14 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">MQTT</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">TCP&UDP</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Zigbee</a>
               </li>
              
@@ -676,14 +684,6 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">计算机网络</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">MQTT</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">TCP&UDP</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -703,11 +703,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">计算机组成原理</a>
+                <a href="javascript:void(0)" class="js-tag color3">存储</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">存储</a>
+                <a href="javascript:void(0)" class="js-tag color3">计算机组成原理</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -723,10 +723,6 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">基础</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">c++容器</a>
               </li>
              
@@ -735,11 +731,15 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">云开发</a>
+                <a href="javascript:void(0)" class="js-tag color1">echarts可视化</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">echarts可视化</a>
+                <a href="javascript:void(0)" class="js-tag color3">基础</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">生成二维码</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -751,7 +751,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">生成二维码</a>
+                <a href="javascript:void(0)" class="js-tag color4">云开发</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -763,11 +763,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Mysql</a>
+                <a href="javascript:void(0)" class="js-tag color4">Markdown</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Markdown</a>
+                <a href="javascript:void(0)" class="js-tag color1">Mysql</a>
               </li>
             
             <div class="clearfix"></div>
